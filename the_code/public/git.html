@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script src="https://wzrd.in/standalone/pify@latest"></script>
+    <script src="https://unpkg.com/browserfs@beta"></script>
+    <script src="https://unpkg.com/isomorphic-git"></script>
+    <script>
+    BrowserFS.configure({
+      fs: 'IndexedDB', options: {}
+    }, function (err) {
+      if (err) return console.log(err)
+      window.fs = BrowserFS.BFSRequire('fs')
+      window.pfs = pify(fs) // make a Promisified version
+      window.dir = 'tutorial'
+    })
+
+    </script>
+  </body>
+</html>

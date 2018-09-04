@@ -1,13 +1,13 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+the_code/node_modules
 
 # testing
-/coverage
+the_code/coverage
 
 # production
-/build
+the_code/build
 
 # misc
 .DS_Store
@@ -16,6 +16,6 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+the_code/npm-debug.log*
+the_code/yarn-debug.log*
+the_code/yarn-error.log*
