@@ -75,7 +75,7 @@ export default () => (
       <Heading textColor="white" size={5}>Course stats</Heading>
       <List>
         <ListItem>⏰ 5 weeks</ListItem>
-        <ListItem>💻 3 in-class excersices</ListItem>
+        <ListItem>💻 2 in-class excersices</ListItem>
         <ListItem>🏡 2 homework assignments</ListItem>
         <ListItem>📝 2 tests</ListItem>
         <ListItem>⭐ 1 credit</ListItem>
@@ -84,8 +84,8 @@ export default () => (
     <Slide>
       <Heading textColor="white" size={5}>💻 in-class excersices</Heading>
       <List>
-        <ListItem>⏰ 30 minuntes each</ListItem>
-        <ListItem>⭐ 3 x 10% of final grade</ListItem>
+        <ListItem>⏰ 2nd, 4th week (30 minuntes each)</ListItem>
+        <ListItem>⭐ 2 x 15% of final grade</ListItem>
         <ListItem>students will receive several specific problems
           based on the materials covered in class</ListItem>
         <ListItem>Example problem: Count all commits made by personX after dateY</ListItem>
@@ -105,7 +105,7 @@ export default () => (
       <List>
         <ListItem>⏰ due by week 5</ListItem>
         <ListItem>⭐ 15% of final grade</ListItem>
-        <ListItem>the second homework will require forming group of 3 or 4</ListItem>
+        <ListItem>the second homework will require forming groups of 3 or 4</ListItem>
         <ListItem>Example tasks: follow a selected workflow, perform code reviews</ListItem>
       </List>
     </Slide>
