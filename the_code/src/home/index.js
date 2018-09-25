@@ -22,10 +22,11 @@ const Menu = class extends React.Component {
 
     this.state = { opened: false };
 
-    this.toggle = () => {
+    this.toggle = (event) => {
+      const eventTargetIsLink = event.target.tagName === 'A';
       this.setState(({ opened }) => {
-        if (opened === true) {
-          window.localStorage.removeItem('spectacle-slide');
+        if (opened === true && eventTargetIsLink) {
+          window.location += '#/0';
         };
         return { opened: !opened };
       });
