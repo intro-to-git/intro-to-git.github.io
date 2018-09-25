@@ -1,0 +1,50 @@
+body {
+  background: rgb(31, 32, 34);
+  color: white;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: white !important;
+}
+
+ul {
+  text-align: center !important;
+  list-style: none !important;
+}
+
+ul li:not(:last-child) {
+  margin-bottom: 15px !important;
+}
+
+a {
+  color: white;
+  font-style: italic;
+  text-decoration: none;
+}
+
+ul {
+   text-align: center !important;
+   list-style: none !important;
+}
+
+ul li:not(:last-child) {
+  margin-bottom: 15px !important;
+}
+
+a {
+  color: white;
+  font-style: italic
+}
+
+.prism-code {
+  font-size: 2em !important;
+  color: #ff5555 !important;
+}
+
+.token.punctuation {
+  color: #00ff00 !important;
+}
+
+.token.comment {
+  color: lightgray !important;
+}
