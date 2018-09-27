@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { Switch, Route, NavLink as RouterLink } from 'react-router-dom';
 
 import intro from '../intro';
 import bash from '../bash';
@@ -19,23 +19,39 @@ const Menu = class extends React.Component {
 
     this.toggle = (event) => {
       const eventTargetIsLink = event.target.tagName === 'A';
+      const eventTargetIsTitle = event.target.className.includes('course_title');
       this.setState(({ opened }) => {
         if (opened === true && eventTargetIsLink) {
           window.location += '#/0';
+          return { opened: false };
         };
+
         return { opened: !opened };
-      });
+      })
     };
+
+    this.hide = () => {
+      this.setState({ opened: false });
+    }
+  }
+
+  componentDidMount() {
+    document.body.addEventListener('click', this.hide);
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('click', this.hide);
   }
 
   render() {
-    const menu = (<ul>
+    const menu = (<ul class="course_menu">
       {courseModules.map(module =>
-        <li key={module.menu.path}><RouterLink to={module.menu.path}>{module.menu.title}</RouterLink></li>
+        <li key={module.menu.path}><RouterLink activeClassName="menu_active_module" exact to={module.menu.path}>{module.menu.title}</RouterLink></li>
       )}
     </ul>);
-    return <div onClick={this.toggle} style={{ position: 'fixed', top:0, left:0, 'z-index': '5000', cursor: 'pointer' }}>
-      💬 COS310: Intro to Git
+    return <div onClick={this.toggle} class="course_title">
+      <span style={{'font-size': '0.75em'}}>⬇️ COS310: Intro to Git > <Switch>{[...courseModules].reverse().map(
+        module => <Route path={module.menu.path} render={() => module.menu.title} />)}</Switch></span>
       {this.state.opened && menu}
     </div>
   }

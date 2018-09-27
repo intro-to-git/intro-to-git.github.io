@@ -48,3 +48,29 @@ a {
 .token.comment {
   color: lightgray !important;
 }
+
+.course_title {
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 5000;
+  cursor: pointer;
+}
+
+.course_menu {
+  background-color: dimgrey;
+  margin: 0;
+  margin-top: 5px;
+  text-align: left !important;
+  padding: 0;
+}
+
+.course_menu > li {
+  margin: 0;
+  padding: 10px;
+  padding-left: 50px;
+}
+
+.menu_active_module {
+  text-decoration: underline;
+}

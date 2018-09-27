@@ -2,12 +2,15 @@ import React from 'react';
 
 import { Slide, Heading, List, ListItem, Link } from 'spectacle';
 
-import Deck from '../common/deck';
+import { Deck } from '../common/components';
 
 export default {
-  menu: { title: 'Course introduction', path: '/intro' },
+  menu: { title: 'Course introduction', path: '/' },
   slides: () => (
     <Deck>
+      <Slide>
+        <Heading fit>COS310: Intro to Git</Heading>
+      </Slide>
       <Slide>
         <Heading textColor="white" size={5}>Course topics</Heading>
         <List>

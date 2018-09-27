@@ -2,10 +2,7 @@ import React from 'react';
 
 import { CodePane, Slide, Heading, List, ListItem, Link } from 'spectacle';
 
-import Deck from '../common/deck';
-
-require('prismjs/components/prism-bash');
-
+import { Deck } from '../common/components';
 
 const hello = `echo "Hello World"`;
 

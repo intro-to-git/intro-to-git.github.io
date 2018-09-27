@@ -4,11 +4,7 @@ import { BrowserRouter, Route, Switch, Link as RouterLink } from 'react-router-d
 
 import { Slide, List, ListItem, Heading, CodePane, Link, Image, Layout, BlockQuote, Cite, Quote  } from 'spectacle';
 
-import MyDeck from '../common/deck';
-
-import Deck from '../common/deck';
-
-require('prismjs/components/prism-bash');
+import { Deck } from '../common/components';
 
 const git_hashObject = (
 `echo "hello world" > hello.txt
@@ -37,7 +33,7 @@ const git_status = (`git status`);
 
 const git_reset = (`git reset`);
 
-const git_checkout = (`git checkout`);
+const git_checkout = (`git checkout -- filename`);
 
 export default {
   menu: { title: 'Git basics', path: '/git1' },
