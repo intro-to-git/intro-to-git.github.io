@@ -102,6 +102,18 @@ git log master..feature_branch
 
 git log master...feature_branch --left-right`);
 
+const git_help = (`git command --help`);
+
+const git_alias = (
+`git config --global alias.st "status"
+
+git config --global alias.co "checkout"
+
+git config --global alias.br "branch --verbose"
+
+git config --global alias.lg "log --online --graph"
+`);
+
 export default {
   menu: { title: 'Git basics (2)', path: '/git2' },
   slides: () => {
@@ -113,6 +125,12 @@ export default {
           <ListItem>Commits are snapshots of the content of a repository<hr/></ListItem>
           <ListItem>Changes must first be added to the staging area before going into a commit</ListItem>
         </List>
+      </Slide>
+
+      <Slide>
+        <SlideTitle>What is a commit</SlideTitle>
+        <div>A commit points to tree and blob objects</div>
+        <Image src="images/commit-and-tree.png" />
       </Slide>
 
       <Slide>
@@ -141,6 +159,25 @@ export default {
         <SlideTitle>Log</SlideTitle>
         <div>A line of commits - the history of the repository</div>
         <CodePane lang="bash" source={git_log} />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Commits have parents</SlideTitle>
+        <Image src="images/commits-and-parents.png" />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Searching for help</SlideTitle>
+        <div>Read the manual multiple times and experiment on a dummy repository</div>
+        <div>Most commands in git have multiple options and use-cases</div>
+        <div>Some of the names and descriptions can be confusing</div>
+        <CodePane lang="bash" source={git_help} />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Setting up aliases</SlideTitle>
+        <div>Things that we do often should be easy to do</div>
+        <CodePane lang="bash" source={git_alias} />
       </Slide>
 
       <Slide>
@@ -182,8 +219,40 @@ export default {
 
       <Slide>
         <SlideTitle>Reset</SlideTitle>
-        <div>Overrides the branch to point to a different commit</div>
+        <div>Set the current branch pointer</div>
         <CodePane lang="bash" source={git_reset} />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Reset</SlideTitle>
+        <div>How reset options affect git</div>
+        <table className="reset_table">
+          <tr>
+            <td></td>
+            <td>--soft</td>
+            <td>--mixed</td>
+            <td>--hard</td>
+          </tr>
+          <tr>
+            <td>work dir</td>
+            <td>N</td>
+            <td>N</td>
+            <td>Y</td>
+          </tr>
+          <tr>
+            <td>staging</td>
+            <td>N</td>
+            <td>Y</td>
+            <td>Y</td>
+          </tr>
+          <tr>
+            <td>branch</td>
+            <td>Y</td>
+            <td>Y</td>
+            <td>Y</td>
+          </tr>
+
+        </table>
       </Slide>
 
       <Slide>
@@ -217,6 +286,11 @@ export default {
       </Slide>
 
       <Slide>
+        <SlideTitle>Fast-forward merges</SlideTitle>
+        <Image width="60%" src="images/merge-no-ff.png" />
+      </Slide>
+
+      <Slide>
         <SlideTitle>Log formating</SlideTitle>
         <div>Important info should be visible in a glance</div>
         <CodePane lang="bash" source={git_log_formatting} />
@@ -229,9 +303,14 @@ export default {
       </Slide>
 
       <Slide>
-        <SlideTitle>Log ranges</SlideTitle>
+        <SlideTitle>Commit ranges</SlideTitle>
         <div>Compare the history of multiple branches</div>
         <CodePane lang="bash" source={git_log_range} />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Commit ranges</SlideTitle>
+        <Image width="75%" src="images/comimt-ranges.jpg" />
       </Slide>
 
       <Slide>

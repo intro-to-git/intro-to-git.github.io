@@ -2,7 +2,9 @@
 
 1 Create a repository
 
-2 Write a bash script called "hello" that prints your name and the current date
+2 Write a bash script called "hello" that:
+  - prints your name
+  - prints "odd" or "even" based on the current minute
 
 3 Commit the script
 
@@ -14,7 +16,9 @@
   - print "dirty" if there are modifications to tracked files
   - print "clean" if there are NO modifications to tracked files
 
-7 Rename the script to "git-st"
+7 Rename the script to "status-check"
+
+8 Make sure the script works
 
 8 Commit the modified script
 

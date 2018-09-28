@@ -74,3 +74,13 @@ a {
 .menu_active_module {
   text-decoration: underline;
 }
+
+.reset_table {
+ text-align: center;
+ margin: 0 auto;
+}
+
+.reset_table td {
+  padding: 5px;
+  border: 1px solid white;
+}
