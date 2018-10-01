@@ -84,3 +84,62 @@ a {
   padding: 5px;
   border: 1px solid white;
 }
+
+:root {
+    --course-menu-arrow-size: 10px;
+    --course-menu-arrow-position-y: -10px;
+    --course-menu-background-color: rgba(100, 100, 100, .7); 
+}
+
+.course_menu {
+    background: var(--course-menu-background-color);
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    position: relative;
+    top: 5px;
+    font-size: .6em;
+    padding: 15px 0;
+    margin-left: 30px;
+}
+
+.course_menu:before {
+    position: absolute;
+    top: var(--course-menu-arrow-position-y);
+    left: 50%;
+    content: '';
+    display: block;
+    border-top: 0;
+    border-left: var(--course-menu-arrow-size) solid transparent;
+    border-right:  var(--course-menu-arrow-size) solid transparent;
+    border-bottom: var(--course-menu-arrow-size) solid var(--course-menu-background-color);
+}
+
+.course_menu li {
+    padding: 0;
+}
+
+.course_menu li a {
+ font-style: normal;
+ padding: 15px 30px;
+ display: block;
+ color: rgba(255, 255, 255, .7);
+}
+
+.course_menu li a:hover {
+    background: rgba(0,0,0,.3);
+}
+
+.course_menu li a.menu_active_module {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.git-logo {
+  font-size: 0.75em;
+}
+
+.git-logo img {
+  margin-left: 10px;
+  vertical-align: middle;
+}
