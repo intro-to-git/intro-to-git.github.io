@@ -22,8 +22,10 @@ const Menu = class extends React.Component {
     this.followLink = (event) => {
       const eventTargetIsLink = event.target.tagName === 'A';
       const eventTargetIsTitle = event.target.className.includes('course_title');
+      const eventTargetText = event.target.innerText;
       this.setState(({ opened }) => {
         if (opened === true && eventTargetIsLink) {
+          window.document.title = `${eventTargetText} : COS310 Intro to git`;
           window.location += '#/0';
           return { opened: false };
         };
