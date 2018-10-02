@@ -115,7 +115,7 @@ git config --global alias.lg "log --online --graph"
 `);
 
 export default {
-  menu: { title: 'Git basics (2)', path: '/git2' },
+  menu: { title: 'Git branches', path: '/git2' },
   slides: () => {
     return <Deck>
       <Slide>

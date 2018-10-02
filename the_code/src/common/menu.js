@@ -6,9 +6,10 @@ import intro from '../intro';
 import bash from '../bash';
 import git1 from '../git1';
 import git2 from '../git2';
+import git3 from '../git3';
 
 const courseModules = [
-  intro, bash, git1, git2
+  intro, bash, git1, git2, git3
 ];
 
 const Menu = class extends React.Component {
@@ -21,17 +22,18 @@ const Menu = class extends React.Component {
 
     this.followLink = (event) => {
       const eventTargetIsLink = event.target.tagName === 'A';
-      const eventTargetIsTitle = event.target.className.includes('course_title');
+      const eventTargetIsTitle = event.target.className.includes('menu-link');
       const eventTargetText = event.target.innerText;
+      debugger;
       this.setState(({ opened }) => {
-        if (opened === true && eventTargetIsLink) {
+        if (opened === true && eventTargetIsLink && !eventTargetIsTitle) {
           window.document.title = `${eventTargetText} : COS310 Intro to git`;
           window.location += '#/0';
           return { opened: false };
         };
       });
     };
-    
+
     this.toggle = (e) => {
       e.preventDefault();
       this.setState(({opened}) => ({ opened: !opened }));
@@ -59,7 +61,7 @@ const Menu = class extends React.Component {
       )}
     </ul>);
     return <div ref={this.menuRef} onClick={this.followLink} class="course_title">
-      <a href="#" onClick={this.toggle}><span className="git-logo"><img width="32px" src="images/git-logo.png" /> COS310: Intro to Git &gt; <Switch>{[...courseModules].reverse().map(
+      <a href="#" className="menu-link" onClick={this.toggle}><span className="git-logo"><img width="32px" src="images/git-logo.png" /> COS310: Intro to Git &gt; <Switch>{[...courseModules].reverse().map(
         module => <Route path={module.menu.path} render={() => module.menu.title} />)}</Switch></span></a>
       {this.state.opened && menu}
     </div>

@@ -88,7 +88,7 @@ a {
 :root {
     --course-menu-arrow-size: 10px;
     --course-menu-arrow-position-y: -10px;
-    --course-menu-background-color: rgba(100, 100, 100, .7); 
+    --course-menu-background-color: rgba(100, 100, 100, .7);
 }
 
 .course_menu {
@@ -142,4 +142,8 @@ a {
 .git-logo img {
   margin-left: 10px;
   vertical-align: middle;
+}
+
+code {
+  color: white !important;
 }
