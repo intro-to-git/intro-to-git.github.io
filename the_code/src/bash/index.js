@@ -281,7 +281,7 @@ ssh -i ~/.ssh/my_key user@remoteHost
 `;
 
 export default {
-  menu: { title: 'Bash basics', path: '/bash' },
+  menu: { title: 'Week 1: Bash basics', path: '/bash' },
   slides:() => (
     <Deck>
       <Slide>

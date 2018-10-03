@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { BrowserRouter, Route, Switch, Link as RouterLink } from 'react-router-dom';
-
 import { Slide, List, ListItem, Heading, CodePane, Link, Image, Layout, BlockQuote, Cite, Quote  } from 'spectacle';
 
 import { Deck } from '../common/components';
@@ -36,7 +34,7 @@ const git_reset = (`git reset`);
 const git_checkout = (`git checkout -- filename`);
 
 export default {
-  menu: { title: 'Git basics', path: '/git1' },
+  menu: { title: 'Week 1: Git basics', path: '/git1' },
   slides: () => {
     return <Deck>
       <Slide>

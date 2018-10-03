@@ -2,9 +2,11 @@ import React from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Menu, { courseModules } from '../common/menu';
+import courseModules from '../common/modules';
 
-const Intro = courseModules[0].slides;
+import { makeMenu } from '../common/components';
+
+const Menu = makeMenu(courseModules);
 
 export default () => (
   <BrowserRouter>

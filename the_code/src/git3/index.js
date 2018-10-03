@@ -62,7 +62,7 @@ const git_refs = (
 master^^
 master~2
 
-#the 2nd parent of the current commit
+#the 2nd parent of a merge commit
 master^2`);
 
 const git_merge = (
@@ -114,8 +114,18 @@ git config --global alias.br "branch --verbose"
 git config --global alias.lg "log --online --graph"
 `);
 
+const git_merge_ff = (
+`# on branch master
+git merge feature_branch
+`);
+
+const git_merge_commit = (
+`# on branch master
+git merge feature_branch
+`);
+
 export default {
-  menu: { title: 'Git workflows', path: '/git3' },
+  menu: { title: 'Week 3: Basic workflows', path: '/git3' },
   slides: () => {
     return <Deck>
       <Slide>
@@ -167,6 +177,15 @@ export default {
       </Slide>
 
       <Slide>
+        <SlideTitle>Purpose of merging</SlideTitle>
+        <List>
+          <ListItem>Upstream - <Code>bug_fix</Code> into <Code>master</Code><hr/></ListItem>
+          <ListItem>Downstream - <Code>master</Code> into <Code>feature_branch</Code><hr/></ListItem>
+          <ListItem>Collecting - <Code>partial_work</Code> into <Code>feature_branch</Code></ListItem>
+        </List>
+      </Slide>
+
+      <Slide>
         <SlideTitle>Types of merges</SlideTitle>
         <List>
           <ListItem>Fast-forward - update branch pointer only</ListItem>
@@ -176,11 +195,13 @@ export default {
 
       <Slide>
         <SlideTitle>Fast-forward merges</SlideTitle>
+        <CodePane lang="bash" source={git_merge_ff} />
         <Image width="100%" src="images/fast_forward.png" />
       </Slide>
 
       <Slide>
         <SlideTitle>Merge commits</SlideTitle>
+        <CodePane lang="bash" source={git_merge_commit} />
         <Image width="80%" src="images/merge-commit.png" />
       </Slide>
 
@@ -206,15 +227,6 @@ export default {
       <Slide>
         <SlideTitle>No fast-forward merges</SlideTitle>
         <Image width="60%" src="images/merge-no-ff.png" />
-      </Slide>
-
-      <Slide>
-        <SlideTitle>Purpose of merging</SlideTitle>
-        <List>
-          <ListItem>Upstream - <Code>bug_fix</Code> into <Code>master</Code><hr/></ListItem>
-          <ListItem>Downstream - <Code>master</Code> into <Code>feature_branch</Code><hr/></ListItem>
-          <ListItem>Collecting - <Code>partial_work</Code> into <Code>feature_branch</Code></ListItem>
-        </List>
       </Slide>
 
       <Slide>

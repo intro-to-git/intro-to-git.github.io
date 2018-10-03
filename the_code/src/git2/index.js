@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter, Route, Switch, Link as RouterLink } from 'react-router-dom';
-
-import { Slide, List, ListItem, Heading, CodePane, Link, Image, Layout, BlockQuote, Cite, Quote  } from 'spectacle';
+import { Slide, List, ListItem, Heading, CodePane, Link, Image  } from 'spectacle';
 
 import { Deck, SlideTitle } from '../common/components';
 
@@ -115,7 +113,7 @@ git config --global alias.lg "log --online --graph"
 `);
 
 export default {
-  menu: { title: 'Git branches', path: '/git2' },
+  menu: { title: 'Week 2: Git branches', path: '/git2' },
   slides: () => {
     return <Deck>
       <Slide>
