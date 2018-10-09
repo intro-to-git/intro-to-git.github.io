@@ -17,6 +17,10 @@ GitHub pages are hosted on the `my-name.github.io` domain.
 
 - Your site must contain at least some HTML, CSS and JavaScript. (You may use any additional technologies)
 - Your repository should contain at least 10 commits.
+  - Push commits regularly (daily or at least a couple of times per week)
 - You should use feature branches as part of your git workflow.
 - Commits should be well defined and contain a relevant set of changes.
 - Commit names should be informative. Bonus points if they are linked to cards in trello / jira
+
+### Due date
+This homework is due by Sunday, October 14th

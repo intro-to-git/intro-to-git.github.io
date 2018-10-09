@@ -100,6 +100,62 @@ export default {
       </Slide>
 
       <Slide>
+        <SlideTitle>Centralized</SlideTitle>
+        <List>
+          <ListItem>Everyone shares a common remote repository<hr/></ListItem>
+          <ListItem>Each contributer uses a local clone for development<hr/></ListItem>
+          <ListItem>In a small team with a few commits per day everyone can push to master<hr/></ListItem>
+          <ListItem>In a larger team use feature branches or another workflow</ListItem>
+        </List>
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Forking with pull requests</SlideTitle>
+        <Image width="70%" src="images/forking_prs.png" />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Forking with pull requests</SlideTitle>
+        <List>
+          <ListItem>A maintainer (team) maintains the "central" repository<hr/></ListItem>
+          <ListItem>Each contributer uses a local clone for development<hr/></ListItem>
+          <ListItem>Each contributer also maintains a personal remote for sharing</ListItem>
+        </List>
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Forking with pull requests</SlideTitle>
+        <List>
+          <ListItem>Contributers pull from the "central" repository<hr/></ListItem>
+          <ListItem>And submit "pull requests" to incorporate code in the "central" repository</ListItem>
+        </List>
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Integration manager</SlideTitle>
+        <div>This is another name for "Forking with pull requests"</div>
+        <Image src="images/integration-manager.png" />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Dictator workflow</SlideTitle>
+        <div>A benevolent dictator pulls from a set of trusted contributers</div>
+        <Image src="images/benevolent-dictator.png" />
+      </Slide>
+
+      <Slide>
+        <SlideTitle>Creating a workflow</SlideTitle>
+        <div>Depends on many factors</div>
+        <List>
+          <ListItem>size and structure of the project</ListItem>
+          <ListItem>size and structure of the team</ListItem>
+          <ListItem>propriotory vs open-source</ListItem>
+          <ListItem>velocity of change</ListItem>
+          <ListItem>continuous integration pipeline</ListItem>
+        </List>
+      </Slide>
+
+      <Slide>
         <SlideTitle>Exercise</SlideTitle>
       </Slide>
 
