@@ -38,9 +38,52 @@
   white-space: nowrap;
 }
 
+.footer .copyright span:not(:last-child) {
+  margin-right: 5px;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .footer__inner {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 684px) {
+  .footer {
+    padding: 20px 0;
+  }
+  
+  .footer__inner {
+    padding: 0 10px;
+  }
+  
+  .copyright {
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 5px;
+  }
+  
+  .copyright span {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: normal;
+  }
+  
+  /* Hide separators on mobile for cleaner layout */
+  .copyright .separator {
+    display: none;
+  }
+  
+  /* Each text span on its own line on mobile */
+  .copyright span:not(.separator) {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Make links more touch-friendly on mobile */
+  .footer a {
+    padding: 2px 4px;
+    display: inline-block;
   }
 }

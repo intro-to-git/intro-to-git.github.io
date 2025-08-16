@@ -105,6 +105,10 @@ article h1::after {
   .container {
     padding: 20px;
   }
+  
+  .content {
+    margin-top: 20px;
+  }
 }
 
 /* Print styles */

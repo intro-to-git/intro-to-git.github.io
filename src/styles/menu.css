@@ -95,12 +95,13 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 0 0 auto;
 }
 
 .menu--mobile .menu__trigger {
   color: var(--accent);
   border: 2px solid;
-  margin-left: 10px;
+  margin-left: 0;
   height: 100%;
   padding: 3px 8px;
   margin-bottom: 0 !important;
@@ -133,6 +134,8 @@
   .menu--mobile .menu__dropdown {
     left: auto;
     right: 0;
+    top: 100%;
+    margin-top: 5px;
   }
   
   .menu--language-selector .menu__dropdown {

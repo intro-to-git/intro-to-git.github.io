@@ -54,6 +54,10 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
               <ul class="menu__dropdown">
                 <li><a href={`${base}about/`}>About</a></li>
                 <li><a href={`${base}posts/showcase/`}>Showcase</a></li>
+                <li><a href={`${base}posts/`}>Posts</a></li>
+                <li><a href={`${base}tags/`}>Tags</a></li>
+                <li><a href={`${base}posts/rich-content/`}>Rich Content</a></li>
+                <li><a href={`${base}posts/code-blocks-examples/`}>Code Examples</a></li>
               </ul>
             </li>
           </ul>
@@ -87,7 +91,11 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
       <footer class="footer">
         <div class="footer__inner">
           <div class="copyright">
-            <span>© 2025 Powered by <a href="https://astro.build">Astro</a> :: Theme made by <a href="https://github.com/panr/hugo-theme-terminal">panr</a> :: Ported by <a href="https://github.com/dennisklappe">Dennis Klappe</a></span>
+            <span>© 2025 Powered by <a href="https://astro.build">Astro</a></span>
+            <span class="separator">::</span>
+            <span>Theme made by <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">panr</a></span>
+            <span class="separator">::</span>
+            <span>Ported by <a href="https://github.com/dennisklappe">Dennis Klappe</a></span>
           </div>
         </div>
       </footer>
