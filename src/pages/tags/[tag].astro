@@ -1,42 +1,43 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import PostCard from '../../components/PostCard.astro';
+import { getLessons } from '../../common/lessons.astro';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('posts');
-  const uniqueTags = [...new Set(allPosts.map(post => post.data.tags).flat())];
+  const allLessons = await getLessons();
+  const uniqueTags = [...new Set(allLessons.map(post => post.data.tags).flat())];
   
   return uniqueTags.map(tag => {
-    const filteredPosts = allPosts
+    const filteredLessons = allLessons
       .filter(post => post.data.tags?.includes(tag) && !post.data.draft)
-      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
     return {
       params: { tag },
-      props: { posts: filteredPosts }
+      props: { lessons: filteredLessons }
     };
   });
 }
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { lessons } = Astro.props;
 ---
 
-<BaseLayout title={`Tag: ${tag}`} description={`All posts tagged with "${tag}"`}>
+<ArticleLayout title={`Tag: ${tag}`} description={`All posts tagged with "${tag}"`}>
   <div class="posts">
     <h1 class="posts-title">
-      <span style="color: var(--foreground)">Posts for: <span style="color: var(--accent)">#{tag}</span></span>
+      <span style="color: var(--foreground)">Lessons tagged <span style="color: var(--accent)">#{tag}</span></span>
     </h1>
-    {posts.length === 0 ? (
-      <p>No posts found with this tag.</p>
+    {lessons.length === 0 ? (
+      <p>No lessons found with this tag.</p>
     ) : (
-      posts.map((post) => <PostCard post={post} />)
+      lessons.map((lesson) => <PostCard lesson={lesson} />)
     )}
   </div>
-</BaseLayout>
+</ArticleLayout>
 
 <style>
   .posts-title {
+    font-size: 2.2rem !important;
     color: var(--foreground);
     margin-top: 0 !important;
     margin-bottom: 30px !important;

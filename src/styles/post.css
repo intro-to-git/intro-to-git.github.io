@@ -28,10 +28,10 @@
   position: relative;
   color: var(--accent);
   margin-top: 0 !important;
-  margin-bottom: 15px !important;
+  margin-bottom: 0 !important;
   padding-bottom: 15px;
-  border-bottom: 3px dotted var(--accent);
   text-decoration: none !important;
+  line-height: 1.2;
 }
 
 .post-title::after {
@@ -40,10 +40,15 @@
   bottom: 2px;
   display: block;
   width: 100%;
-  border-bottom: 3px dotted var(--accent);
+  border-bottom: 3px dotted var(--secondary);
+}
+
+.lesson-page .post-title {
+  padding-bottom: 20px;
 }
 
 .post-title a {
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -193,7 +198,8 @@ iframe[src*="codepen"] {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   padding-bottom: 15px;
-  border-bottom: 3px dotted var(--accent);
+  padding-top: 15px;
+  /* border-bottom: 3px dotted var(--accent); */
 }
 
 .posts-title::after {
@@ -202,7 +208,7 @@ iframe[src*="codepen"] {
   bottom: 2px;
   display: block;
   width: 100%;
-  border-bottom: 3px dotted var(--accent);
+  /* border-bottom: 3px dotted var(--accent); */
 }
 
 /* Footnotes */

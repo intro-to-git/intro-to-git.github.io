@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getLessons() {
+  return (await getCollection('lessons'))
+    .filter(lesson => !lesson.data.draft)
+    .sort((a, b) => a.data.order - b.data.order);
+}
+---

@@ -1,0 +1,20 @@
+
+---
+import ArcticleLayout from '../../layouts/ArticleLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getLessons } from '../../common/lessons.astro';
+
+const lessons = await getLessons();
+---
+
+<ArcticleLayout title="Lessons">
+  <div class="page">
+    <h1 class="posts-title">Lessons</h1>
+    {lessons.length === 0 ? (
+      <p>No lessons yet. Check back soon!</p>
+    ) : (
+      lessons.map((lesson) => <PostCard lesson={lesson} />)
+    )}
+  </div>
+</ArcticleLayout>
+

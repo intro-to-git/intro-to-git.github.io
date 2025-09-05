@@ -1,63 +1,59 @@
 ---
-import FormattedDate from './FormattedDate.astro';
-
 export interface Props {
-  post: {
+  lesson: {
     slug: string;
     data: {
       title: string;
       description?: string;
-      pubDate: Date;
-      author?: string;
+      order?: number;
       tags?: string[];
       image?: string;
       externalLink?: string;
+      slides?: boolean;
     };
   };
 }
 
-const { post } = Astro.props;
+const { lesson } = Astro.props;
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
-const postUrl = post.data.externalLink || `${base}posts/${post.slug}/`;
-const isExternal = !!post.data.externalLink;
+const lessonUrl = lesson.data.externalLink || `${base}lessons/${lesson.slug}/`;
+const slidesUrl = `${base}slides/${lesson.slug}`
+const isExternal = !!lesson.data.externalLink;
 ---
 
 <article class="post on-list">
   <h2 class="post-title">
-    <a href={postUrl} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener" : undefined}>
-      {post.data.title}
+    <a href={lessonUrl} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener" : undefined}>
+      {lesson.data.order}. {lesson.data.title}
     </a>
   </h2>
   <div class="post-meta">
-    <time class="post-date">
-      <FormattedDate date={post.data.pubDate} />
-    </time>
-    {post.data.author && (
-      <span class="post-author">{post.data.author}</span>
-    )}
   </div>
-  {post.data.tags && post.data.tags.length > 0 && (
+  {lesson.data.tags && lesson.data.tags.length > 0 && (
     <span class="post-tags">
-      {post.data.tags.map((tag, index) => (
-        <>
-          <a href={`${base}tags/${tag}/`}>{tag}</a>{index < post.data.tags.length - 1 && ', '}
-        </>
+      {lesson.data.tags.map((tag) => (
+        <a href={`${base}tags/${tag}/`}>{tag}</a>
       ))}
     </span>
   )}
-  {post.data.image && (
+  {lesson.data.image && (
     <figure class="post-cover">
-      <img src={post.data.image} alt={post.data.title} />
+      <img src={lesson.data.image} alt={lesson.data.title} />
     </figure>
   )}
-  {post.data.description && (
+  {lesson.data.description && (
     <div class="post-content">
-      <p>{post.data.description}</p>
+      <p>{lesson.data.description}</p>
     </div>
   )}
-  <div>
-    <a href={postUrl} class="read-more button inline" target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener" : undefined}>
-      [Read more]
-    </a>
+  <div class="spaced">
+    <a href={lessonUrl} class="read-more button inline" target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener" : undefined}>view full lesson</a>
+    {lesson.data.slides && <a href={slidesUrl} class="read-more button inline">view as slides</a>}
   </div>
 </article>
+
+<style>
+.spaced *{
+  padding-right: 10px;
+}
+</style>

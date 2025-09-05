@@ -1,29 +1,31 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ArcticleLayout from '../layouts/ArticleLayout.astro';
 import PostCard from '../components/PostCard.astro';
-import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('posts'))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+import { getLessons } from '../common/lessons.astro';
+
+const lessons = await getLessons();
 ---
 
-<BaseLayout title="Terminal">
+<ArcticleLayout title="COS 3100: Intro to Git">
   <div class="index-content framed">
     <h1 id="hello-there">Hello there!</h1>
-    <p>Welcome to the Astro Terminal theme! This is a port of the popular Hugo Terminal theme by panr, bringing the same retro terminal aesthetic to Astro.</p>
+    <p>Welcome to COS 3100: Intro to Git</p>
     <p>
-      You can customise the colour scheme using panr's <a href="https://panr.github.io/terminal-css/"><strong>Terminal.css</strong></a> 
-      generator - all generated schemes are fully compatible with this theme.
+      This is a short course about bash and git inteded as introduction to the basics for students and anyone who is just getting started.
+      The course is taught live at the American University in Bulgaria (AUBG)
     </p>
+    
     <p>
-      <a href="https://panr.github.io/terminal-css/">
-        <img src="https://panr.github.io/hugo-theme-terminal-demo/img/terminal-css.png" alt="Terminal.css Preview" />
-      </a>
+      The course covers the basics of bash and git. Then goes into more details about how git works and how it is used in typical day-to-day development scenarios.
+    </p>
+    
+    <p>
+      Course author and lecturer Mihail Mikov
     </p>
   </div>
   
   <div class="posts">
-    {posts.map((post) => <PostCard post={post} />)}
+    {lessons.map((lesson) => <PostCard lesson={lesson} />)}
   </div>
-</BaseLayout>
+</ArcticleLayout>

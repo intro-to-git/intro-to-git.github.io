@@ -2,7 +2,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 20px;
   max-width: 864px;
   min-height: 100vh;
   margin: 0 auto;
@@ -82,23 +82,25 @@ figure figcaption p {
 
 .page h1, 
 article h1 {
+  font-size: 2.2rem;
+  text-align: left;
   position: relative;
   color: var(--accent);
   margin-top: 0 !important;
   margin-bottom: 15px !important;
   padding-bottom: 15px;
-  border-bottom: 3px dotted var(--accent);
+  /* border-bottom: 3px dotted var(--accent); */
 }
 
-.page h1::after, 
-article h1::after {
-  content: "";
-  position: absolute;
-  bottom: 2px;
-  display: block;
-  width: 100%;
-  border-bottom: 3px dotted var(--accent);
-}
+/* .page h1::after,  */
+/* article h1::after { */
+/*   content: ""; */
+/*   position: absolute; */
+/*   bottom: 2px; */
+/*   display: block; */
+/*   width: 100%; */
+/*   border-bottom: 3px dotted var(--secondary); */
+/* } */
 
 /* Responsive */
 @media (max-width: 684px) {

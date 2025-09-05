@@ -62,6 +62,32 @@
   margin: 0;
 }
 
+.pagination__buttons .button.inline.next:before {
+  content: none;
+}
+
+.pagination__buttons .button.inline.next:after {
+  padding-left: 5px;
+  content: '-->';
+}
+
+.pagination__buttons .button.inline.next:hover:after {
+  content: '>>>';
+}
+
+.pagination__buttons .button.inline.prev:before {
+  padding-right: 5px;
+  content: '<--';
+}
+
+.pagination__buttons .button.inline.prev:after {
+  content: none;
+}
+
+.pagination__buttons .button.inline.prev:hover:before {
+  content: '<<<';
+}
+
 /* Page numbers */
 .button.number {
   font-weight: 700;

@@ -1,0 +1,37 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  altViewUrl?: string;
+  altViewType?: string;
+}
+
+const { altViewUrl, altViewType, title, description = 'COS 3100: Intro to git - AUBG short course', image } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={image} altViewUrl={altViewUrl} altViewType={altViewType}>
+  <main class="content">
+    <slot />
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="copyright">
+        <span>Course by <a href="https://github.com/debel">Mihail Mikov</a></span>
+        <span class="separator">::</span>
+        <span>AUBG</span>
+        <span class="separator">::</span>
+        <span>2025</span>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style> 
+  hr {
+    display: none !important;
+  }
+</style>

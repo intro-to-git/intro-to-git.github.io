@@ -20,6 +20,8 @@
 
 .copy-button {
   position: relative;
+  right: 50px;
+  
   display: inline-flex;
   align-items: center;
   justify-content: center;

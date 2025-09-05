@@ -1,0 +1,176 @@
+---
+import Layout from "./BaseLayout.astro";
+import "reveal.js/dist/reveal.css";
+import "reveal.js/dist/theme/black.css"
+import "reveal.js/plugin/highlight/monokai.css";
+
+export interface Props {
+  slug: string;
+  title: string;
+  description?: string;
+  order?: number;
+  updatedDate?: Date;
+  image?: string;
+  tags?: string[];
+  prev?: any;
+  next?: any;
+}
+
+const { prev, next, slug, title, description } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const lessonUrl = `${base}lessons/${slug}`
+
+const prevUrl = `${base}${prev?.data.slides ? 'slides' : 'lessons'}/${prev?.slug}/`;
+const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug}/`;
+---
+
+<Layout title={title} altViewUrl={lessonUrl} altViewType="full lesson">
+  <Fragment slot="head">
+    {description && <meta name="description" content={description} />}
+  </Fragment>
+  <div class="reveal">
+    <div class="slides">
+      <slot />
+    </div>
+  </div>
+
+  <div class="inslide pagination">
+    <div class="pagination__buttons">
+      {prev && (
+        <a href={prevUrl} class="button inline prev">
+          <span class="button__text">{prev.data.title}</span>
+        </a>
+      )}
+      {prev && next && <span>::</span>}
+      {next && (
+        <a href={nextUrl} class="button inline next">
+          <span class="button__text">{next.data.title}</span>
+        </a>
+      )}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import Reveal from "reveal.js";
+  import Highlight from "reveal.js/plugin/highlight/highlight.esm.js";
+  import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+
+  let deck = new Reveal({ plugins: [Highlight, Markdown] });
+  deck.initialize({
+    hash: true,
+    embedded: true,
+  }).then(() => {
+    const highlight = deck.getPlugin('highlight');
+    highlight.hljs.highlightAll();
+ 
+    deck.on('slidechanged', () => {
+        if (deck.isLastSlide()) {
+        }
+    });
+
+    // HACK: Apply styles after initialization
+    const style = document.createElement('style');
+    style.textContent = `
+      strong {
+        color: var(--accent) !important;
+      }
+
+      home-work {
+        margin-top: 10px;
+        display: inline-block;
+        text-align: left;
+        padding-left: 15px;
+        border-left: 5px solid #b55151;
+      }
+
+      home-work>h3 {
+        text-transform: none !important;
+        font-size: 2rem !important;
+      }
+
+      home-work>h3:before {
+        content: 'Exercise: ';
+        color: var(--secondary);
+      }
+
+      .reveal blockquote {
+        text-align: left;
+        width: 90%;
+        font-size: 1.5rem !important;
+        background-color: inherit !important;
+        padding: 10px;
+      }
+
+      .reveal blockquote:before {
+        content: none !important;
+      }
+
+      .reveal .slide-background {
+        background-color: var(--background);
+      }
+
+      .reveal ul {
+        list-style: square !important;
+      }
+
+      .reveal ul li::before {
+        content: "" !important;
+      }
+ 
+      .reveal .controls {
+        font-size: 8px;
+      }
+
+      .reveal pre {
+        display: inline-block;
+        width: auto;
+        min-width: 100%;
+        font-size: 1.65rem !important;
+      }
+
+      .hljs-comment, .hljs-quote, .hljs-deletion, .hljs-meta {
+        color: #F6E7B2 !important;
+      }
+
+      .hljs-built_in {
+        color: #98b735 !important; 
+      }
+
+      .hljs-string {
+        color: #af719b !important; 
+      }
+    `;
+    document.head.appendChild(style);
+  });
+</script>
+
+<style>
+  :root {
+    --r-heading-font: "IBM Plex Mono", monospace;
+    --r-main-font: "IBM Plex Mono", sans-serif;
+    --r-code-font: "IBM Plex Mono", monospace;
+    --r-heading2-size: 1.5em;
+    --r-heading-letter-spacing: -1px;
+    --r-heading-color: var(--accent);
+    --r-link-color: var(--secondary);
+    --r-background-color: inherit;
+    --r-main-font-size: 2rem;
+  }
+
+  body {
+    overflow-Y: hidden;
+  }
+ 
+  .reveal {
+    height: 32vh;
+  }
+
+  .container {
+    border-right: none !important;
+  }
+
+  /* .pagination { */
+  /*   display: none; */
+  /* } */
+</style>

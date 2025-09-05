@@ -69,17 +69,34 @@
 
 /* Inline button (read more links) */
 .button.inline {
+  color: var(--secondary);
   background: transparent;
   border: none;
   padding: 0;
-  text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 400;
+}
+
+.button.inline:before{
+  content:'[';
+}
+
+.button.inline:after{
+  content:']';
 }
 
 .button.inline:hover {
   text-decoration: none;
   background: transparent;
+  transform: scale(1.1);
+}
+
+.button.inline:hover:before{
+  content: ']';
+}
+
+.button.inline:hover:after{
+  content: '[';
 }
 
 /* Read more link */

@@ -1,0 +1,54 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import { getLessons } from '../../common/lessons.astro';
+
+export async function getStaticPaths() {
+  const lessons = await getLessons();
+ 
+  return lessons.map((lesson, index) => ({
+    params: { slug: lesson.slug },
+    props: {
+      lesson,
+      next: index < lessons.length - 1 ? lessons[index + 1] : null,
+      prev: index > 0 ? lessons[index - 1] : null,
+    },
+  }));
+}
+
+const { lesson, prev, next } = Astro.props;
+const { Content } = await lesson.render();
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const slidesUrl = lesson.data.slides ? { slidesUrl: `${base}slides/${lesson.slug}`} : {};
+---
+
+<LessonLayout {...slidesUrl} {...lesson.data}>
+  <Content />
+
+  <div class="pagination">
+    <div class="pagination__buttons">
+      {prev && (
+        <>
+          <a href={`${base}lessons/${prev.slug}/`} class="button inline prev">
+            <span class="button__text">{prev.data.title}</span>
+          </a>
+          {prev && next && <span>::</span>}
+        </>
+      )}
+      {next && (
+        <a href={`${base}lessons/${next.slug}/`} class="button inline next">
+          <span class="button__text">{next.data.title}</span>
+        </a>
+      )}
+    </div>
+  </div>
+</LessonLayout>
+
+<style is:global>
+  hr {
+    display: none !important;
+  }
+
+  bonus-content {
+    font-style: italic;
+  }
+</style>

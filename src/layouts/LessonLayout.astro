@@ -1,0 +1,170 @@
+---
+import ArticleLayout from './ArticleLayout.astro';
+
+export interface Props {
+  slidesUrl?: string;
+  title: string;
+  description?: string;
+  order?: number;
+  updatedDate?: Date;
+  image?: string;
+  tags?: string[];
+}
+
+const { order, slidesUrl, title, description, image, tags = [] } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+---
+
+<ArticleLayout title={title} description={description} image={image} altViewUrl={slidesUrl} altViewType="slides">
+  <article class="lesson-page">
+    <div class="flexy flexy-row border-bottom">
+      <h1 class="post-title">{order}. {title}</h1>
+    </div>
+
+    <div class="post-meta">
+      {tags.length > 0 && (
+        <span class="post-tags">
+          {tags.map((tag) => (
+            <a href={`${base}tags/${tag}/`}>{tag}</a>
+          ))}
+        </span>
+      )}
+    </div>
+
+    {image && (
+      <figure class="post-cover">
+        <img src={image} alt={title} />
+      </figure>
+    )}
+
+    <aside id="lesson-outline">
+      <h3>Contents:</h3>
+    </aside>
+    <div class="post-content">
+      <slot />
+    </div>
+  </article>
+</ArticleLayout>
+
+<script>
+  (function renderOverview() {
+    const outline = document.querySelector('#lesson-outline');
+    const headings = document.querySelectorAll('h2');
+
+    headings.forEach(h => {
+      const hslug = h.innerText.replaceAll(' ','-').toLowerCase();
+      outline.innerHTML+=`<li><a href="#${hslug}">${h.innerText}</a></li>`;
+      h.innerHTML+=`<a id=${hslug} class="button inline hslug" href="#${hslug}">-</a>`;
+    });
+  }());
+ 
+
+  window.handleAnswer = function (el, selected, actual) {
+    document.querySelector(`#${el}`)?.classList.add(selected == actual ? 'correct': 'wrong');
+  };
+
+  (function renderQuestions() {
+    const questions = document.querySelectorAll('pop-quiz');
+
+    questions.forEach((q, qi) => {
+      const answer = q.getAttribute('data-answer-id');
+      const options = q.querySelectorAll('li');
+
+      options.forEach((o, oi) => {
+        const text = o.innerText;
+        const id = `q-${qi}-${oi}`;
+ 
+        o.innerHTML = `<button id="${id}" data-option-id="${oi}" onclick="handleAnswer('${id}', ${oi}, ${answer})">${text}</button>`;
+      });
+    });
+  }());
+</script>
+
+<style is:global>
+  body {
+  }
+
+  hr {
+    display: none !important;
+  }
+
+  home-work {
+    display: block;
+    padding-left: 15px;
+    border-left: 5px solid #b55151;
+  }
+
+  home-work>h3:before {
+    content: 'Exercise: ';
+    color: var(--accent);
+  }
+
+  pop-quiz {
+    display: block;
+    padding-left: 15px;
+    border-left: 5px solid #b55151;
+  }
+
+  pop-quiz>h3:before {
+    content: 'Question: ';
+    color: var(--accent);
+  }
+
+  pop-quiz ul {
+    list-style: none !important;
+  }
+
+  pop-quiz li {
+    margin-bottom: 10px;
+  }
+
+  pop-quiz li:before {
+    content: none !important;
+  }
+
+  pop-quiz button {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+  }
+
+  pop-quiz button.correct {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--background);
+  }
+
+  pop-quiz button.wrong {
+    background-color: #b55151;
+    border-color: #b55151;
+    color: var(--background);
+  }
+
+  .hslug {
+    margin-left: 10px;
+    font-size: .75rem;
+    vertical-align: middle;
+  }
+
+  .flexy {
+    display: flex;
+  }
+
+  .flexy-row {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .flexy.border-bottom {
+    padding-bottom: 10px;
+    border-bottom: 3px dotted var(--secondary);
+    margin-bottom: 5px;
+  }
+
+  .flexy.border-bottom .post-title {
+    padding-bottom: 0;
+    vertical-align: middle !important;
+  }
+  .flexy.border-bottom .post-title:after{
+    content: none;
+  }
+</style>
