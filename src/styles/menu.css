@@ -142,4 +142,8 @@
     left: auto;
     right: 0;
   }
+
+  .big-only {
+    display: none !important;
+  }
 }

@@ -46,7 +46,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
           <div class="header__logo">
             <a href={base}>
               <div class="logo">
-                COS 3100: Intro to GIT
+                <span class="big-only">COS 3100: </span>Intro to GIT
               </div>
             </a>
           </div>
@@ -56,6 +56,15 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
               <ul class="menu__dropdown">
                 <li><a href={`${base}lessons/`}>lessons</a></li>
                 <li><a href={`${base}tags/`}>tags</a></li>
+                <li>
+                  <a
+                    href="https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg&mem=192"
+                    class="external"
+                    target="_blank"
+                  >online terminal</a>
+                </li>
+
+                {altViewUrl && <li><a class="bordered-top" href={altViewUrl}>view {altViewType}</a></li>}
               </ul>
             </li>
           </ul>
@@ -65,8 +74,15 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
           <ul class="navigation-menu__inner menu--desktop">
                 <li><a href={`${base}lessons/`} class="button inline">lessons</a></li>
                 <li><a href={`${base}tags/`} class="button inline">tags</a></li>
+            <li>
+              <a
+                href="https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg&mem=192"
+                class="button inline external"
+                target="_blank"
+              >online terminal</a>
+            </li>
           </ul>
-          {altViewUrl && <a class="button inline paddingx" href={altViewUrl}>view {altViewType}</a>}
+          {altViewUrl && <a class="big-only button inline paddingx" href={altViewUrl}>view {altViewType}</a>}
         </nav>
       </header>
 
@@ -98,5 +114,9 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   .paddingx {
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  .bordered-top {
+    border-top: 1px solid var(--secondary);
   }
 </style>

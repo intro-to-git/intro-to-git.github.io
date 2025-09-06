@@ -85,10 +85,27 @@
   content:']';
 }
 
+.button.inline.external:before{
+  content:'[[';
+}
+
+.button.inline.external:after{
+  content:']]';
+}
+
+
+.button.inline.external:hover:after{
+  content:'[[';
+}
+
+.button.inline.external:hover:before{
+  content:']]';
+}
+
 .button.inline:hover {
   text-decoration: none;
   background: transparent;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .button.inline:hover:before{

@@ -82,7 +82,7 @@ figure figcaption p {
 
 .page h1, 
 article h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   text-align: left;
   position: relative;
   color: var(--accent);
