@@ -95,7 +95,18 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   }
 
   home-work>h3:before {
-    content: 'Exercise: ';
+    content: 'Home Exercise: ';
+    color: var(--accent);
+  }
+
+  class-work {
+    display: block;
+    padding-left: 15px;
+    border-left: 5px solid #b55151;
+  }
+
+  class-work>h3:before {
+    content: 'Class Exercise: ';
     color: var(--accent);
   }
 
