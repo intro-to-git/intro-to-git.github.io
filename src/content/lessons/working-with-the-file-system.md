@@ -195,7 +195,7 @@ tail -n5 my-file.txt
 Use `grep` to find specific text within files:
 
 ```bash
-# find all markdown headings in a readme file
+# find all markdown headings in a markdown file
 cat readme.md | grep '#'
 
 # can also be used directly, the first argument
@@ -234,6 +234,13 @@ mv a.txt b.md readmes/ ../docs/
 # copy files and directories
 cp .env config/ ../other-project/
 
+# deletes the file from disk
+rm filename
+```
+
+---
+
+```bash
 # r = recursive, f = force
 # delete the directory with all files inside
 rm -rf useless-dir/

@@ -76,20 +76,34 @@ const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug
         color: var(--accent) !important;
       }
 
-      home-work {
+      class-work {
+        font-size: 1.75rem;
         margin-top: 10px;
         display: inline-block;
         text-align: left;
-        padding-left: 15px;
+        padding-left: 5rem;
         border-left: 5px solid #b55151;
       }
 
-      home-work>h3 {
+      class-work>h3 {
         text-transform: none !important;
         font-size: 2rem !important;
       }
 
-      home-work>h3:before {
+      class-note {
+        display: inline-block;
+        font-size: 1.5rem;
+        border-top: 1px solid #b55151;
+        border-bottom: 1px solid #b55151; 
+      }
+
+      class-note>p:before {
+        content: 'NOTE: ';
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      class-work>h3:before {
         content: 'Exercise: ';
         color: var(--secondary);
       }
@@ -104,6 +118,10 @@ const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug
 
       .reveal blockquote:before {
         content: none !important;
+      }
+
+      .reveal img {
+        border: none !important;
       }
 
       .reveal .slide-background {

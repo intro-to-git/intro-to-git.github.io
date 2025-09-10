@@ -24,6 +24,7 @@ It handles things like displaying characters, managing window resizing, scrollin
 ---
 
 Popular modern terminal emulators include:
+
 - Alacritty
 - Ghostty
 - Kitty
@@ -52,6 +53,7 @@ It handles things like parsing commands, managing environment variables, running
 ---
 
 Popular shells include:
+
 - sh
 - bash
 - zsh
@@ -93,6 +95,7 @@ The **Portable Operating System Interface** is a standard specified by the IEEE 
 ---
 
 It encompasses a large number of tools, programs and operating systems behaviours such as:
+
 - Process creation and control
 - File system operations
 - Signals
@@ -111,6 +114,7 @@ It aims to be POSIX-compliant, but extends tools with multiple additional featur
 ---
 
 There are also multiple other implementations of the common Unix toolset such as:
+
 - Plan9
 - BSD
 - BusyBox
@@ -128,6 +132,7 @@ Each of these implementations comes with its owns specifics, features and quirks
 <pop-quiz data-answer-id="1">
 
 ### The terminal is responsible for executing commands?
+
 - true
 - false
 

@@ -3,9 +3,15 @@ title: 'Intro to git'
 description: 'An overview of what git is, how it works and why we want to learn to use it'
 order: 3
 tags: ['intro', 'git']
+resources: {
+  'Git docs': 'https://git-scm.com/docs',
+  'Git book': 'https://git-scm.com/book/en/v2',
+  'Intro to git by Scott Shacon': 'https://www.youtube.com/watch?v=ZDR433b0HJY',
+  'Meaningful commit messages': 'https://www.conventionalcommits.org/en/v1.0.0/',
+}
 ---
 
-## Git
+## What is Git?
 
 Git is the most popular **version control system** in the world.
 

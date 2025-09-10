@@ -17,6 +17,7 @@ Bash is a Turing-complete language and provides a large variety of features.
 ---
 
 Some of them are common to most popular programming languages:
+
 - variables
 - conditional statements
 - loops
@@ -27,6 +28,7 @@ Some of them are common to most popular programming languages:
 ---
 
 Others are specific to bash and the terminal environment:
+
 - pipes
 - job controls
 - shell expansions
@@ -53,14 +55,17 @@ Bash can be used either:
 ## Interactive mode
 
 This is an example of a minimal prompt.
+
 ```bash
-$ 
+$
 ```
+
 It signifies that the shell is ready to accept commands.
 
 <bonus-content>
 
 The prompt can be customized to include any desirable information such as:
+
 - the current directory
 - the machine name
 - the current user
@@ -81,16 +86,19 @@ The prompt can be customized to include any desirable information such as:
 
 echo 'Hello World!'
 ```
+
 Once the user submits the command, it executes, and prints the output to the screen.
 
-The `echo` command prints the provided argument to **standard out**
+The `echo` command prints the provided argument to __standard out__
 
 ---
 
 > *Beware*: Bash is case-sensitive, so trying
+>
 > ```bash
 >EcHo 'hello world'
 >```
+>
 >might NOT produce the expected result
 
 ---
@@ -98,21 +106,38 @@ The `echo` command prints the provided argument to **standard out**
 ## Anatomy of a command
 
 All commands in bash follow the following general structure:
+
 ```bash
 [variables] [command] [options] [arguments] [redirects] [operators]
 ```
+
 The command is the only mandatory element, everything else is optional
+
+<bonus-content>
+
+## Command parsing order
+
+Bash processes commands in this order:
+
+1. History expansion (if enabled)
+2. Quote removal and word splitting
+3. Expansions (brace, tilde, parameter, arithmetic, command substitution, pathname)
+4. Redirection setup
+5. Command execution
+
+</bonus-content>
 
 ---
 
 ## Output
 
 There are 2 main output streams:
-- standard output (**stdout**) for regular program output
 
-- standard error (**stderr**) for error messages and diagnostics.
+- standard output (__stdout__) for regular program output
 
-> **By default, both streams are displayed on the terminal.**
+- standard error (__stderr__) for error messages and diagnostics.
+
+> __By default, both streams are displayed on the terminal.__
 
 ---
 
@@ -121,6 +146,7 @@ There are 2 main output streams:
 There are several types of commands in bash.
 
 When trying to execute a command bash will search for it in this order:
+
 - aliases
 - keywords
 - functions
@@ -130,6 +156,7 @@ When trying to execute a command bash will search for it in this order:
 ---
 
 Use the `type` built-in command to check the type of another command.
+
 ```bash
 type grep
 # prints: grep is /usr/bin/grep
@@ -149,25 +176,26 @@ type ll
 ### Built-ins and keywords
 
 Use the `help` command to get basic information about built-ins and keywords.
+
 ```bash
 help # prints all built-ins and keywords
 
 help if # prints information about the if keyword
 ```
 
-
 ---
 
 ### Aliases
 
 Use the `alias` command to view or define aliases.
+
 ```bash
 alias # prints all aliases
 
 alias ll='ls -alh' # define a new alias
 ```
 
-> **NOTE**: there must be NO spaces around the `=` sign.
+> __NOTE__: there must be NO spaces around the `=` sign.
 > Also, unlike other languages, bash handles single and double quotes differently.
 
 ---
@@ -223,6 +251,7 @@ Fortunately, bash provides a special variable `$?` to indicate the exit status o
 ---
 
 A value of `0` means success. Any other (positive number) indicates an error.
+
 ```bash
 type ls
 echo $?
@@ -239,6 +268,7 @@ echo $?
 <pop-quiz data-answer-id="2">
 
 ### Which is *NOT* a valid command type?
+
 - built-in
 - file (external)
 - interactive
@@ -264,10 +294,12 @@ echo $?
 Use the `env` command to see all variables defined on the system.
 
 Or `echo` to print the value of a specific variable:
+
 ```bash
 echo $BASH_VERSION
 # prints: bash-5.3
 ```
+
 > NOTICE the `$` character used to reference the variables
 
 ---
@@ -282,6 +314,7 @@ MY_VAR='hello' fruit='banana'
 echo $fruit $MY_VAR
 # prints: banana hello
 ```
+
 > NOTICE there is NO `$` character when defining variables.
 
 <bonus-content>
@@ -332,7 +365,7 @@ echo $TZ
 
 ---
 
-The `$` character is used for **variable expansion**.
+The `$` character is used for __variable expansion__.
 
 It allows multiple advanced features:
 
@@ -356,6 +389,7 @@ echo ${my_var:1:3}
 ## Single vs double quotes
 
 Single quotes denote a literal string, while double quotes allow for variable expansion.
+
 ```bash
 echo '$MY_VAR test'
 # prints: $MY_VAR test
@@ -374,6 +408,7 @@ echo "$MY_VAR test"
 
 By default, the output of a command goes to stdout. But there are ways to redirect or capture
 the result of a command:
+
 ```bash
 today=date
 echo $today
@@ -387,9 +422,10 @@ echo $today
 ---
 
 Subshells can also be used to pass the output of one command as an argument to another:
+
 ```bash
 du -h $(which ls)
-# print: 40K	/bin/ls
+# print: 40K /bin/ls
 ```
 
 - `du` returns the size of a file
@@ -406,7 +442,7 @@ env | grep MY_
 # prints all global variables that contain the string MY_
 ```
 
-Using a pipe we are redirecting the output of the first command to the **stdin** of the second.
+Using a pipe we are redirecting the output of the first command to the __stdin__ of the second.
 
 <bonus-content>
 
@@ -418,9 +454,8 @@ Use bash to customize your prompt.
 Explore options for what information would be most useful to you.
 Play around with fun colors and special symbols.
 
-_**Hint**: to modify your prompt set a value to the `PS1` special variable._
+*__Hint__: to modify your prompt set a value to the `PS1` special variable.*
 
 </home-work>
 
 </bonus-content>
-

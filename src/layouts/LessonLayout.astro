@@ -88,6 +88,23 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     display: none !important;
   }
 
+  img {
+    border: none !important;
+  }
+
+  class-note {
+    margin-top: 20px;
+    display: inline-block;
+    border-top: 1px solid #b55151;
+    border-bottom: 1px solid #b55151; 
+  }
+
+  class-note>p:before {
+    content: 'NOTE: ';
+    font-weight: bold;
+    font-style: italic;
+  }
+
   home-work {
     display: block;
     padding-left: 15px;
