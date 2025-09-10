@@ -3,6 +3,11 @@ title: 'Bash basics'
 description: 'Overview of bash syntax, features and common builtins'
 order: 1
 tags: ['bash', 'intro']
+resources: {
+  'The bash manual':'https://www.gnu.org/software/bash/manual/bash.html',
+  'The bash cheatsheet':'https://devhinTs.io/bash',
+  'ysap - a youtube channel about bash':'https://github.com/bahamas10/ysap?tab=readme-ov-file',
+}
 ---
 
 ## Features
@@ -416,11 +421,6 @@ Play around with fun colors and special symbols.
 _**Hint**: to modify your prompt set a value to the `PS1` special variable._
 
 </home-work>
-
-## Useful resources
-- [The bash manual](https://www.gnu.org/software/bash/manual/bash.html)
-- [The bash cheatsheet](https://devhinTs.io/bash)
-- [ysap - a youtube channel about bash](https://github.com/bahamas10/ysap?tab=readme-ov-file)
 
 </bonus-content>
 

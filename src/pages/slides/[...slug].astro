@@ -17,8 +17,6 @@ export async function getStaticPaths() {
 
 const { lesson, prev, next } = Astro.props;
 const lessonContent = lesson.body.replaceAll(/<bonus-content>.*?<\/bonus-content>/gs, '');
-// .replaceAll("##", `---
-// ##`)
 ---
 
 <SlidesLayout slug={lesson.slug} prev={prev} next={next} {...lesson.data}>

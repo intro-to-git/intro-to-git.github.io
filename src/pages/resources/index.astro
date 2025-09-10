@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+const allLessons = await getCollection('lessons');
+const resources = allLessons.map(lesson => lesson.data.resources).reduce((all, lesson) => {
+  return [...all, ...Object.entries(lesson || {})];
+}, []);
+
+---
+
+<ArticleLayout title="Resources" description="All resources linked in lessons">
+  <div class="page">
+    <h1 class="posts-title">All external resources</h1>
+ 
+    <ul>
+      {resources.map(([text, link]) => (
+      <li><a href={link}>{text}</a></li>
+      ))}
+    </ul>
+  </div>
+</ArticleLayout>
+
+

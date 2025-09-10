@@ -3,6 +3,10 @@ title: 'Working with the file system'
 description: 'Commands used to navigate, explore and manipulate the file system'
 order: 2
 tags: ['bash', 'unix']
+resources: {
+  'Bash guide':'https://guide.bash.academy/',
+  'The Linux File System':'https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained',
+}
 ---
 
 ## Current directory
@@ -372,11 +376,3 @@ We also want to focus on one tool in particular - `git`
 5. Print all files containing the string `my`
 
 </class-work>
-
-<bonus-content>
-
-## Useful resources
-
-- [Bash guide](https://guide.bash.academy/)
-- [The Linux File System](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained)
-</bonus-content>

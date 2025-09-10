@@ -3,6 +3,12 @@ title: 'The terminal & the shell'
 description: 'Overview of the terminal and shell - what are they and why is it still worth it to learn to use them today'
 order: 0
 tags: ['intro']
+resources: {
+'Short history of terminals':'https://www.howtogeek.com/the-three-eras-of-unix-terminals/',
+'From Unix to Linux':'https://www.redhat.com/en/blog/unix-linux-history',
+'Intro to working in the terminal':'https://computing.stat.berkeley.edu/tutorial-unix-basics/',
+'Differences between sh and bash': 'https://linuxconfig.org/bash-sh-command-learn-the-difference-between-bash-vs-shell',
+}
 ---
 
 ## What is the terminal?
@@ -126,12 +132,5 @@ Each of these implementations comes with its owns specifics, features and quirks
 - false
 
 </pop-quiz>
-
-## Useful resources
-
-- [Short history of terminals](https://www.howtogeek.com/the-three-eras-of-unix-terminals/)
-- [From Unix to Linux](https://www.redhat.com/en/blog/unix-linux-history)
-- [Intro to working in the terminal](https://computing.stat.berkeley.edu/tutorial-unix-basics/)
-- [Differences between sh and bash](https://linuxconfig.org/bash-sh-command-learn-the-difference-between-bash-vs-shell)
 
 </bonus-content>

@@ -12,6 +12,7 @@ const lessons = defineCollection({
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     slides: z.boolean().default(true),
+    resources: z.record(z.string()).optional(),
   }),
 });
 

@@ -1,6 +1,7 @@
 ---
 import LessonLayout from '../../layouts/LessonLayout.astro';
 import { getLessons } from '../../common/lessons.astro';
+import LessonLinks from '../../components/Links.astro';
 
 export async function getStaticPaths() {
   const lessons = await getLessons();
@@ -24,6 +25,7 @@ const slidesUrl = lesson.data.slides ? { slidesUrl: `${base}slides/${lesson.slug
 <LessonLayout {...slidesUrl} {...lesson.data}>
   <Content />
 
+{lesson.data.resources && <LessonLinks lesson={lesson} />}
   <div class="pagination">
     <div class="pagination__buttons">
       {prev && (
