@@ -1,4 +1,6 @@
 ---
+import course from '../course.config.ts';
+
 export interface Props {
   lesson: {
     slug: string;
@@ -24,7 +26,7 @@ const isExternal = !!lesson.data.externalLink;
 <article class="post on-list">
   <h2 class="post-title">
     <a href={lessonUrl} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener" : undefined}>
-      {lesson.data.order}. {lesson.data.title}
+      {lesson.data.order === course.currentLesson ? '*': ''} {lesson.data.order}. {lesson.data.title}
     </a>
   </h2>
   <div class="post-meta">
