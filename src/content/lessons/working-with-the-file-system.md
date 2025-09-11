@@ -274,7 +274,7 @@ cat server-logs | grep 'error' >> errors.txt
 
 <pop-quiz data-answer-id="1">
 
-### What happens if the file does not exist?
+### What happens if the file being redirected to does not exist?
 
 - Nothing
 - It gets created

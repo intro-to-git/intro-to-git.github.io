@@ -304,6 +304,22 @@ echo $BASH_VERSION
 
 ---
 
+### Special variables
+
+There are many pre-defined and built-in variables depending
+on the specific environment. Some useful ones are:
+```bash
+$TERM # the name / type of the terminal
+$SHELL # the name of the shell (e.g bash)
+$PATH # : separated list of directory
+$EDITOR # default text editor
+$USERNAME # the login name of the current user
+```
+
+---
+
+### Defining variables
+
 To define your own variables use the `NAME=value` syntax.
 
 You can define multiple variables on the same line.

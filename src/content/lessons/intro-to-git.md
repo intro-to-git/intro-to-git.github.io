@@ -20,12 +20,11 @@ It is used for all types of projects: corporate, open-source, hobby, educational
 
 ### Fun Facts:
 
-- Created by Linus Torvalds (Linux creator) in 2005 when he needed a better tool for Linux kernel development
+- Created by Linus Torvalds (Linux creator) in 2005 when he needed a better tool for Linux kernel development.
 
-- The German government publishes their constitution on GitHub
+- The German government publishes their constitution on GitHub.
 
-- Over 100 million repositories exist on GitHub alone
-It was published by the creator of Linux - Linus Torvalds in 2005.
+- Over 100 million repositories exist on GitHub alone.
 
 </bonus-content>
 
