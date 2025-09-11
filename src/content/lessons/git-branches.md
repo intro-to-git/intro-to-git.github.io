@@ -6,6 +6,7 @@ tags: ['git']
 resources: {
   'Git Branching Documentation': 'https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell',
   'Interactive Git Branching': 'https://learngitbranching.js.org/',
+  'Referencing commits docs': 'https://git-scm.com/docs/gitrevisions',
 }
 ---
 
@@ -76,6 +77,24 @@ git checkout -b feature-user-profile
 git switch -c feature-user-profile
 ```
 
+---
+
+### Branch Naming Conventions
+
+```bash
+# Good branch names
+feature/user-authentication
+bugfix/login-timeout
+hotfix/security-patch
+docs/api-documentation
+refactor/database-queries
+
+# Poor branch names
+fix
+temp
+john-branch
+new-feature
+```
 ---
 
 ## Switching Between Branches
@@ -155,12 +174,52 @@ Until now we have been looking at linear histories. But often branches will dive
 
 ---
 
-## Addressing commits
+## Viewing divergent trees
+
+`log` provides a couple of options for viewing commit ranges:
+
+```bash
+# shows all commits on my_branch that
+# are NOT on master
+git log --oneline --graph main..my_branch
+
+# shows all commits on both main and my_branch
+# but NOT the shared ancestry
+git log --oneline --graph main...my_branch
+```
+
+---
+
+![example-history](https://git-scm.com/book/en/v2/images/double-dot.png)
+
+```bash
+git log --oneline --graph master..experimental
+# shows C and D
+```
+
+---
+
+![example-history](https://git-scm.com/book/en/v2/images/double-dot.png)
+
+```bash
+git log --oneline --graph master...experimental
+# shows E, F, C and D
+```
+
+---
+
+## Referencing commits
 
 There are many ways to get to a commit.
+![example-history](https://git-scm.com/book/en/v2/images/double-dot.png)
 
-<!-- TODO: write this -->
-
+```bash
+master^ # E
+master~2 # B
+B^ # A
+B~1 # A
+^B # everything except A and B
+```
 
 ---
 
@@ -169,25 +228,14 @@ There are many ways to get to a commit.
 If HEAD points directly at a commit, git will inform you that
 you are in a **detached HEAD** state.
 
-<!-- TODO: write this -->
-
----
-
-## Branch Naming Conventions
-
 ```bash
-# Good branch names
-feature/user-authentication
-bugfix/login-timeout
-hotfix/security-patch
-docs/api-documentation
-refactor/database-queries
-
-# Poor branch names
-fix
-temp
-john-branch
-new-feature
+git checkout <commit>
+# prints:
+# Note: switching to '<commit>'.
+#
+# You are in 'detached HEAD' state.
+# You can look around, make experimental changes
+# ...
 ```
 
 <bonus-content>
@@ -367,7 +415,7 @@ git fetch --prune
 1. **Create** branch from up-to-date main
 2. **Work** on feature with regular commits
 3. **Test** thoroughly before merging
-4. **Create Pull Request** for code review
+4. **Request** code review
 5. **Merge** to main after approval
 6. **Delete** feature branch after merge
 7. **Update** local main branch

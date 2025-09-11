@@ -11,13 +11,24 @@ resources: {
 
 Merging combines the work from different branches back together.
 
+This creates a merge commit. Merge commits are special because they
+have more than 1 parent commit.
+
+---
+
 Before merge:
 ![example-before-merge](https://git-scm.com/book/en/v2/images/basic-merging-1.png)
+
+> Notice that master and iss53 have commits
+> exclusive to each side
 
 ---
 
 After merge:
 ![example-after-merge](https://git-scm.com/book/en/v2/images/basic-merging-2.png)
+
+> Notice that commit C6 has 2 parent commits:
+> C5 and C4
 
 ---
 
@@ -35,19 +46,8 @@ git branch --no-merged
 
 ## Fast-Forward Merge
 
-When the target branch hasn't changed since the feature branch was created:
-
-```
-Before merge:
-main:     A---B---C
-               \
-feature:        D---E
-
-After merge:
-main:     A---B---C---D---E
-```
-
----
+When the target branch hasn't changed since the feature branch was created.
+No merge commit is created. The history remains linear.
 
 ```bash
 # Switch to main branch
@@ -64,26 +64,12 @@ git merge main feature-branch
 
 ## Real Merge
 
-When both branches have new commits:
-
-```
-Before merge:
-main:     A---B---C---F
-               \
-feature:        D---E
-
-After merge:
-main:     A---B---C---F---G
-               \         /
-feature:        D---E---/
-```
-
----
+When both branches have new commits a merge commit is created:
 
 ```bash
 git checkout main
 git merge feature-branch
-# Creates merge commit G
+# Creates a new merge commit
 ```
 
 <bonus-content>
@@ -118,8 +104,9 @@ git log --oneline --graph
 
 Conflicts occur when the same lines in the same files are changed differently on two branches.
 
-Git is usually smart enough to resolve trivial conflicts automatically,
-but when it is not clear what the outcome should be - you need to resolve manually.
+Git is usually smart enough to resolve trivial conflicts automatically.
+
+But when it is not clear what the outcome should be - you need to resolve manually.
 
 ---
 
@@ -141,9 +128,9 @@ git merge main feature-greeting
 
 ---
 
-### Conflict Resolution
+## Conflict Resolution
 
-When a conflict occurs, Git modifies the file to show both versions:
+When a conflict occurs, Git **modifies** the file to show both versions:
 
 ```
 <<<<<<< HEAD
@@ -153,13 +140,15 @@ Hello World from feature
 >>>>>>> feature-greeting
 ```
 
+Git will also prevent you from committing until the conflict is resolved.
+
 ---
 
-To resolve:
+To resolve, edit the files so the correct version of the content is present. Then `add` and `commit`:
 
 ```bash
 # 1. Edit the file to choose the version you want
-echo "Hello World - combined version" > greeting.txt
+nvim # btw
 
 # 2. Stage the resolved file
 git add greeting.txt
@@ -172,12 +161,16 @@ git commit -m "merge: resolve greeting conflict"
 
 ### Conflict Resolution Tools
 
-```bash
-# Use visual merge tool
-git mergetool
+There are many tools that allow for easier view of conflicts.
 
+Git can be configured to use a specific `mergetool`
+
+```bash
 # Abort the merge and start over
 git merge --abort
+
+# Use visual merge tool
+git mergetool
 
 # Show conflicts in different format
 git diff --name-only --diff-filter=U
@@ -187,7 +180,7 @@ git diff --name-only --diff-filter=U
 
 ## Rebasing
 
-Rebasing rewrites history to create a cleaner, linear timeline:
+Rebasing **rewrites history** to create a cleaner, linear commit history:
 
 ```bash
 # Instead of merge, use rebase
@@ -198,8 +191,8 @@ git rebase main
 git rebase -i HEAD~3
 ```
 
-**When to use**: Cleaning up feature branch before merging
-**When NOT to use**: On shared/public branches
+- **Use when**: Cleaning up feature branch before merging
+- **DONT'T USE**: On shared/public branches
 
 ---
 
@@ -233,17 +226,22 @@ git checkout original-branch
 git stash pop
 ```
 
----
-
-## Abort / Continue options
-
-<!-- TODO: write this -->
-
 <bonus-content>
+
+<pop-quiz data-answer-id="3">
+
+### When does a merge cause a conflict?
+
+- two cars want to drive in the same lane
+- two repositories have the same name
+- two coworkers reach for the same soda can
+- two branches being merged have diverging content
+
+</pop-quiz>
 
 <home-work>
 
-### Assignment 2: Remote Collaboration Simulation
+### Remote Collaboration Simulation
 
 1. Create a repository on GitHub
 2. Clone it to two different directories (simulating two developers)

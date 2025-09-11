@@ -9,4 +9,9 @@ resources: {
 
 <!-- TODO: tags -->
 
+<!-- TODO: reflog -->
+
+<!-- # selects the commit master was -->
+<!-- # on at the given time -->
+<!-- master@{5.days.ago} -->
 <!-- TODO: protocols -->
