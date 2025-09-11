@@ -2,9 +2,13 @@
 title: 'Scripting with bash'
 description: 'Diving deeper into bash features, writing scripts'
 order: 7
-draft: true
 tags: ['bash', 'unix']
 ---
+
+<!-- TODO: shebang -->
+<!-- TODO: test -->
+<!-- TODO: if / case -->
+<!-- TODO: loops -->
 
 ## Functions
 
@@ -13,8 +17,6 @@ my_func() { echo "Hello $1"; }
 declare -f my_func    # Show function body
 declare -F            # List all function names
 ```
-
----
 
 ---
 

@@ -304,7 +304,7 @@ echo $BASH_VERSION
 
 ---
 
-To define variables use the `NAME=value` syntax.
+To define your own variables use the `NAME=value` syntax.
 
 You can define multiple variables on the same line.
 

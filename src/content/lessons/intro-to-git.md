@@ -7,7 +7,6 @@ resources: {
   'Git docs': 'https://git-scm.com/docs',
   'Git book': 'https://git-scm.com/book/en/v2',
   'Intro to git by Scott Shacon': 'https://www.youtube.com/watch?v=ZDR433b0HJY',
-  'Meaningful commit messages': 'https://www.conventionalcommits.org/en/v1.0.0/',
 }
 ---
 
@@ -15,17 +14,18 @@ resources: {
 
 Git is the most popular **version control system** in the world.
 
-<bonus-content>
-
-It was published by the creator of Linux - Linus Torvalds in 2005.
-
-</bonus-content>
-
 It is used for all types of projects: corporate, open-source, hobby, educational, and more.
 
 <bonus-content>
 
-> _Did you know_: The German government publishes their [constitution](https://github.com/bundestag/gesetze) on GitHub?
+### Fun Facts:
+
+- Created by Linus Torvalds (Linux creator) in 2005 when he needed a better tool for Linux kernel development
+
+- The German government publishes their constitution on GitHub
+
+- Over 100 million repositories exist on GitHub alone
+It was published by the creator of Linux - Linus Torvalds in 2005.
 
 </bonus-content>
 
@@ -46,6 +46,7 @@ Version control systems record changes to files over time, allowing you to:
 
 There are different types of version control setups:
 
+- None
 - Local
 - Centralized
 - Distributed
@@ -59,6 +60,22 @@ Different tools allow for collaboration and version control in different ways:
 - **The Zed editor** uses CRDTs to provide a distributed collaboration environment.
 
 ---
+
+### Without Version Control
+
+```bash
+my-project.txt
+my-project-final.txt
+my-project-final-v2.txt
+my-project-final-v2-ACTUALLY-FINAL.txt
+my-project-final-v2-ACTUALLY-FINAL-fixed-typo.txt
+```
+
+> **Problems**: Confusing, error-prone, no collaboration, no history of what changed.
+
+---
+
+### Git
 
 **Git** is local-first but allows for great flexibility of setups for collaboration:
 
@@ -122,7 +139,7 @@ A repository is just a directory for which git tracks changes.
 
 Another way to get a git repository is to clone it:
 
-```
+```bash
 git clone https://github.com/bahamas10/ysap.git
 ```
 
@@ -209,12 +226,6 @@ git commit -m "added readme file"
 These changes are now part of the history of repository, but are only stored
 on your computer.
 
-<bonus-content>
-> Writing clear, short, consistent and meaningful commit messages is very important.
-> In the link below, you will find a spec that can be useful to follow to ensure your
-> commit messages are well structured.
-</bonus-content>
-
 ---
 
 ## What is a commit?
@@ -277,7 +288,7 @@ git [sub-command] [options] [objects]
 
 ---
 
-## Help
+## Getting help
 
 Git provides excellent in-terminal documentation.
 
@@ -291,197 +302,36 @@ git help
 git sub-command --help
 ```
 
----
-
-## Status
-
-The `status` sub-command provides information about the state
-of all files in the working directory.
-
-```bash
-git status
-
-# prints the following info:
-
-# On branch main
-# Changes to be committed:
-# ...
-# Changes not staged for commit:
-# ...
-# Untracked files:
-# ...
-```
-
----
-
-## Ignoring files
-
-There might be files in the working directory that should NOT be
-part of the project's history e.g. api keys, environment setups.
-
-Such files can be added to the special `.gitignore` file:
-
-```bash
-# sample .gitignore file
-.env
-secrets/
-tmp/
-```
-
----
-
-## Add
-
-Remember, `add` does NOT make changes part of the history. It only adds them to the staging area.
-
-```bash
-# add all files (including untracked)
-git add -A
-
-# add only changes to already tracked files
-git add -u
-
-# interactively add specific hunks
-git add -p
-
-# add specific file(s)
-git add my-file.txt readme.md
-```
-
----
-
-## Reset
-
-Use `reset` to un-stage a change i.e.
-the change will no longer be in the next commit.
-
-The changes are still present in the working directory.
-
----
-
-```bash
-# removes changes to the file from
-# the staging area
-git reset filename
-
-# interactively remove hunks from
-# the staging area
-git reset -p
-```
-
-> Reset is a very versatile command. **Some options may lead to data loss**
----
-
-## Diff
-
-`diff` allows us to compare changes:
-
-```bash
-# view all changes in the staging area
-git diff --cached
-
-# view changes to a file since the last commit
-git diff my-file.txt
-```
-
----
-
-## Clean
-
-`clean` **deletes** untracked files from the working directory:
-
-```bash
-# remove untracked files in the top level dir
-git clean
-
-# remove all untracked files recursively
-git clean -d
-
-# remove untracked and ignored files
-git clean -x
-```
-
-> **Warning**: the files will be totally lost
-
----
-
-## Commit
-
-Creates a commit with all changes in the staging area.
-
-```bash
-# opens the default editor for a message
-git commit
-
-# inline message
-git commit -m "my awesome commit"
-
-# add extra changes to the last commit
-# creates a new commit!
-git commit --amend
-```
-
----
-
-## Restore
-
-`restore` **overwrites** the contents of the file in the working tree and/or staging area.
-
-```bash
-# removes changes from the staging area
-# working dir is untouched
-git restore --staged filename
-
-# discard changes in the working directory
-# changes will be lost!
-git restore filename
-```
-
-> **Warning**: the changes will be totally lost
-
----
-
-## Remove
-
-`git rm` tells git to no longer track the given file
-
-```bash
-# stages a change to no longer track the file
-# in the next commit
-# DELETES THE file from the working directory
-git rm filename
-
-# only stages a change to no longer track the file
-# in the next commit
-git rm --cached filename
-```
-
 <bonus-content>
 
-<pop-quiz data-answer-id="3">
+<pop-quiz data-answer-id="1">
 
-### Which of the following is NOT a git command
+### What does the hidden .git directory contain?
+- Only the current version of your files
+- Full history of changes, branches, tags, and all file versions
+- Just configuration files for Git
+- Temporary files that can be safely deleted
 
-- git add
-- git commit
-- git restore
-- git ignore
-- git rm
-- git init
+</pop-quiz>
+
+<pop-quiz data-answer-id="2">
+
+### What happens if you delete the .git directory?
+- Nothing, Git will recreate it automatically
+- Only the current branch history is lost
+- The entire local repository history is permanently lost
+- Your files are deleted but the history is preserved
+
+</pop-quiz>
+
+<pop-quiz data-answer-id="0">
+
+### What does the Working Directory represent?
+- The current snapshot of files you're actively editing
+- The Git configuration folder
+- The remote repository on GitHub
+- The history of all previous commits
 
 </pop-quiz>
 
 </bonus-content>
-
----
-
-## Practise to learn
-
-<class-note>
-
-Git is a very practical system. The aim of this course is
-to help you learn to use it daily and seamlessly.
-But for that to happen you need to practise on your own.
-**Start using git to track your projects today**!
-
-</class-note>
