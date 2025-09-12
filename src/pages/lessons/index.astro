@@ -13,7 +13,7 @@ const lessons = await getLessons();
     {lessons.length === 0 ? (
       <p>No lessons yet. Check back soon!</p>
     ) : (
-      lessons.map((lesson) => <PostCard lesson={lesson} />)
+      lessons.filter(l => !l.unlisted).map((lesson) => <PostCard lesson={lesson} />)
     )}
   </div>
 </ArcticleLayout>

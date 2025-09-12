@@ -11,6 +11,7 @@ const lessons = defineCollection({
     externalLink: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    unlisted: z.boolean().default(false),
     slides: z.boolean().default(true),
     resources: z.record(z.string()).optional(),
   }),

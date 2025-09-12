@@ -1,12 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
-const allLessons = await getCollection('lessons');
-const resources = allLessons.map(lesson => lesson.data.resources).reduce((all, lesson) => {
-  return [...all, ...Object.entries(lesson || {})];
-}, []);
+import { getLessons } from '../../common/lessons.astro';
 
+
+const lessons = await getLessons();
+
+const links = lessons
+  .map(lesson => lesson.data.resources)
+  .reduce((all, lesson) => {
+    return [...all, ...Object.entries(lesson || {})];
+}, []);
 ---
 
 <ArticleLayout title="Resources" description="All resources linked in lessons">
@@ -14,7 +18,7 @@ const resources = allLessons.map(lesson => lesson.data.resources).reduce((all, l
     <h1 class="posts-title">All external resources</h1>
  
     <ul>
-      {resources.map(([text, link]) => (
+      {links.map(([text, link]) => (
       <li><a href={link}>{text}</a></li>
       ))}
     </ul>

@@ -26,6 +26,6 @@ const lessons = await getLessons();
   </div>
   
   <div class="posts">
-    {lessons.map((lesson) => <PostCard lesson={lesson} />)}
+    {lessons.filter(l => !l.unlisted).map((lesson) => <PostCard lesson={lesson} />)}
   </div>
 </ArcticleLayout>
