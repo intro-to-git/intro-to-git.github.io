@@ -2,8 +2,9 @@
 title: 'Advanced git features'
 description: 'Git internals, Git hooks, Github actions and more'
 order: 9
+state: 'draft'
 tags: ['git']
-resources: {
+links: {
 }
 ---
 

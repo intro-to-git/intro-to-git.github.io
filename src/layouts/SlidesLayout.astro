@@ -1,30 +1,20 @@
 ---
-import Layout from "./BaseLayout.astro";
+import BaseLayout from "./BaseLayout.astro";
 import "reveal.js/dist/reveal.css";
 import "reveal.js/dist/theme/black.css"
 import "reveal.js/plugin/highlight/monokai.css";
 
 export interface Props {
-  slug: string;
+  altViewUrl?: string;
+  altViewType?: string;
   title: string;
   description?: string;
-  order?: number;
-  updatedDate?: Date;
-  image?: string;
-  tags?: string[];
-  prev?: any;
-  next?: any;
 }
 
-const { prev, next, slug, title, description } = Astro.props;
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
-const lessonUrl = `${base}lessons/${slug}`
-
-const prevUrl = `${base}${prev?.data.slides ? 'slides' : 'lessons'}/${prev?.slug}/`;
-const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug}/`;
+const { title, description, altViewUrl, altViewType = "full lesson"} = Astro.props;
 ---
 
-<Layout title={title} altViewUrl={lessonUrl} altViewType="full lesson">
+<BaseLayout title={title} altViewUrl={altViewUrl} altViewType={altViewType}>
   <Fragment slot="head">
     {description && <meta name="description" content={description} />}
   </Fragment>
@@ -34,22 +24,8 @@ const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug
     </div>
   </div>
 
-  <div class="inslide pagination">
-    <div class="pagination__buttons">
-      {prev && (
-        <a href={prevUrl} class="button inline prev">
-          <span class="button__text">{prev.data.title}</span>
-        </a>
-      )}
-      {prev && next && <span>::</span>}
-      {next && (
-        <a href={nextUrl} class="button inline next">
-          <span class="button__text">{next.data.title}</span>
-        </a>
-      )}
-    </div>
-  </div>
-</Layout>
+  <slot name="bottom-nav" />
+</BaseLayout>
 
 <script>
   import Reveal from "reveal.js";
@@ -64,11 +40,6 @@ const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug
     const highlight = deck.getPlugin('highlight');
     highlight.hljs.highlightAll();
  
-    deck.on('slidechanged', () => {
-        if (deck.isLastSlide()) {
-        }
-    });
-
     // HACK: Apply styles after initialization
     const style = document.createElement('style');
     style.textContent = `
@@ -158,6 +129,10 @@ const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug
       .hljs-string {
         color: #af719b !important; 
       }
+
+      .reveal .article-only {
+        display: none !important;
+      }
     `;
     document.head.appendChild(style);
   });
@@ -187,8 +162,4 @@ const nextUrl = `${base}${next?.data.slides ? 'slides' : 'lessons'}/${next?.slug
   .container {
     border-right: none !important;
   }
-
-  /* .pagination { */
-  /*   display: none; */
-  /* } */
 </style>

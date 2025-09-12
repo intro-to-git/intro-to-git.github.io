@@ -1,25 +1,22 @@
 ---
 import SlidesLayout from '../../layouts/SlidesLayout.astro';
-import { getLessons } from '../../common/lessons.astro';
+import LessonNavigation from '../../components/LessonNavigation.astro';
+
+import { baseUrl, buildLessonNavigationProps, getLessons } from '../../helpers.astro';
 
 export async function getStaticPaths() {
   const lessons = await getLessons();
 
-  return lessons.map((lesson, index) => ({
-    params: { slug: lesson.slug },
-    props: {
-      lesson,
-      next: index < lessons.length - 1 ? lessons[index + 1] : null,
-      prev: index > 0 ? lessons[index - 1] : null,
-    },
-  }));
+  return buildLessonNavigationProps(lessons);
 }
 
 const { lesson, prev, next } = Astro.props;
 const lessonContent = lesson.body.replaceAll(/<bonus-content>.*?<\/bonus-content>/gs, '');
+
+const lessonUrl = `${baseUrl}lessons/${lesson.slug}`
 ---
 
-<SlidesLayout slug={lesson.slug} prev={prev} next={next} {...lesson.data}>
+<SlidesLayout {...lesson.data} altViewType='full lesson' altViewUrl={lessonUrl}>
   <section data-markdown>
     <textarea data-template>
       ## {lesson.data.order}. {lesson.data.title}
@@ -28,4 +25,8 @@ const lessonContent = lesson.body.replaceAll(/<bonus-content>.*?<\/bonus-content
       {lessonContent}
     </textarea>
   </section>
+  <section>
+    <LessonNavigation prev={prev} next={next} view='slides' />
+  </section>
+  <LessonNavigation slot="bottom-nav" prev={prev} next={next} view='slides' />
 </SlidesLayout>

@@ -1,15 +1,15 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
-import { getLessons } from '../../common/lessons.astro';
-
+import { getLessons } from '../../helpers.astro';
 
 const lessons = await getLessons();
 
 const links = lessons
-  .map(lesson => lesson.data.resources)
-  .reduce((all, lesson) => {
-    return [...all, ...Object.entries(lesson || {})];
+  .map(lesson => lesson.data.links)
+  .reduce((all: string[][], lessonLinks) => {
+  console.log(lessonLinks);
+    return [...all, ...Object.entries(lessonLinks || {})];
 }, []);
 ---
 
@@ -24,5 +24,4 @@ const links = lessons
     </ul>
   </div>
 </ArticleLayout>
-
 

@@ -1,0 +1,11 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+
+import * as syllabus from '../../content/syllabus.md';
+
+const Content = syllabus.Content;
+---
+
+<LessonLayout title="Course syllabus" altViewUrl="/syllabus/slides" hideContent>
+  <Content />
+</LessonLayout>

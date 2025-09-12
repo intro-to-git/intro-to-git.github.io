@@ -1,0 +1,32 @@
+---
+import { baseUrl, type AstroLesson } from '../helpers.astro';
+
+export interface Props {
+  view: 'lessons' | 'slides';
+  prev: AstroLesson | null;
+  next: AstroLesson | null;
+}
+
+const {
+  view,
+  prev,
+  next,
+} = Astro.props;
+
+---
+
+<div class="pagination">
+  <div class="pagination__buttons">
+    {prev && (
+        <a href={`${baseUrl}${view}/${prev.slug}`} class="button inline prev">
+          <span class="button__text">{prev.data.title}</span>
+        </a>
+    )}
+    {prev && next && <span class="article-only">::</span>}
+    {next && (
+      <a href={`${baseUrl}${view}/${next.slug}`} class="button inline next">
+        <span class="button__text">{next.data.title}</span>
+      </a>
+    )}
+  </div>
+</div>

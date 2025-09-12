@@ -2,8 +2,9 @@
 title: 'Basic git commands'
 description: 'An overview of basic git commands - everything you need to run a local repository'
 order: 4
+state: 'upcoming'
 tags: ['git']
-resources: {
+links: {
   'Meaningful commit messages': 'https://www.conventionalcommits.org/en/v1.0.0/',
 }
 ---

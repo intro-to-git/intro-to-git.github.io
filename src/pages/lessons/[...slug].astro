@@ -1,48 +1,31 @@
 ---
 import LessonLayout from '../../layouts/LessonLayout.astro';
-import { getLessons } from '../../common/lessons.astro';
-import LessonLinks from '../../components/Links.astro';
+import LessonLinks from '../../components/LessonLinks.astro';
+import LessonNavigation from '../../components/LessonNavigation.astro';
+
+import { getLessons, baseUrl, buildLessonNavigationProps } from '../../helpers.astro';
 
 export async function getStaticPaths() {
   const lessons = await getLessons();
  
-  return lessons.map((lesson, index) => ({
-    params: { slug: lesson.slug },
-    props: {
-      lesson,
-      next: index < lessons.length - 1 ? lessons[index + 1] : null,
-      prev: index > 0 ? lessons[index - 1] : null,
-    },
-  }));
+  const navProps = buildLessonNavigationProps(lessons);
+
+  return navProps;
 }
 
 const { lesson, prev, next } = Astro.props;
-const { Content } = await lesson.render();
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
-const slidesUrl = lesson.data.slides ? { slidesUrl: `${base}slides/${lesson.slug}`} : {};
+
+const { Content: LessonContent } = await lesson.render();
+
+const altViewProps = !lesson.data.hasSlides
+  ? {}
+  : { altViewUrl: `${baseUrl}slides/${lesson.slug}`, altViewText: 'show slides'};
 ---
 
-<LessonLayout {...slidesUrl} {...lesson.data}>
-  <Content />
-
-{lesson.data.resources && <LessonLinks lesson={lesson} />}
-  <div class="pagination">
-    <div class="pagination__buttons">
-      {prev && (
-        <>
-          <a href={`${base}lessons/${prev.slug}/`} class="button inline prev">
-            <span class="button__text">{prev.data.title}</span>
-          </a>
-          {prev && next && <span>::</span>}
-        </>
-      )}
-      {next && (
-        <a href={`${base}lessons/${next.slug}/`} class="button inline next">
-          <span class="button__text">{next.data.title}</span>
-        </a>
-      )}
-    </div>
-  </div>
+<LessonLayout {...altViewProps} {...lesson.data}>
+  <LessonContent />
+  <LessonLinks lesson={lesson.data} />
+  <LessonNavigation prev={prev} next={next} view='lessons' />
 </LessonLayout>
 
 <style is:global>

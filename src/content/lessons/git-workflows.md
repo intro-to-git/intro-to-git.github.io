@@ -2,8 +2,9 @@
 title: 'Exploring git workflows'
 description: 'There are many strategies for working on real-world projects'
 order: 8
+state: 'draft'
 tags: ['git']
-resources: {
+links: {
   'GitHub Collaboration Guide': 'https://docs.github.com/en/pull-requests/collaborating-with-pull-requests',
   'Git Flow Workflow': 'https://nvie.com/posts/a-successful-git-branching-model/',
   'Atlassian Git Tutorials': 'https://www.atlassian.com/git/tutorials/using-branches',

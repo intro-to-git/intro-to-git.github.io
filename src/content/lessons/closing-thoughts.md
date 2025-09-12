@@ -2,9 +2,9 @@
 title: 'Closing thoughts'
 description: "This is just the beginning..."
 order: 10
-noContents: true
+state: 'draft'
 tags: ['outro']
-resources: {
+links: {
   'Jujitsu: a VCS on top of git': 'https://github.com/jj-vcs/jj',
 }
 ---

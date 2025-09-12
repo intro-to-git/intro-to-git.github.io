@@ -1,0 +1,29 @@
+---
+---
+<h2 style="text-align:center;">Linux VM (v86)</h2>
+    <canvas id="screen"></canvas>
+
+    <script>
+      var emulator = new V86({
+        wasm_path: "https://copy.sh/v86/build/v86.wasm",
+        memory_size: 128 * 1024 * 1024, // 128 MB RAM
+        vga_memory_size: 8 * 1024 * 1024,
+        screen_container: document.getElementById("screen"),
+
+        // Bootable Linux kernel + initrd
+        kernel: {
+          url: "https://copy.sh/v86/bzImage"
+        },
+        initrd: {
+          url: "https://copy.sh/v86/rootfs.cpio"
+        },
+        cmdline: "console=ttyS0 root=/dev/ram0",
+        
+        // Optional: attach your own filesystem image
+        filesystem: {
+          basefs: "https://copy.sh/v86/archlinux.json", // you can build your own basefs.json
+          baseurl: "https://copy.sh/v86/fs/"
+        }
+      });
+    </script>
+<script src="https://copy.sh/v86/build/libv86.js"></script>

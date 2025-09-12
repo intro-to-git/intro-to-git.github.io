@@ -1,15 +1,16 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
-import PostCard from '../../components/PostCard.astro';
-import { getLessons } from '../../common/lessons.astro';
+import LessonOverview from '../../components/LessonOverview.astro';
+
+import { getLessons } from '../../helpers.astro';
 
 export async function getStaticPaths() {
   const allLessons = await getLessons();
   const uniqueTags = [...new Set(allLessons.map(post => post.data.tags).flat())];
-  
+
   return uniqueTags.map(tag => {
     const filteredLessons = allLessons
-      .filter(post => post.data.tags?.includes(tag) && !post.data.draft)
+      .filter(post => post.data.tags?.includes(tag))
 
     return {
       params: { tag },
@@ -30,7 +31,7 @@ const { lessons } = Astro.props;
     {lessons.length === 0 ? (
       <p>No lessons found with this tag.</p>
     ) : (
-      lessons.map((lesson) => <PostCard lesson={lesson} />)
+      lessons.map((lesson) => <LessonOverview lesson={lesson} />)
     )}
   </div>
 </ArticleLayout>
@@ -44,7 +45,7 @@ const { lessons } = Astro.props;
     padding-bottom: 0 !important;
     border-bottom: none !important;
   }
-  
+
   .posts-title::after {
     display: none !important;
   }

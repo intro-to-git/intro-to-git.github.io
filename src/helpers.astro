@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import type { LessonState } from './types';
+
+export type AstroLesson = Awaited<ReturnType<typeof getLessons>>[number];
+
+export async function getLessons() {
+  return (await getCollection('lessons'))
+    .sort((a, b) => a.data.order - b.data.order);
+}
+
+export const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+
+export function lessonMarker(state: keyof LessonState) {
+  switch (state) {
+    case 'covered':
+      return '☑️'
+    case 'upcoming':
+      return ''
+    case 'draft':
+      return '🚧 '
+  }
+}
+
+export async function buildLessonNavigationProps(lessons: AstroLesson[]) {
+  return lessons.map((lesson, index) => ({
+    params: { slug: lesson.slug },
+    props: {
+      lesson,
+      next: index < lessons.length - 1 ? lessons[index + 1] : null,
+      prev: index > 0 ? lessons[index - 1] : null,
+    },
+  }));
+}
+---

@@ -1,4 +1,6 @@
 ---
+import { baseUrl } from '../helpers.astro';
+
 export interface Props {
   title: string;
   description?: string;
@@ -8,8 +10,9 @@ export interface Props {
 }
 
 const { altViewUrl, altViewType, title, description = 'COS 3100: Intro to git - AUBG short course', image } = Astro.props;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+
 ---
 
 <!DOCTYPE html>
@@ -17,8 +20,8 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <link rel="alternate icon" type="image/x-icon" href={`${base}favicon.ico`} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
+    <link rel="alternate icon" type="image/x-icon" href={`${baseUrl}favicon.ico`} />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
@@ -36,15 +39,15 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={new URL(image, Astro.url)} />}
 
-    <link rel="sitemap" href={`${base}sitemap-index.xml`} />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href={`${base}rss.xml`} />
+    <link rel="sitemap" href={`${baseUrl}sitemap-index.xml`} />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href={`${baseUrl}rss.xml`} />
   </head>
   <body>
     <div class="container center">
       <header class="header">
         <div class="header__inner">
           <div class="header__logo">
-            <a href={base}>
+            <a href={baseUrl}>
               <div class="logo">
                 <span class="big-only">COS 3100: </span> Intro to GIT
               </div>
@@ -54,9 +57,10 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
             <li class="menu__trigger">menu ▾</li>
             <li>
               <ul class="menu__dropdown">
-                <li><a href={`${base}lessons/`}>lessons</a></li>
-                <li><a href={`${base}tags/`}>tags</a></li>
-                <li><a href={`${base}resources/`}>links</a></li>
+                <li><a href={`${baseUrl}lessons/`}>lessons</a></li>
+                <li><a href={`${baseUrl}tags/`}>tags</a></li>
+                <li><a href={`${baseUrl}links/`}>links</a></li>
+                <li><a href={`${baseUrl}syllabus/`}>syllabus</a></li>
                 <li>
                   <a
                     href="https://copy.sh/v86/?profile=archlinux"
@@ -73,9 +77,10 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
  
         <nav class="navigation-menu">
           <ul class="navigation-menu__inner menu--desktop">
-                <li><a href={`${base}lessons/`} class="button inline">lessons</a></li>
-                <li><a href={`${base}tags/`} class="button inline">tags</a></li>
-                <li><a href={`${base}resources/`} class="button inline">links</a></li>
+                <li><a href={`${baseUrl}lessons/`} class="button inline">lessons</a></li>
+                <li><a href={`${baseUrl}tags/`} class="button inline">tags</a></li>
+                <li><a href={`${baseUrl}links/`} class="button inline">links</a></li>
+                <li><a href={`${baseUrl}syllabus/`} class="button inline">syllabus</a></li>
             <li>
               <a
                 href="https://copy.sh/v86/?profile=archlinux"
@@ -94,24 +99,24 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   </body>
 </html>
 
-<script src="../js/menu.js" />
-<script src="../js/code.js" />
+<script src="../client/js/menu.js" />
+<script src="../client/js/code.js" />
 
 <style is:global>
   /* Import all CSS files in the correct order */
-  @import "../styles/terminal.css";
-  @import "../styles/fonts.css";
-  @import "../styles/main.css";
-  @import "../styles/header.css";
-  @import "../styles/menu.css";
-  @import "../styles/footer.css";
-  @import "../styles/buttons.css";
-  @import "../styles/post.css";
-  @import "../styles/pagination.css";
-  @import "../styles/code.css";
-  @import "../styles/syntax.css";
-  @import "../styles/gist.css";
-  @import "../styles/terms.css";
+  @import "../client/styles/terminal.css";
+  @import "../client/styles/fonts.css";
+  @import "../client/styles/main.css";
+  @import "../client/styles/header.css";
+  @import "../client/styles/menu.css";
+  @import "../client/styles/footer.css";
+  @import "../client/styles/buttons.css";
+  @import "../client/styles/post.css";
+  @import "../client/styles/pagination.css";
+  @import "../client/styles/code.css";
+  @import "../client/styles/syntax.css";
+  @import "../client/styles/gist.css";
+  @import "../client/styles/terms.css";
 
   .paddingx {
     padding-left: 10px;

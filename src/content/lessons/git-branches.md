@@ -2,8 +2,9 @@
 title: 'Working with branches and remotes'
 description: 'Most projects have a complicated history that is not a straight line and include contributions from multiple people'
 order: 5
+state: 'upcoming'
 tags: ['git']
-resources: {
+links: {
   'Git Branching Documentation': 'https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell',
   'Interactive Git Branching': 'https://learngitbranching.js.org/',
   'Referencing commits docs': 'https://git-scm.com/docs/gitrevisions',

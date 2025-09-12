@@ -1,45 +1,53 @@
 ---
+import { baseUrl } from '../helpers.astro';
 import ArticleLayout from './ArticleLayout.astro';
 
 export interface Props {
-  slidesUrl?: string;
+  hideContent?: boolean;
+  altViewUrl?: string;
+  altViewType?: string;
   title: string;
   description?: string;
   order?: number;
+  state?: string;
   updatedDate?: Date;
   image?: string;
   tags?: string[];
 }
 
-const { order, slidesUrl, title, description, image, tags = [] } = Astro.props;
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const { hideContent, state, order, title, description, image, tags = [], altViewUrl } = Astro.props;
+
+const topTitle = order && order >= 0 ? `${order}. ${title}` : title;
 ---
 
-<ArticleLayout title={title} description={description} image={image} altViewUrl={slidesUrl} altViewType="slides">
+<ArticleLayout title={title} description={description} image={image} altViewUrl={altViewUrl} altViewType="slides">
   <article class="lesson-page">
     <div class="flexy flexy-row border-bottom">
-      <h1 class="post-title">{order}. {title}</h1>
+      <h1 class="post-title">{topTitle}</h1>
     </div>
 
     <div class="post-meta">
       {tags.length > 0 && (
         <span class="post-tags">
           {tags.map((tag) => (
-            <a href={`${base}tags/${tag}/`}>{tag}</a>
+            <a href={`${baseUrl}tags/${tag}/`}>{tag}</a>
           ))}
         </span>
       )}
     </div>
 
-    {image && (
-      <figure class="post-cover">
-        <img src={image} alt={title} />
-      </figure>
+    {state == 'draft' && (
+      <div class="under-construction">
+        🚧 This section is not fully ready yet.<br/> Check back later...
+      </div>
     )}
 
-    <aside id="lesson-outline">
-      <h3>Contents:</h3>
-    </aside>
+    {!hideContent && (
+      <aside id="lesson-outline">
+        <h3>Contents:</h3>
+      </aside>
+    )}
+
     <div class="post-content">
       <slot />
     </div>
@@ -53,13 +61,15 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 
     headings.forEach(h => {
       const hslug = h.innerText.replaceAll(' ','-').toLowerCase();
+      if (outline) {
       outline.innerHTML+=`<li><a href="#${hslug}">${h.innerText}</a></li>`;
+      }
       h.innerHTML+=`<a id=${hslug} class="button inline hslug" href="#${hslug}">-</a>`;
     });
   }());
  
 
-  window.handleAnswer = function (el, selected, actual) {
+  window.handleAnswer = function (el: string, selected: string, actual: string) {
     document.querySelector(`#${el}`)?.classList.add(selected == actual ? 'correct': 'wrong');
   };
 
@@ -81,17 +91,6 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 </script>
 
 <style is:global>
-  body {
-  }
-
-  hr {
-    display: none !important;
-  }
-
-  img {
-    border: none !important;
-  }
-
   class-note {
     margin-top: 20px;
     display: inline-block;
@@ -163,6 +162,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 
   pop-quiz button.wrong {
     background-color: #b55151;
+  }
     border-color: #b55151;
     color: var(--background);
   }
@@ -194,5 +194,12 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   }
   .flexy.border-bottom .post-title:after{
     content: none;
+  }
+
+  .under-construction {
+    line-height: 1.3;
+    font-size: 2rem;
+    border: 2px dashed #b55151;
+    padding: 10px;
   }
 </style>

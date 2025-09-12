@@ -2,8 +2,9 @@
 title: 'Intro to git'
 description: 'An overview of what git is, how it works and why we want to learn to use it'
 order: 3
+state: 'upcoming'
 tags: ['intro', 'git']
-resources: {
+links: {
   'Git docs': 'https://git-scm.com/docs',
   'Git book': 'https://git-scm.com/book/en/v2',
   'Intro to git by Scott Shacon': 'https://www.youtube.com/watch?v=ZDR433b0HJY',

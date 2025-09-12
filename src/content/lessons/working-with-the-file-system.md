@@ -3,7 +3,8 @@ title: 'Working with the file system'
 description: 'Commands used to navigate, explore and manipulate the file system'
 order: 2
 tags: ['bash', 'unix']
-resources: {
+state: 'covered'
+links: {
   'Bash guide':'https://guide.bash.academy/',
   'The Linux File System':'https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained',
 }

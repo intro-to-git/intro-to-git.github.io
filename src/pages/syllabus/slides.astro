@@ -1,0 +1,17 @@
+---
+import SlidesLayout from '../../layouts/SlidesLayout.astro';
+
+import * as syllabus from '../../content/syllabus.md';
+
+const rawContent = syllabus.rawContent();
+---
+
+<SlidesLayout title="About the course" altViewUrl="/syllabus" altViewType="as article">
+  <section data-markdown>
+    <textarea data-template>
+      ## COS3100: Intro to git
+      ---
+      {rawContent}
+    </textarea>
+  </section>
+</SlidesLayout>

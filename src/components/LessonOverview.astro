@@ -1,0 +1,44 @@
+---
+import { baseUrl, lessonMarker, type AstroLesson } from '../helpers.astro';
+
+export interface Props {
+  lesson: AstroLesson,
+}
+
+const { lesson } = Astro.props;
+
+const lessonUrl = `${baseUrl}lessons/${lesson.slug}`;
+const slidesUrl = `${baseUrl}slides/${lesson.slug}`
+---
+
+<article class="post on-list">
+  <h2 class="post-title">
+    <a href={lessonUrl}>
+      {lessonMarker(lesson.data.state)} {lesson.data.order}. {lesson.data.title}
+    </a>
+  </h2>
+  <div class="post-meta">
+  </div>
+  {lesson.data.tags && lesson.data.tags.length > 0 && (
+    <span class="post-tags">
+      {lesson.data.tags.map((tag) => (
+        <a href={`${baseUrl}tags/${tag}/`}>{tag}</a>
+      ))}
+    </span>
+  )}
+  {lesson.data.description && (
+    <div class="post-content">
+      <p>{lesson.data.description}</p>
+    </div>
+  )}
+  <div class="spaced">
+    <a href={lessonUrl} class="read-more button inline">view full lesson</a>
+    {lesson.data.hasSlides && <a href={slidesUrl} class="read-more button inline">view as slides</a>}
+  </div>
+</article>
+
+<style>
+.spaced *{
+  padding-right: 10px;
+}
+</style>

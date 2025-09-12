@@ -5,15 +5,11 @@ const lessons = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    order: z.number().optional(),
-    updatedDate: z.coerce.date().optional(),
-    image: z.string().optional(),
-    externalLink: z.string().optional(),
+    state: z.enum(['covered', 'upcoming', 'draft']),
+    order: z.number(),
     tags: z.array(z.string()).default([]),
-    draft: z.boolean().default(false),
-    unlisted: z.boolean().default(false),
-    slides: z.boolean().default(true),
-    resources: z.record(z.string()).optional(),
+    links: z.record(z.string()).optional(),
+    hasSlides: z.boolean().default(true),
   }),
 });
 
