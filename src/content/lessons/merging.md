@@ -1,7 +1,7 @@
 ---
 title: 'Merging, rebasing and handling conflicts'
 description: 'Inevetably when people work together conflits arise. Git helps us handle these conflicts (at least when it comes to the code)'
-order: 6
+order: 7
 state: 'upcoming'
 tags: ['git']
 resources: {

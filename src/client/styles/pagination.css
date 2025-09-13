@@ -62,6 +62,11 @@
   margin: 0;
 }
 
+.pagination__buttons .button.inline.prev:hover,
+.pagination__buttons .button.inline.next:hover {
+  color: var(--accent);
+}
+
 .pagination__buttons .button.inline.next:before {
   content: none;
 }

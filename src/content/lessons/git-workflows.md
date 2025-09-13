@@ -1,7 +1,7 @@
 ---
 title: 'Exploring git workflows'
 description: 'There are many strategies for working on real-world projects'
-order: 8
+order: 10
 state: 'draft'
 tags: ['git']
 links: {
@@ -359,4 +359,3 @@ git branch --set-upstream-to=origin/main main
 ```
 
 ---
-

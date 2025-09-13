@@ -1,7 +1,7 @@
 ---
 title: 'Closing thoughts'
 description: "This is just the beginning..."
-order: 10
+order: 11
 state: 'draft'
 tags: ['outro']
 links: {
@@ -39,4 +39,4 @@ Be curious, get excited, stay positive!
 
 ---
 
-# Thank you!
+# Thank you

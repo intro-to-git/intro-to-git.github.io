@@ -1,7 +1,7 @@
 ---
 title: 'Scripting with bash'
 description: 'Diving deeper into bash features, writing scripts'
-order: 7
+order: 8
 state: 'draft'
 tags: ['bash', 'unix']
 ---

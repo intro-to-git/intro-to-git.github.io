@@ -143,7 +143,17 @@ ls -alh /bin/bash
 # prints: -rwxr-xr-x 1 root root 1.2M Aug  1 22:56 /bin/bash
 ```
 
-See [Bonus: File permissions](/bonus/permissions) for more details
+---
+
+Each file has multiple details:
+
+- permissions
+- owning user
+- owning group
+- file size
+- last modified date
+
+> See [Bonus: File permissions](/bonus/permissions) for more details
 
 ---
 
@@ -218,7 +228,7 @@ grep -e '^a.*z$' *
 
 ---
 
-### Note on confusing syntax
+### Regular expressions
 
 Note that the syntax for both **path expansions** and **regular expressions** looks similar.
 
@@ -226,21 +236,21 @@ However they are very different and used in different contexts.
 
 ---
 
-- Path expressions are performed directly by Bash
+- **Path expansions** are performed directly by Bash
 
-- Path expressions are resolved before command execution
+- **Path expansions** are resolved before command execution
 
 - The resulting files are passed as parameters to the command
 
 ---
 
-- Regexs are interpreted by the program / command
+- **Regular expressions** are interpreted by the program / command
 
-- Regexs are executed after path expansions
+- **Regular expressions** are executed after path expansions
 
-- Regexs are more powerful and applicable in more environments
+- **Regular expressions** are more powerful and applicable in many environments
 
-See [Bonus: Regular Expressions](/bonus/regex) for more details
+> See [Bonus: Regular Expressions](/bonus/regex) for more details
 
 ---
 

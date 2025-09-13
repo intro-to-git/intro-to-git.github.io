@@ -34,6 +34,7 @@ More specific configurations overwrite more generic ones.
 ---
 
 View the current configuration:
+
 ```bash
 # list config options specific to the current repo
 git config list --local
@@ -41,13 +42,14 @@ git config list --local
 # list user-level config options
 git config list --global
 
-# edit the global config with the default editor
-git config --global --edit
+# list the system-level config options
+git config list --system
 ```
 
 ---
 
 Modifying config options:
+
 ```bash
 # tell git to use VSCode as the default editor
 # globally
@@ -66,7 +68,7 @@ git config --local --unset user.email
 ## Status
 
 The `status` sub-command provides information about the state
-of all files in the working directory.
+of the repository.
 
 ```bash
 git status
@@ -87,7 +89,7 @@ git status
 ## Ignoring files
 
 There might be files in the working directory that should NOT be
-part of the project's history e.g. api keys, environment setups.
+part of the project's history.
 
 Such files can be added to the special `.gitignore` file:
 
@@ -104,10 +106,10 @@ tmp/
 
 ```bash
 # for comments
-/ # at end = everything within directory
-/ # at start = root directory only
-* # = wildcard
-! # = exception (don't ignore)
+subdir/ # everything within subdir
+/.secret # in repo-root directory only
+private-* # wildcard
+! # = exception (i.e. don't ignore)
 
 # ignore all .md files, except readme
 *.md
@@ -116,14 +118,28 @@ tmp/
 
 ---
 
+## Do NOT leak sensitive data
+
+It is a common mistake for git-noobies to expose sensitive
+data when sharing their repositories online.
+
+Make sure to add any passwords, api keys, environment details,
+and other valuable files to your `.gitignore` file.
+
+<bonus-content>
+
 ### Common mistake with .gitignore
-> "My .gitignore isn't working"
+>
+> "My .gitignore isn't working! I ignored my secrets file, but it is still in git.."
 
 Files already tracked **aren't** ignored, use:
+
 ```bash
 # makes the file untracked
 git rm --cached
 ```
+
+</bonus-content>
 
 ---
 
@@ -217,7 +233,7 @@ git commit
 git commit -m "my awesome commit"
 
 # add extra changes to the last commit
-# creates a new commit!
+# (actually creates a new commit)
 git commit --amend
 ```
 
@@ -225,14 +241,18 @@ git commit --amend
 
 ### Commit internals
 
-Internally git stores everything as graph of file objects.
+Internally git stores everything as graph of object files.
+
+Once created, commits can NOT be modified.
 
 ![Commit internals](https://git-scm.com/book/en/v2/images/commit-and-tree.png)
 
 ---
+
 ### Writing good commit messages
 
 Writing clear, short, consistent and meaningful commit messages is very important.
+
 ```bash
 # Bad examples
 git commit -m "fix"
@@ -240,14 +260,16 @@ git commit -m "changed stuff"
 git commit -m "asdfgh"
 
 # Good examples
-git commit -m "fix: resolve login timeout issue"
-git commit -m "feat: add dark mode toggle"
-git commit -m "docs: update installation instructions"
+git commit -m "fix: resolved login timeout issue"
+git commit -m "feat: added dark mode toggle"
+git commit -m "docs: updated install instructions"
 ```
 
 <bonus-content>
-> In the link below, you will find a spec that can be useful to follow to ensure your
-> commit messages are well structured.
+
+> In the links below, you will find a spec that can be useful to follow
+> to ensure your commit messages are well structured.
+
 </bonus-content>
 
 ---
@@ -258,6 +280,21 @@ git commit -m "docs: update installation instructions"
 - **DO**: Each commit should represent one logical change
 - **DON'T**: Wait days/weeks between commits
 - **DON'T**: Commit broken/untested code
+
+---
+
+## Show
+
+Displays information and changes introduced by a commit.
+
+```bash
+# display info and all changes in the current commit
+git show
+
+
+# displays info and just the list of changed files
+git show --stat
+```
 
 ---
 
@@ -289,8 +326,8 @@ git restore filename
 # DELETES THE file from the working directory
 git rm filename
 
-# only stages a change to no longer track the file
-# in the next commit
+# only stages an instruction to git to
+# no longer track the file in the next commit
 git rm --cached filename
 ```
 
@@ -299,6 +336,7 @@ git rm --cached filename
 ## Log
 
 Use the `log` sub-command to view the history of changes:
+
 ```bash
 # displays a detailed view of all commits
 git log
@@ -319,22 +357,6 @@ Each commit holds a pointer to its parent commit.
 
 ![line of commits](https://git-scm.com/book/en/v2/images/commits-and-parents.png)
 
----
-
-## Show
-Displays information and changes introduced by a commit.
-
-```bash
-# display info and all changes in the current commit
-git show
-
-
-# displays info and just the list of changed files
-git show --stat
-```
-
----
-
 <bonus-content>
 
 <pop-quiz data-answer-id="3">
@@ -352,7 +374,8 @@ git show --stat
 
 <pop-quiz data-answer-id="2">
 
-### After running git add filename.txt, the file is:
+### After running git add filename.txt, the file is
+
 - Committed to the repository
 - Still in the working directory only
 - Staged for the next commit
@@ -374,6 +397,23 @@ But for that to happen you need to practise on your own.
 **Start using git to track your projects today**!
 
 </class-note>
+
+---
+
+<class-work>
+
+### Your first repository
+
+1. Create a directory in your home directory called `hello-git`
+2. Create a repository within the "hello-git" directory
+3. Create a couple of text files (with whatever content you want)
+4. Commit these files to git
+5. Modify the files (contents and rename)
+6. Examine the state of your repository
+7. Commit the newly made changes
+8. Examine the repositories history
+
+</class-work>
 
 <bonus-content>
 

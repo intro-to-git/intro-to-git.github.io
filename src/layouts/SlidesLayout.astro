@@ -133,6 +133,10 @@ const { title, description, altViewUrl, altViewType = "full lesson"} = Astro.pro
       .reveal .article-only {
         display: none !important;
       }
+
+      .reveal .pagination__buttons {
+        justify-content: space-between !important;
+      }
     `;
     document.head.appendChild(style);
   });

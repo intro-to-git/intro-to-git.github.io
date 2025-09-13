@@ -19,7 +19,7 @@ It is used for all types of projects: corporate, open-source, hobby, educational
 
 <bonus-content>
 
-### Fun Facts:
+### Fun Facts
 
 - Created by Linus Torvalds (Linux creator) in 2005 when he needed a better tool for Linux kernel development.
 
@@ -46,18 +46,9 @@ Version control systems record changes to files over time, allowing you to:
 
 There are different types of version control setups:
 
-- None
 - Local
 - Centralized
 - Distributed
-
----
-
-Different tools allow for collaboration and version control in different ways:
-
-- **Google Docs** implements centralized version control through operational transforms.
-
-- **The Zed editor** uses CRDTs to provide a distributed collaboration environment.
 
 ---
 
@@ -72,6 +63,14 @@ my-project-final-v2-ACTUALLY-FINAL-fixed-typo.txt
 ```
 
 > **Problems**: Confusing, error-prone, no collaboration, no history of what changed.
+
+---
+
+Different tools allow for collaboration and version control in different ways:
+
+- **Google Docs** implements centralized version control through operational transforms.
+
+- **The Zed editor** uses CRDTs to provide a distributed collaboration environment.
 
 ---
 
@@ -232,7 +231,7 @@ on your computer.
 
 Unlike other version control systems, git does NOT record an explicit history of changes (**diffs**).
 
-A commit is a snapshot of the full content of all files in the repository.
+A commit is a **snapshot** of the full content of all files in the repository.
 
 ---
 
@@ -263,14 +262,14 @@ git add .
 # commit the changes
 git commit -m "my first commit"
 
-# view the history of the repository
-git log
+# upload your changes to a shared repo
+git push
 ```
 
 <class-note>
 
 This basic loop is at the core of using git. We will spend a good amount
-of time unpacking and learning about each of these commands.
+of time unpacking and learning about each of these commands and more.
 
 </class-note>
 
@@ -307,6 +306,7 @@ git sub-command --help
 <pop-quiz data-answer-id="1">
 
 ### What does the hidden .git directory contain?
+
 - Only the current version of your files
 - Full history of changes, branches, tags, and all file versions
 - Just configuration files for Git
@@ -317,6 +317,7 @@ git sub-command --help
 <pop-quiz data-answer-id="2">
 
 ### What happens if you delete the .git directory?
+
 - Nothing, Git will recreate it automatically
 - Only the current branch history is lost
 - The entire local repository history is permanently lost
@@ -327,6 +328,7 @@ git sub-command --help
 <pop-quiz data-answer-id="0">
 
 ### What does the Working Directory represent?
+
 - The current snapshot of files you're actively editing
 - The Git configuration folder
 - The remote repository on GitHub

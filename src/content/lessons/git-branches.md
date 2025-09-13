@@ -1,24 +1,13 @@
 ---
-title: 'Working with branches and remotes'
+title: 'Working with branches'
 description: 'Most projects have a complicated history that is not a straight line and include contributions from multiple people'
-order: 5
+order: 6
 state: 'upcoming'
 tags: ['git']
 links: {
   'Git Branching Documentation': 'https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell',
   'Interactive Git Branching': 'https://learngitbranching.js.org/',
-  'Referencing commits docs': 'https://git-scm.com/docs/gitrevisions',
 }
----
-
-## Short recap
-
-- Git commands are local-first
-
-- Commit often and write good commit messages
-
-- Be careful with commands that can permanently delete files
-
 ---
 
 ## What Are Branches?
@@ -42,6 +31,7 @@ Branches are incredibly lightweight - creating a branch is just creating a file 
 ---
 
 ## Listing Branches
+
 When you create a repository, Git automatically creates a default branch (usually called `main` or `master`).
 
 ```bash
@@ -96,6 +86,7 @@ temp
 john-branch
 new-feature
 ```
+
 ---
 
 ## Switching Between Branches
@@ -209,21 +200,6 @@ git log --oneline --graph master...experimental
 
 ---
 
-## Referencing commits
-
-There are many ways to get to a commit.
-![example-history](https://git-scm.com/book/en/v2/images/double-dot.png)
-
-```bash
-master^ # E
-master~2 # B
-B^ # A
-B~1 # A
-^B # everything except A and B
-```
-
----
-
 ## Detached HEAD
 
 If HEAD points directly at a commit, git will inform you that
@@ -285,139 +261,12 @@ ls
 
 ### Feature Branch Workflow
 
-1. Create a repository with a README
-2. Create three feature branches: `feature-header`, `feature-footer`, `feature-sidebar`
+1. Create a repository called 'my-site'
+2. Add a README file
+2. Create three branches: `feature-header`, `feature-footer`, `feature-sidebar`
 3. Make different changes in each branch
 4. Practice viewing the history with `git log --graph --oneline`
 
 </home-work>
 
 </bonus-content>
-
----
-
-## Remote Repositories
-
-A **remote repository** is a independent version of the project hosted somewhere else (like GitHub, GitLab, or Bitbucket).
-
-It enables collaboration and serves as a backup.
-
----
-
-### Local vs Remote
-
-![remote-example](https://git-scm.com/book/en/v2/images/remote-branches-1.png)
-
----
-
-### Common Remote Hosting Services
-
-- **GitHub** - Most popular, great for open source
-- **GitLab** - Good for enterprise, built-in CI/CD
-- **Bitbucket** - Integrates well with Atlassian tools
-- **Azure DevOps** - Microsoft's solution
-- **Self-hosted** - Your own server
-
----
-
-## Adding a Remote
-
-```bash
-# Add a remote repository
-git remote add origin https://github.com/user/repo.git
-
-# List remotes
-git remote -v
-
-# Show detailed remote info
-git remote show origin
-```
-
----
-
-### Common Remote Names
-
-- **origin** - Default name for the remote repository that was cloned
-- **upstream** - Often used for the original repository when you've forked
-- **fork** - Sometimes used for your fork of someone else's repository
-
-> Remote names are local, choose names that make sense for you.
-
----
-
-## Fetching and Pulling
-
-```bash
-# Download changes without merging
-git fetch origin
-
-# Download and merge changes
-git pull origin main
-
-# Pull with rebase instead of merge
-git pull --rebase origin main
-```
-
----
-
-## Pushing to Remote
-
-```bash
-# Push current branch to remote
-git push origin main
-
-# Push and set upstream tracking
-git push -u origin feature-branch
-
-# Push all branches
-git push origin --all
-
-# Push tags
-git push origin --tags
-```
-
----
-
-## Tracking Remote Branches
-
-```bash
-# See all branches (local and remote)
-git branch -a
-
-# Create local branch that tracks remote
-git checkout -b feature-branch origin/feature-branch
-
-# Simplified version (Git 2.23+)
-git switch feature-branch  # Auto-tracks if remote exists
-```
-
----
-
-## Working with Remote Branches
-
-```bash
-# Create local branch 
-git checkout -b new-feature
-
-# make changes, commit and push to remote
-git push -u origin new-feature
-
-# Delete remote branch
-git push origin --delete old-feature
-
-# Update remote tracking branches
-git fetch --prune
-```
-
----
-
-## Branch Lifecycle
-
-1. **Create** branch from up-to-date main
-2. **Work** on feature with regular commits
-3. **Test** thoroughly before merging
-4. **Request** code review
-5. **Merge** to main after approval
-6. **Delete** feature branch after merge
-7. **Update** local main branch
-
