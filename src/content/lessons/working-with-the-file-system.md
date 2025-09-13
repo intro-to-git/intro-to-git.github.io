@@ -69,6 +69,12 @@ cd ../ # still in /
 cd ../../../../ # still in /
 ```
 
+<bonus-content>
+
+> The file system is represented as tree structure of files and directories with the root directory at the top of the tree.
+
+</bonus-content>
+
 ---
 
 We can use a relative path to ensure we are using a local file:
@@ -136,6 +142,8 @@ You can also list specific files to examine their details:
 ls -alh /bin/bash
 # prints: -rwxr-xr-x 1 root root 1.2M Aug  1 22:56 /bin/bash
 ```
+
+See [Bonus: File permissions](/bonus/permissions) for more details
 
 ---
 
@@ -210,6 +218,32 @@ grep -e '^a.*z$' *
 
 ---
 
+### Note on confusing syntax
+
+Note that the syntax for both **path expansions** and **regular expressions** looks similar.
+
+However they are very different and used in different contexts.
+
+---
+
+- Path expressions are performed directly by Bash
+
+- Path expressions are resolved before command execution
+
+- The resulting files are passed as parameters to the command
+
+---
+
+- Regexs are interpreted by the program / command
+
+- Regexs are executed after path expansions
+
+- Regexs are more powerful and applicable in more environments
+
+See [Bonus: Regular Expressions](/bonus/regex) for more details
+
+---
+
 ## Manipulating the file system
 
 There are many commands that allow us to create, move, copy or delete files and directories
@@ -246,6 +280,12 @@ rm filename
 # delete the directory with all files inside
 rm -rf useless-dir/
 ```
+
+<class-note>
+
+Be careful, using this form of the `rm` can destroy your files!
+
+</class-note>
 
 ---
 

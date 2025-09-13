@@ -64,3 +64,9 @@
     margin-right: 10px;
   }
 }
+
+@media print {
+  .header {
+    display: none !important;
+  }
+}

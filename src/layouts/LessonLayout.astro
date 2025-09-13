@@ -13,11 +13,14 @@ export interface Props {
   updatedDate?: Date;
   image?: string;
   tags?: string[];
+  category?: 'lesson' | 'bonus',
 }
 
-const { hideContent, state, order, title, description, image, tags = [], altViewUrl } = Astro.props;
+const { hideContent, state, order, title, description, image, tags = [], altViewUrl, category = 'lesson' } = Astro.props;
 
-const topTitle = order && order >= 0 ? `${order}. ${title}` : title;
+const topTitle = category == 'bonus'
+  ? `Bonus: ${title}`
+  : order && order >= 0 ? `${order}. ${title}` : title;
 ---
 
 <ArticleLayout title={title} description={description} image={image} altViewUrl={altViewUrl} altViewType="slides">
@@ -201,5 +204,16 @@ const topTitle = order && order >= 0 ? `${order}. ${title}` : title;
     font-size: 2rem;
     border: 2px dashed #b55151;
     padding: 10px;
+  }
+
+  @media print {
+    .hslug {
+      display: none;
+    }
+
+    .post-meta {
+      display: none;
+    }
+
   }
 </style>

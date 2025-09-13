@@ -2,19 +2,26 @@
 import { baseUrl, lessonMarker, type AstroLesson } from '../helpers.astro';
 
 export interface Props {
+  category?: 'lesson' | 'bonus',
   lesson: AstroLesson,
 }
 
-const { lesson } = Astro.props;
+const { category, lesson } = Astro.props;
 
-const lessonUrl = `${baseUrl}lessons/${lesson.slug}`;
+const subPath = category == 'bonus' ? 'bonus/' : 'lessons/';
+
+const lessonUrl = `${baseUrl}${subPath}${lesson.slug}`;
 const slidesUrl = `${baseUrl}slides/${lesson.slug}`
+
+const title = category == 'bonus'
+  ? lesson.data.title
+  : `${lessonMarker(lesson.data.state)} ${lesson.data.order}. ${lesson.data.title}`
 ---
 
 <article class="post on-list">
   <h2 class="post-title">
     <a href={lessonUrl}>
-      {lessonMarker(lesson.data.state)} {lesson.data.order}. {lesson.data.title}
+      {title}
     </a>
   </h2>
   <div class="post-meta">

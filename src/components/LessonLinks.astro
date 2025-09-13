@@ -2,7 +2,7 @@
 import type { Lesson } from '../types';
 
 export interface Props {
-  lesson: Lesson,
+  lesson: Pick<Lesson, 'links'>,
 }
 
 const { lesson } = Astro.props;
@@ -13,14 +13,25 @@ const linksEntries = Object.entries(lesson.links || {});
 {
   linksEntries.length > 0
     ? (
-      <h2>Useful Resources</h2>
-        <ul>
-          {linksEntries.map(([text, link]) => (
-            <li><a href={link} target="_blank">{text}</a></li>
-          ))}
-        </ul>
+      <div class="lesson-links">
+        <h2>Useful Resources</h2>
+          <ul>
+            {linksEntries.map(([text, link]) => (
+              <li><a href={link} target="_blank">{text}</a></li>
+            ))}
+          </ul>
+      </div>
       )
     : <></>
 }
 
+<style>
+
+@media print {
+  .lesson-links {
+    display: none;
+  }
+}
+
+</style>
 

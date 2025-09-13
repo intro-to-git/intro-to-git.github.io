@@ -1,12 +1,20 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
-import { getLessons } from '../../helpers.astro';
+import { getLessons, getBonusMaterials } from '../../helpers.astro';
 
 const lessons = await getLessons();
+const bonus = await getBonusMaterials();
 
-const links = lessons
+const lessonLinks = lessons
   .map(lesson => lesson.data.links)
+  .reduce((all: string[][], lessonLinks) => {
+  console.log(lessonLinks);
+    return [...all, ...Object.entries(lessonLinks || {})];
+}, []);
+
+const bonusLinks = bonus
+  .map(bonus => bonus.data.links)
   .reduce((all: string[][], lessonLinks) => {
   console.log(lessonLinks);
     return [...all, ...Object.entries(lessonLinks || {})];
@@ -16,9 +24,15 @@ const links = lessons
 <ArticleLayout title="Resources" description="All resources linked in lessons">
   <div class="page">
     <h1 class="posts-title">All external resources</h1>
- 
+    <h2>From main lessons</h2>
     <ul>
-      {links.map(([text, link]) => (
+      {lessonLinks.map(([text, link]) => (
+      <li><a href={link}>{text}</a></li>
+      ))}
+    </ul>
+    <h2>From extras</h2>
+    <ul>
+      {bonusLinks.map(([text, link]) => (
       <li><a href={link}>{text}</a></li>
       ))}
     </ul>

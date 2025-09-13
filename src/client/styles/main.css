@@ -77,10 +77,10 @@ figure figcaption p {
 /* Page styles */
 .page {
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
 }
 
-.page h1, 
+.page h1,
 article h1 {
   font-size: 2rem;
   text-align: left;
