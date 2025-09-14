@@ -63,12 +63,13 @@ const { title, description, altViewUrl, altViewType = "full lesson"} = Astro.pro
 
       class-note {
         display: inline-block;
+        padding-bottom: 20px !important;
         font-size: 1.5rem;
         border-top: 1px solid #b55151;
         border-bottom: 1px solid #b55151; 
       }
 
-      class-note>p:before {
+      class-note>p:first-child:before {
         content: 'NOTE: ';
         font-weight: bold;
         font-style: italic;

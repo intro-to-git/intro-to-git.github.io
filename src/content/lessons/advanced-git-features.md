@@ -26,25 +26,36 @@ B~1 # A
 
 ## Reflog
 
-## Blame
-
-## Tags
-
-## Protocols
-
-## Porcelain vs plumbing
-
-## Exploring the .git directory
-
-## Hooks
-
-## Github actions
-
-<!-- TODO: tags -->
-
-<!-- TODO: reflog -->
-
 <!-- # selects the commit master was -->
 <!-- # on at the given time -->
 <!-- master@{5.days.ago} -->
-<!-- TODO: protocols -->
+
+---
+
+## Blame
+
+---
+
+## Tags
+
+---
+
+## Protocols
+
+---
+
+## Porcelain vs plumbing
+
+---
+
+
+## Exploring the .git directory
+
+---
+
+## Git Hooks
+
+---
+
+## Github actions
+
