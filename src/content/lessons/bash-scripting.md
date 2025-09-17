@@ -2,7 +2,7 @@
 title: 'Scripting with bash'
 description: 'Diving deeper into bash features, writing scripts'
 order: 8
-state: 'draft'
+state: 'upcoming'
 tags: ['bash', 'unix']
 links: {
   'shellcheck': 'https://github.com/koalaman/shellcheck',
@@ -80,7 +80,7 @@ such as JavaScript or Python
 
 <bonus-content>
 
-### A note on portablity
+### A note on portability
 
 In the above example, we are assuming that the `/bin/bash` file exists -
 this might not be the case.
@@ -178,8 +178,7 @@ str1 > str2
 ### Test: file properties
 
 ```bash
--a file   # file exists
--e file   # file exists; same -a
+-e file   # file exists
 -d file   # directory exists
 -f file   # file exists and is a regular file
 # (not a directory or other special type of file)
@@ -193,6 +192,18 @@ file1 -ot file2 # file1 is older than file2
 
 ---
 
+### Test: variables
+
+```bash
+-v var    # variable is set
+
+-n $var   # variable value is NOT empty
+
+-z $var   # variable is unset or value is empty
+```
+
+---
+
 ### Test: logical operators
 
 ```bash
@@ -201,6 +212,9 @@ file1 -ot file2 # file1 is older than file2
 
 # cond1 OR cond2
 [ condition1 -o condition2 ]
+
+# NOT condition
+[ ! condition ]
 ```
 
 ---
@@ -217,8 +231,18 @@ To use bash-specific features use double square brackets:
 
 ---
 
-Some useful extensions are:
-<!-- TODO: write the list -->
+Some useful extensions only available in bash are:
+
+```bash
+# using globs in tests
+[[ "hello.txt" == *.txt ]]
+
+# use character classes in tests
+[[ "$input" == [0-9]* ]]
+
+# use regular expressions in tests
+[[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+```
 
 ---
 
@@ -258,6 +282,8 @@ fi
 
 ### case
 
+Case patterns can contain globs like `*`, `?`, `[a-z]`:
+
 ```bash
 case expression in
   pattern1 )
@@ -270,6 +296,8 @@ esac
 ---
 
 ## Loops
+
+Loops can use globs as well:
 
 ```bash
 for f in ~/mydir/*.txt; do
@@ -309,6 +337,8 @@ echo ${#myarray[@]}
 ---
 
 ## Handling inputs
+
+There are special variable that allow you to handle script arguments.
 
 ```bash
 # print number of passed-in arguments
@@ -355,6 +385,8 @@ trap "rm -f $tempfile" EXIT
 
 ## Functions
 
+Functions can be used to group logical units and repetitive actions.
+
 ```bash
 # declare a function
 my_func() { echo "Hello $1"; }
@@ -363,9 +395,16 @@ my_func() { echo "Hello $1"; }
 function myfunc() {
   echo "same as above"
 }
+
+# calling a function is like calling a command
+my_func "friend"
 ```
 
+> In bash functions do NOT return values.
+
 ---
+
+Use the `declare` built-in command to examine functions defined in your environment:
 
 ```bash
 # Show function body
@@ -377,23 +416,37 @@ declare -F
 
 ---
 
-<!-- TODO: explain difference to script arguments -->
+The meaning of certain special variable changes inside a function:
 
 ```bash
-# number of arguments
-myfunc() { echo $# }
+# number of arguments to the function
+myfunc() { echo "$#"; }`
 
-# all arguments
+# all arguments to the function
 function myfunc() {
-  echo $@
+  echo "$@"
 }
 
-# arguments by order
-myfunc() { echo $1 $2 $3 }
-
-# calling a function with arguments
-myfunc hello world
+# function arguments by order
+myfunc() { echo "$1 $2 $3"; }
 ```
+
+<bonus-content>
+
+<home-work>
+
+### Script vs function arguments
+
+- Create a script that takes 2 arguments
+- Print the string 'From script:'
+- Print the values of both arguments
+- Add a function definition to the script that also takes 2 arguments
+- The function should print 'From function:' and then print its arguments
+- Call the function inside the script passing in the script arguments **in reverse**
+
+</home-work>
+
+</bonus-content>
 
 ---
 

@@ -54,8 +54,8 @@ No merge commit is created. The history remains linear.
 # Switch to main branch
 git checkout main
 
-# Merge feature branch
-git merge feature-branch
+# Merge feature branch only if history is linear
+git merge --ff-only feature-branch
 
 # Alternatively, merge without checkout
 git merge main feature-branch
@@ -69,6 +69,9 @@ When both branches have new commits a merge commit is created:
 
 ```bash
 git checkout main
+
+# make unrelated changes
+
 git merge feature-branch
 # Creates a new merge commit
 ```
@@ -133,11 +136,11 @@ git merge main feature-greeting
 
 When a conflict occurs, Git **modifies** the file to show both versions:
 
-```
+```text
 <<<<<<< HEAD
-Hello World from main
+Hello World FROM MAIN
 =======
-Hello World from feature
+Hello World FROM FEATURE
 >>>>>>> feature-greeting
 ```
 
@@ -145,24 +148,28 @@ Git will also prevent you from committing until the conflict is resolved.
 
 ---
 
-To resolve, edit the files so the correct version of the content is present. Then `add` and `commit`:
+To resolve: edit the files so the correct version of the content is present. Then `add` and `commit`:
 
 ```bash
-# 1. Edit the file to choose the version you want
-nvim # btw
+# 1. Edit the file so that it is logically correct
+nvim greeting.txt # neovim, btw
 
 # 2. Stage the resolved file
 git add greeting.txt
 
 # 3. Complete the merge
 git commit -m "merge: resolve greeting conflict"
+
+# Alternatively to 3. use --continue
+git merge --continue
 ```
 
 ---
 
 ### Conflict Resolution Tools
 
-There are many tools that allow for easier view of conflicts.
+There are many tools that allow for easier view of conflicts,
+including popular editors like VSCode.
 
 Git can be configured to use a specific `mergetool`
 
@@ -192,14 +199,30 @@ git rebase main
 git rebase -i HEAD~3
 ```
 
-- **Use when**: Cleaning up feature branch before merging
+- **Use when**: Cleaning up local branches before merging
 - **DONT'T USE**: On shared/public branches
+
+---
+
+Since git commits are **immutable**, `rebase` creates new commits
+with the same changes and author on top of the selected base.
+
+![Rebase example](https://git-scm.com/book/en/v2/images/basic-rebase-3.png)
+
+---
+
+### Rebase with care
+
+Because rebase rewrite history, it can lead to problems when applied
+to commits already shared with others.
+
+![Messy rebase history](https://git-scm.com/book/en/v2/images/perils-of-rebasing-4.png)
 
 ---
 
 ## Cherry-picking
 
-Apply specific commits from one branch to another:
+Apply changes from specific commits from one branch to another:
 
 ```bash
 # Apply commit abc123 to current branch
@@ -208,6 +231,12 @@ git cherry-pick abc123
 # Apply multiple commits
 git cherry-pick abc123 def456
 ```
+
+---
+
+- Like `rebase`, `cherry-pick` creates a new commit with the same changes as the selected commit.
+
+- Unlike `rebase`, `cherry-pick` does NOT rewrite history i.e. the original branch is preserved.
 
 ---
 
@@ -226,6 +255,17 @@ git checkout other-branch
 git checkout original-branch
 git stash pop
 ```
+
+---
+
+<class-note>
+
+In order to truly understand and get used to merging, rebasing
+and resolving conflicts, you need to practice doing these actions.
+
+Do NOT hesitate to create test repos and experiment!
+
+</class-note>
 
 <bonus-content>
 
@@ -248,7 +288,7 @@ git stash pop
 2. Clone it to two different directories (simulating two developers)
 3. Make conflicting changes from both "developers"
 4. Practice resolving merge conflicts
-5. Use pull requests for at least one merge
+5. Use a pull request for at least one merge
 
 </home-work>
 
