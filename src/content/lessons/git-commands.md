@@ -65,6 +65,18 @@ git config --local --unset user.email
 
 ---
 
+## Init
+
+Creating repositories is simple. It creates a `.git` directory.
+The current directory becomes the **working directory**
+
+```bash
+## inside a directory that you want to track
+git init
+```
+
+---
+
 ## Status
 
 The `status` sub-command provides information about the state

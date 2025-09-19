@@ -77,6 +77,16 @@ git clone https://github.com/user/repo.git
 
 ---
 
+By default git will clone into the current directory,
+creating a directory with the repository's name.
+
+You can provide a different local path:
+```bash
+git clone https://path/to/repo /path/to/local/clone
+```
+
+---
+
 ## Adding a Remote
 
 You can add any number of additional remotes:
