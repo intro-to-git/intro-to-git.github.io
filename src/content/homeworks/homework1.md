@@ -40,13 +40,13 @@ Practice staging only part of the changes you've made. Try to write meaningful c
 ## Guide: Setup Github repository
 
 1. Log into your Github profile
-![empty github profile](/public/hw1/001-empty-github-profile.png)
+![empty github profile](/hw1/001-empty-github-profile.png)
 (starting with an empty github profile is not required)
 
 Before we create a our repository we will setup our authentication
 
 2. Open your Github settings
-![github settings](/public/hw1/002-settings.png)
+![github settings](/hw1/002-settings.png)
 
 We will use create BOTH a PAT (personal access token) and an SSH key.
 This will allow you to push to the repositories through either HTTPS or SSH.
@@ -55,8 +55,8 @@ This will allow you to push to the repositories through either HTTPS or SSH.
 
 > **COPY and SAVE your token**
 
-![](/public/hw1/003-classic-tokens.png)
-![](/public/hw1/004-repo-access.png)
+![classic github token](/hw1/003-classic-tokens.png)
+![token should have repo access](/hw1/004-repo-access.png)
 
 4. In your environment, create an ssh key pair
 
@@ -74,7 +74,7 @@ More details how to install git with bash for windows will be listed below.
 ssh-keygen.exe -t ed25519 -C "{your-email}"
 ```
 
-![generate-ssh-key](/public/hw1/create-ssh-key-pair.png)
+![generate-ssh-key](/hw1/create-ssh-key-pair.png)
 
 The above commands will create 2 files in the `~/.ssh/` directory:
 
@@ -84,14 +84,14 @@ The above commands will create 2 files in the `~/.ssh/` directory:
 5. Add the **public** key to Github
 
 Open the SSH keys tab in your Github settings
-![](/public/hw1/add-ssh-key-page.png)
+![ssh keys page](/hw1/add-ssh-key-page.png)
 
 Paste the full contents of the `id_ed25519.pub` file and save it
-![](/public/hw1/add-ssh-key.png)
+![adding ssh key](/hw1/add-ssh-key.png)
 
 6. Create a repository named `{your-handle}.github.io`
 
-![](/public/hw1/008-create-github-repo.png)
+![create github repo](/hw1/008-create-github-repo.png)
 
 Next you need to setup your local repository.
 
@@ -112,13 +112,13 @@ brew install git
 ```
 
 **On Window**, install git and git bash from the [git website](https://git-scm.com/downloads)
-![install git](/public/hw1/windows-install-git.png)
+![install git](/hw1/windows-install-git.png)
 
 After installation, git bash should appear in your start menu
-![find git bash in start menu](/public/hw1/windows-start-git-bash.png)
+![find git bash in start menu](/hw1/windows-start-git-bash.png)
 
 Git bash provides a decent way of using bash and git on Windows
-![run git bash](/public/hw1/windows-git-bash.png)
+![run git bash](/hw1/windows-git-bash.png)
 
 ## Setup a local repository
 
@@ -126,7 +126,7 @@ Git bash provides a decent way of using bash and git on Windows
 
 3. Create a local repository, create an `index.html` file and commit it
 
-![](/public/hw1/007-config-and-commit.png)
+![commit changes](/hw1/007-config-and-commit.png)
 
 4. Add the Github repository as a remote
 
@@ -151,18 +151,18 @@ git remote add github git@github.com:{your-handle}/{your-handle}.github.io.git
 
 5. Push too the remote repository
 
-![](/public/hw1/009-push-to-remote.png)
+![push to remote](/hw1/009-push-to-remote.png)
 
 Verify the commit has been pushed on the repository page
-![](/public/hw1/010-see-commit-github.png)
+![see commit on github](/hw1/010-see-commit-github.png)
 
 6. Enable `Github Pages` in the repository's Github settings
 
-![github pages settings](/public/hw1/011-github-pages.png)
+![github pages settings](/hw1/011-github-pages.png)
 (this might be enabled by default, should look like the picture above)
 
 7. Open your personal github site at https://{your-handle}.github.io
-![](/public/hw1/012-visit-page.png)
+![visit your page](/hw1/012-visit-page.png)
 
 ## Specifics of using the online terminal
 
@@ -180,23 +180,23 @@ The emulated VM comes with a handy script to enable internet access from within 
 ./networking.sh
 ```
 
-![](/public/hw1/005-start-networking.png)
+![start networking](/hw1/005-start-networking.png)
 
 2. Follow the guide for creating a local repository from above
 
 If you create your SSH keys in the online terminal, **DOWNLOAD BOTH your keys** so you can reuse it later.
 
-![](/public/hw1/download-file-from-online-terminal.png)
+![upload / download files from the online terminal](/hw1/download-file-from-online-terminal.png)
 
 ### For repeated use of the online terminal
 
 1. Copy your **private** key to the online terminal using the upload / download widget on the page
 
-![](/public/hw1/download-file-from-online-terminal.png)
+![upload / download files from the online terminal](/hw1/download-file-from-online-terminal.png)
 
 2. Clone your existing github repository
 
-![github repo clone ui](/public/hw1/get-clone-url.png)
+![github repo clone ui](/hw1/get-clone-url.png)
 
 > If you choose to use HTTPS, you will need to alter the URL to include authentication as shown above
 
