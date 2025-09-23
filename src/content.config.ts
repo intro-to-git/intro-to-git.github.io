@@ -23,4 +23,15 @@ const bonus = defineCollection({
   }),
 });
 
-export const collections = { lessons, bonus };
+const homeworks = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    order: z.number(),
+    links: z.record(z.string()).optional(),
+    hasSlides: z.boolean().default(false),
+  }),
+});
+
+export const collections = { lessons, bonus, homeworks };
