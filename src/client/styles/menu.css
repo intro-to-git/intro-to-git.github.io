@@ -4,6 +4,7 @@
   align-items: flex-start;
   justify-content: space-between;
   margin: 20px 1px;
+  font-size: 0.9rem;
 }
 
 .navigation-menu__inner {

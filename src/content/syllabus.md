@@ -33,14 +33,10 @@
 
 ## Grading breakdown & schedule
 
-
 |  Assignment   | Weight | Due Date |
 | --------------- | --------------- | --- |
 | In class attendance & participation | 10% |  ♾️|
-| Homework 1 | 15% | 26.09.25 |
+| Homework 1 | 15% | **01.10.25** |
 | Midterm test | 25% | 03.10.25 |
-| Homework 2 | 20% | 10.10.25 |
+| Homework 2 | 20% | **12.10.25** |
 | Final test | 30% | 17.10.25 |
-
-
-

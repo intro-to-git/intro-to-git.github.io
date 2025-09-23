@@ -2,7 +2,7 @@
 title: 'Working with remote repositories'
 description: "Remote repositories are copies of the same repository in different locations"
 order: 5
-state: 'upcoming'
+state: 'covered'
 tags: ['git']
 links: {
   'Working with remotes': 'https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes',
@@ -81,6 +81,7 @@ By default git will clone into the current directory,
 creating a directory with the repository's name.
 
 You can provide a different local path:
+
 ```bash
 git clone https://path/to/repo /path/to/local/clone
 ```
@@ -159,52 +160,6 @@ git push -u origin feature-branch
 # Push all branches
 git push origin --all
 ```
-
----
-
-## Tracking Remote Branches
-
-```bash
-# See all branches (local and remote)
-git branch -a
-
-# Create local branch that tracks remote
-git checkout -b feature-branch origin/feature-branch
-
-# Simplified version (Git 2.23+)
-# Auto-tracks if remote exists
-git switch feature-branch
-```
-
----
-
-## Working with Remote Branches
-
-```bash
-# Create local branch 
-git checkout -b new-feature
-
-# make changes, commit and push to remote
-git push -u origin new-feature
-
-# Delete remote branch
-git push origin --delete old-feature
-
-# Update remote tracking branches
-git fetch --prune
-```
-
----
-
-## Branch Lifecycle
-
-1. **Create** branch from up-to-date main
-2. **Work** on feature with regular commits
-3. **Test** thoroughly before merging
-4. **Request** code review
-5. **Merge** to main after approval
-6. **Delete** feature branch after merge
-7. **Update** local main branch
 
 ---
 

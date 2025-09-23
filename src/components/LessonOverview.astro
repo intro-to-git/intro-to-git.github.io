@@ -1,21 +1,21 @@
 ---
-import { baseUrl, lessonMarker, type AstroLesson } from '../helpers.astro';
+import { baseUrl, fullLinkText, lessonMarker, pagePath, pageTitle, type AstroLesson } from '../helpers.astro';
 
 export interface Props {
-  category?: 'lesson' | 'bonus',
+  category?: 'lesson' | 'bonus' | 'homework',
   lesson: AstroLesson,
 }
 
 const { category, lesson } = Astro.props;
 
-const subPath = category == 'bonus' ? 'bonus/' : 'lessons/';
+const subPath = pagePath(category);
 
 const lessonUrl = `${baseUrl}${subPath}${lesson.slug}`;
 const slidesUrl = `${baseUrl}slides/${lesson.slug}`
 
-const title = category == 'bonus'
-  ? lesson.data.title
-  : `${lessonMarker(lesson.data.state)} ${lesson.data.order}. ${lesson.data.title}`
+const title = pageTitle(lesson, category);
+
+const fullLinkLabel = fullLinkText(category);
 ---
 
 <article class="post on-list">
@@ -39,7 +39,7 @@ const title = category == 'bonus'
     </div>
   )}
   <div class="spaced">
-    <a href={lessonUrl} class="read-more button inline">view full lesson</a>
+    <a href={lessonUrl} class="read-more button inline">{fullLinkLabel}</a>
     {lesson.data.hasSlides && <a href={slidesUrl} class="read-more button inline">view as slides</a>}
   </div>
 </article>

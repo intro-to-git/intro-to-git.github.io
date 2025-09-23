@@ -13,14 +13,60 @@ export async function getBonusMaterials() {
   return (await getCollection('bonus'));
 }
 
+export async function getHomeworks() {
+  return (await getCollection('homeworks'))
+    .sort((a, b) => a.data.order - b.data.order);
+}
+
+type categories = 'lesson' | 'bonus' | 'homework';
+
+export function pagePath(category?: categories) {
+  switch (category) {
+    case 'lesson':
+      return "lessons/";
+    case 'bonus':
+      return "bonus/";
+    case 'homework':
+      return "homeworks/";
+  }
+
+  return "lessons/";
+}
+
+export function pageTitle(lesson: AstroLesson, category?: categories) {
+  switch (category) {
+    case 'lesson':
+      return `${lessonMarker(lesson.data.state)} ${lesson.data.order}. ${lesson.data.title}`;
+    case 'bonus':
+      return lesson.data.title;
+    case 'homework':
+      return lesson.data.title;
+  }
+
+  return `${lessonMarker(lesson.data.state)} ${lesson.data.order}. ${lesson.data.title}`;
+}
+
+export function fullLinkText(category?: categories) {
+  switch (category) {
+    case 'lesson':
+      return "view full lesson";
+    case 'bonus':
+      return "view full lesson";
+    case 'homework':
+      return "view full content";
+  }
+
+  return "view full content";
+}
+
 export const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 
 export function lessonMarker(state: keyof LessonState) {
-  switch (state) {
-    case 'covered':
-      return '☑️'
-    case 'upcoming':
-      return ''
+switch (state) {
+  case 'covered':
+    return '☑️'
+  case 'upcoming':
+    return ''
     case 'draft':
       return '🚧 '
   }

@@ -2,7 +2,7 @@
 title: 'Intro to git'
 description: 'An overview of what git is, how it works and why we want to learn to use it'
 order: 3
-state: 'upcoming'
+state: 'covered'
 tags: ['intro', 'git']
 links: {
   'Git docs': 'https://git-scm.com/docs',
