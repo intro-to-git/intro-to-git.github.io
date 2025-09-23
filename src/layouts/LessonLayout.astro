@@ -1,5 +1,5 @@
 ---
-import { baseUrl } from '../helpers.astro';
+import { baseUrl, pageTitle } from '../helpers.astro';
 import ArticleLayout from './ArticleLayout.astro';
 
 export interface Props {
@@ -13,14 +13,12 @@ export interface Props {
   updatedDate?: Date;
   image?: string;
   tags?: string[];
-  category?: 'lesson' | 'bonus',
+  category?: 'lesson' | 'bonus' | 'homework',
 }
 
 const { hideContent, state, order, title, description, image, tags = [], altViewUrl, category = 'lesson' } = Astro.props;
 
-const topTitle = category == 'bonus'
-  ? `Bonus: ${title}`
-  : order && order >= 0 ? `${order}. ${title}` : title;
+const topTitle = pageTitle({ data : { title, order, state } }, category);
 ---
 
 <ArticleLayout title={title} description={description} image={image} altViewUrl={altViewUrl} altViewType="slides">

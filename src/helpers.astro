@@ -4,6 +4,14 @@ import type { LessonState } from './types';
 
 export type AstroLesson = Awaited<ReturnType<typeof getLessons>>[number];
 
+type DisplayableArticle = {
+  data : {
+  title: string;
+  order?: number;
+  state?: keyof LessonState;
+  };
+};
+
 export async function getLessons() {
   return (await getCollection('lessons'))
     .sort((a, b) => a.data.order - b.data.order);
@@ -33,7 +41,7 @@ export function pagePath(category?: categories) {
   return "lessons/";
 }
 
-export function pageTitle(lesson: AstroLesson, category?: categories) {
+export function pageTitle(lesson: DisplayableArticle, category?: categories) {
   switch (category) {
     case 'lesson':
       return `${lessonMarker(lesson.data.state)} ${lesson.data.order}. ${lesson.data.title}`;

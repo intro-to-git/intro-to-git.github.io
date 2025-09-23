@@ -67,7 +67,7 @@ On MacOS and Linux (including online terminal):
 ssh-keygen -t ed25519 -C "{your-email}"
 ```
 
-On Window with `Git for Windows` using the bash console.
+**On Windows** with `Git for Windows` using the bash console.
 More details how to install git with bash for windows will be listed below.
 
 ```bash
@@ -111,7 +111,7 @@ dnf install git # for Fedora
 brew install git
 ```
 
-**On Window**, install git and git bash from the [git website](https://git-scm.com/downloads)
+**On Windows**, install git and git bash from the [git website](https://git-scm.com/downloads)
 ![install git](/hw1/windows-install-git.png)
 
 After installation, git bash should appear in your start menu
