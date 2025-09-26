@@ -14,7 +14,7 @@ links: {
 
 A **branch** in Git is essentially a moveable pointer to a specific commit.
 
-Branches are incredibly lightweight - creating a branch is just creating a file containing a unique hash
+Branches are lightweight - a branch is just a file containing a commit hash.
 
 > Files you commit on one branch are not visible when you switch to another.
 
@@ -27,6 +27,8 @@ Branches are incredibly lightweight - creating a branch is just creating a file 
 - **Parallel development** - Multiple people can work on different features simultaneously
 
 - **Easy rollback** - Discard experimental work if it doesn't work out
+
+- **Version support** - apply fixes to previous versions
 
 ---
 
@@ -76,15 +78,14 @@ git switch -c feature-user-profile
 # Good branch names
 feature/user-authentication
 bugfix/login-timeout
-hotfix/security-patch
 docs/api-documentation
 refactor/database-queries
 
 # Poor branch names
 fix
 temp
-john-branch
-new-feature
+my-branch
+new-stuff
 ```
 
 ---
@@ -107,17 +108,41 @@ git switch feature-user-profile
 
 ## The HEAD meta-branch
 
-Git tracks which is current working branch using `HEAD`.
+Git tracks the current branch in a *special ref* called `HEAD`.
 
 It is similar to a branch in that it can be used as an argument where-ever a branch is needed.
 
-But it is NOT a real branch - it always points to the current branch (or commit)
+But it is NOT a true branch - it points to the current branch
 
-```
-# display the contents of the commit
-# that is currently checked out
+---
+
+![HEAD pointer](https://git-scm.com/book/en/v2/images/head-to-master.png)
+
+> Branches point to commits; HEAD points at a branch
+
+---
+
+All of the following commands
+will do the same thing - display the contents of the *commit*
+that is pointed to by the *branch*, that is currently **checked-out**
+
+```bash
 git show HEAD
+
+git show master
+
+git show f30ab
 ```
+
+---
+
+## Checkout
+
+The checkout command does 2 main things:
+- Changes the branch that `HEAD` points to
+- Overwrites the contents of the working directory with
+the contents of the commit pointed by the new `HEAD` branch
+
 
 ---
 
@@ -125,6 +150,14 @@ In this example `HEAD` is pointing to the `testing` branch
 which is one commit ahead of `master`:
 
 ![example-head](https://git-scm.com/book/en/v2/images/advance-testing.png)
+
+---
+
+<class-work>
+
+### Replicate the state of the repository from the picture
+
+</class-work>
 
 ---
 
@@ -234,7 +267,7 @@ git fetch --prune
 
 ---
 
-## Branch Lifecycle
+## Branch Life-cycle
 
 1. **Create** branch from up-to-date main
 2. **Work** on feature with regular commits
