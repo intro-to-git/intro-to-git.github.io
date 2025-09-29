@@ -2,7 +2,7 @@
 title: 'Merging, rebasing and handling conflicts'
 description: 'Inevetably when people work together conflits arise. Git helps us handle these conflicts (at least when it comes to the code)'
 order: 7
-state: 'upcoming'
+state: 'covered'
 tags: ['git']
 resources: {
 }
@@ -237,6 +237,19 @@ git cherry-pick abc123 def456
 - Like `rebase`, `cherry-pick` creates a new commit with the same changes as the selected commit.
 
 - Unlike `rebase`, `cherry-pick` does NOT rewrite history i.e. the original branch is preserved.
+
+---
+
+## Revert
+
+`revert` creates a new commit with the opposite changes to the given commit.
+
+This is very useful when you want to quickly *undo* some changes without
+rewriting the history.
+
+```bash
+git revert df937a
+```
 
 ---
 

@@ -2,7 +2,7 @@
 title: 'Working with branches'
 description: 'Most projects have a complicated history that is not a straight line and include contributions from multiple people'
 order: 6
-state: 'upcoming'
+state: 'covered'
 tags: ['git']
 links: {
   'Git Branching Documentation': 'https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell',

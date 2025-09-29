@@ -163,6 +163,38 @@ git push origin --all
 
 ---
 
+## Multiple Remotes
+
+```bash
+# Add multiple remotes
+git remote add upstream https://github.com/original/repo.git
+git remote add fork https://github.com/yourfork/repo.git
+
+# Push to specific remote
+git push upstream main
+git push fork feature-branch
+
+# Fetch from all remotes
+git fetch --all
+```
+
+---
+
+## Remote Branch Management
+
+```bash
+# List remote branches
+git branch -r
+
+# Prune deleted remote branches
+git remote prune origin
+
+# Set upstream for existing branch
+git branch --set-upstream-to=origin/main main
+```
+
+---
+
 <class-work>
 
 ### Create your personal github.io page

@@ -11,10 +11,188 @@ links: {
   'GitHub Flow Guide': 'https://guides.github.com/introduction/flow/',
 }
 ---
-### Practical Remote Workflow
+
+Workflows are a set of rules that prescribe how git should be used.
+
+Workflows can apply across projects, teams or organizations.
+
+---
+
+Workflows can include:
+
+- Commit message formatting rules
+- Automated tooling (linters, tests)
+- Branching strategy
+- Collaboration strategy
+- Release strategy
+
+---
+
+Git workflows vary greatly depending on:
+
+- Number of developers
+- Number of repositories
+- Security concerns
+- Infrastructure & Tooling
+- Knowledge & culture
+
+---
+
+## Branching strategies
+
+---
+
+## Trunk-based
+
+Everyone directly contributes to the main branch
+
+- **PRO**: very simple and easy to just start working.
+
+- **CON**: Can lead to multiple conflicts when developers makes changes to
+the same parts of the project
+
+---
+
+## Feature branches
+
+New features are developed on their own branch.
+
+- **PRO**: keeps development isolated, conflicts only happen after a big merge
+- **CON**: stacking feature branches can lead to complex merge trains
+
+> **GOOD PRACTICE**: update feature branches often by merging main into them
+
+---
+
+## Git flow
+
+A branching strategy meant to provide structure and clarity in complex projects.
+
+Gitflow prescribes the following branches:
+- **main** - Production-ready code
+- **develop** - Integration branch
+- **feature/<feature>** - New features
+- **release/<version>** - Preparing releases
+- **hotfix/<ticket>** - Emergency fixes
+
+---
+
+## Choosing a branching strategy
+
+For beginners and small teams, feature branches are often the sweet spot - more organized than trunk-based but simpler than Gitflow.
+
+For large projects with complex versioning and release cycles, something like Gitflow can be very valuable in providing
+a clear structure.
+
+---
+
+## Pull vs merge requests
+
+The 2 terms are functionally identical - a requests for a second person to approve the changes before merging.
+
+<bonus-content>
+
+The pedantic difference is in where the code is hosted:
+- **Pull** request - implies another repository (often called a `fork`)
+- **Merge** request - implies just a branch in the same repository
+
+This is related to git's lack of fine grained permissions within a repository.
+
+</bonus-content>
+
+---
+
+## Pull/merge requests vs direct merge
+
+Pull/merge requests are not required then working on a shared repository,
+you can merge into main and push the resulting history manually.
+
+However pull requires provide an explicit point of review.
+Most git hosting providers have additional tools and controls to make reviews mandatory.
+
+---
+
+## High level setups
+
+Branching is one part of a full setup.
+
+Another other major factor is the number of repository copies and who has access to
+contribute.
+
+---
+
+## Personal hosted repository
+
+The simplest workflow (aside from just using git locally). Perfect for personal projects.
+
+- Branching strategy can be as simple as `push to main`.
+
+- Repository can be hosted on any of the popular providers (e.g GitHub).
+
+- Hosted repo is accessible from anywhere in the world.
+
+---
+
+## Personal git server
+
+Self hosted git on a physical server or VPS. Perfect for homelab setups and small teams.
+
+- Allows greater flexibility and privacy.
+
+- Requires more technical knowledge and support.
+
+---
+
+## Shared repository
+
+This is probably the most common setup - a team working on a shared repository.
+
+Branching strategy can vary, but usually relies on
+`feature branches` and `pull requests`.
+
+![shared repository](https://git-scm.com/book/en/v2/images/centralized_workflow.png)
+
+---
+
+## Integration manager
+
+A more complex fork-based setup, more popular among large open-source projects.
+
+![integration manager](https://git-scm.com/book/en/v2/images/integration-manager.png)
+
+- Developers maintain their own forks
+- An integration manager pulls and merges changes from them
+- Only the integration manager pushes to the `blessed repository`
+
+---
+
+## benevolent dictator
+
+An even more complex setup, only suitable for truly big projects - such as the Linux Kernel.
+
+![benevolent dictator](https://git-scm.com/book/en/v2/images/benevolent-dictator.png)
+
+Similar to the integration manager setup but with an intermediate layer of `lieutenants`
+that collate changes from multiple contributors.
+
+---
+
+## Centralized vs decentrazied
+
+- **Centralized** setups are more applicable within a single company
+where all developers are trusted. Mono-repos can be seen as an extension of
+this setup.
+
+- **Decentrazied** are more useful within open source, where the main owner
+of the projects wants to maintain control, while allowing anyone in the world
+to contribute.
+
+---
+
+## Merging Workflow
 
 ```bash
-# Start with a clean main branch
+# Start with a up-to-date main branch
 git checkout main
 git pull origin main
 
@@ -25,71 +203,26 @@ git checkout -b feature-contact-form
 echo "<form>Contact Form</form>" > contact.html
 git add contact.html
 git commit -m "feat: add contact form"
+```
 
+---
+
+```bash
 # Push feature branch to remote
 git push -u origin feature-contact-form
 
 # When feature is complete, merge back
 git checkout main
-git pull origin main  # Get latest changes
+git pull origin main
 git merge feature-contact-form
+
+# push the merged feature to the remote
 git push origin main
-
-# Clean up
-git branch -d feature-contact-form
-git push origin --delete feature-contact-form
 ```
 
 ---
 
-## Collaboration Workflows
-
-### Centralized Workflow
-
-Simple workflow where everyone works on the same branch:
-
-```
-Developer A: main ---A1---A2---A3---merge
-Developer B: main ---B1---B2---merge---B3
-```
-
-### Feature Branch Workflow
-
-Each new feature gets its own branch:
-
-```
-main:        A---B---C---G---H
-              \     /     \
-feature-1:     D---E       \
-                            \
-feature-2:                   F---I
-```
-
-### Gitflow Workflow
-
-More complex with specific branch types:
-
-- **main** - Production-ready code
-- **develop** - Integration branch
-- **feature/** - New features
-- **release/** - Preparing releases
-- **hotfix/** - Emergency fixes
-
-<bonus-content>
-
-<class-note>
-
-For beginners and small teams, Feature Branch Workflow is often the sweet spot - more organized than Centralized but simpler than Gitflow.
-
-</class-note>
-
-</bonus-content>
-
----
-
-## GitHub/GitLab Integration
-
-### Pull Requests / Merge Requests
+## Merge Requests
 
 Instead of merging directly, most teams use Pull Requests (GitHub) or Merge Requests (GitLab) for code review:
 
@@ -108,9 +241,11 @@ git pull origin main
 git branch -d feature-user-authentication
 ```
 
-### Forking Workflow
+---
 
-For open source projects:
+## Forking Workflow (Pull requests)
+
+Same as the Merge request, but the feature branch is hosted in a separate repo:
 
 ```bash
 # 1. Fork repository on GitHub (creates your copy)
@@ -128,153 +263,38 @@ git push origin fix-typo
 
 # 6. Create Pull Request from your fork to original repository
 ```
-
 ---
 
-## Common Workflows and Patterns
+## Best Practices
 
-### Daily Development Routine
-
-```bash
-# Morning routine
-git checkout main
-git pull origin main
-
-# Start new feature
-git checkout -b feature-new-dashboard
-# ... work throughout day with commits ...
-
-# End of day
-git push -u origin feature-new-dashboard
-
-# Next day - get latest changes
-git checkout main
-git pull origin main
-git checkout feature-new-dashboard
-git rebase main  # Optional: keep branch up to date
-```
-
-### Release Preparation
-
-```bash
-# Create release branch
-git checkout -b release/v1.2.0
-
-# Make version updates and final tweaks
-git commit -m "bump version to 1.2.0"
-
-# Merge to main
-git checkout main
-git merge release/v1.2.0
-git tag v1.2.0
-git push origin main --tags
-
-# Clean up
-git branch -d release/v1.2.0
-```
-
----
-
-## Troubleshooting Common Issues
-
-### "Branch is X commits behind main"
-
-```bash
-# Option 1: Merge main into feature
-git checkout feature-branch
-git merge main
-
-# Option 2: Rebase feature onto main (cleaner)
-git checkout feature-branch
-git rebase main
-```
-
-### "Your branch and origin/main have diverged"
-
-```bash
-# See what happened
-git log --oneline --graph --all
-
-# Usually need to pull with merge or rebase
-git pull origin main
-# or
-git pull --rebase origin main
-```
-
-### Accidentally Committed to Wrong Branch
-
-```bash
-# Move last commit to correct branch
-git checkout correct-branch
-git cherry-pick wrong-branch
-git checkout wrong-branch
-git reset --hard HEAD~1
-```
-
-### Lost Work After Branch Switch
-
-```bash
-# Find lost commits
-git reflog
-
-# Recover lost work
-git checkout <commit-hash>
-git checkout -b recovered-work
-```
-
----
-
-## Remote Repository Best Practices
-
-### Repository Setup
-
-```bash
-# Initialize with README and .gitignore
-git init
-git add README.md .gitignore
-git commit -m "initial commit"
-
-# Connect to remote
-git remote add origin https://github.com/username/repo.git
-git push -u origin main
-```
-
-### Keeping Forks Updated
-
-```bash
-# Add upstream remote (original repository)
-git remote add upstream https://github.com/original/repo.git
-
-# Fetch upstream changes
-git fetch upstream
-
-# Update your main branch
-git checkout main
-git merge upstream/main
-git push origin main
-```
-
-### Security Considerations
-
-```bash
-# Use SSH keys instead of HTTPS for frequent access
-git remote set-url origin git@github.com:username/repo.git
-
-# Never commit secrets
-echo ".env" >> .gitignore
-echo "config/secrets.json" >> .gitignore
-
-# Use signed commits for important repositories
-git config --global commit.gpgsign true
-```
+- Include `README` and `.gitignore`
+- Fetch `main` often and merge it into your feature branch
+(to avoid big conflicts)
+- Make sure to **NOT** commit and push secrets
 
 ---
 
 ## Hands-On Exercise
 
-Let's practice a complete branch and remote workflow:
+<class-work>
 
-### Exercise: Feature Development Simulation
+### Create your first Pull request
+
+1. Fork the repository for the [class slides](https://github.com/intro-to-git/intro-to-git.github.io/)
+
+2. Create a branch
+
+3. Add your github handle to the students.md file
+
+4. Commit and push to your fork
+
+5. Open a Pull request from your fork to the main repository
+
+</class-work>
+
+<bonus-content>
+
+## Fuller workflow example
 
 ```bash
 # 1. Setup
@@ -326,36 +346,4 @@ git branch -d feature-user-profile
 git push origin --delete feature-user-profile
 ```
 
----
-
-## Advanced Remote Operations
-
-### Multiple Remotes
-
-```bash
-# Add multiple remotes
-git remote add upstream https://github.com/original/repo.git
-git remote add fork https://github.com/yourfork/repo.git
-
-# Push to specific remote
-git push upstream main
-git push fork feature-branch
-
-# Fetch from all remotes
-git fetch --all
-```
-
-### Remote Branch Management
-
-```bash
-# List remote branches
-git branch -r
-
-# Prune deleted remote branches
-git remote prune origin
-
-# Set upstream for existing branch
-git branch --set-upstream-to=origin/main main
-```
-
----
+</bonus-content>

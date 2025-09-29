@@ -1,11 +1,10 @@
 ---
 title: 'Closing thoughts'
 description: "This is just the beginning..."
-order: 11
+order: 12
 state: 'draft'
 tags: ['outro']
 links: {
-  'Jujitsu: a VCS on top of git': 'https://github.com/jj-vcs/jj',
 }
 ---
 
@@ -13,7 +12,7 @@ I really hope you have enjoyed the course!
 
 ---
 
-Knowing git well is a great skill in a software developer's toolbox.
+Knowing git well is a great skill for anyone working around software development.
 
 It will allow you to be more productive and grow in your aspirations.
 
