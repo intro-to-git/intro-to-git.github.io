@@ -322,16 +322,34 @@ done
 myarray=(1 "A" 2 "B")
 
 # assign to an index in an array
-myarray[0]=5
+myarray[0]="hi"
 
 # print array element at index i
 echo ${myarray[i]}
+```
 
+---
+
+```bash
 # print length of array element at index i
 echo ${#myarray[i]}
 
 # print length of array itself
 echo ${#myarray[@]}
+
+# append items to an array
+myarray+=(7 "Z")
+```
+
+---
+
+Looping over each element of an array:
+
+```bash
+colors=("red" "green" "yellow")
+for color in "${colors[@]}"; do
+  echo "The traffic light is $color"
+done
 ```
 
 ---
@@ -341,7 +359,7 @@ echo ${#myarray[@]}
 There are special variable that allow you to handle script arguments.
 
 ```bash
-# print number of passed-in arguments
+# print number of arguments passed to the script
 echo "$#"
 
 # an array containing all arguments
@@ -368,6 +386,29 @@ my-script hello world
 </pop-quiz>
 
 </bonus-content>
+
+---
+
+## Prompting for user input
+
+Use the `read` command to block execution and allow the user to provide input through `stdin`:
+
+```bash
+# program stops and waits for the user to input a line of text
+read line
+echo "$line"
+```
+
+---
+
+If more than one variable is provided, the line will be split into words.
+
+The `-p` option allows for adding a prompt:
+
+```bash
+read -p "Full Name: " first last
+echo "My name is $last, $first $last"
+```
 
 ---
 
@@ -450,6 +491,27 @@ myfunc() { echo "$1 $2 $3"; }
 
 ---
 
+## Doing math in bash
+
+By default everything in the console is treated as a string.
+Use the `$((<expression>))` syntax to perform math.
+
+```bash
+echo "1 + 1 = $((1+1))"
+# prints 1 + 1 = 2
+
+# a random number between 1 and 10
+echo "$((RANDOM % 10 + 1))"
+
+# by default $RANDOM will hold a random
+# number between 0 and 32767
+echo $RANDOM
+```
+
+> Inside a math expression variables should **NOT** start with an `$`
+
+---
+
 ## Linting with shellcheck
 
 Shellcheck is a powerful tool that can find many mistakes and problems in your scripts.
@@ -464,3 +526,104 @@ shellcheck my-script
 ---
 
 > **Fun fact:** there is a version of the popular containerization tool Docker [written entirely in bash](https://github.com/p8952/bocker)
+---
+
+<class-work>
+
+### Create a number guessing game
+
+1. Create a script called guess-num.sh
+2. Create a variable holding a random number between 0 and 100
+3. In a loop, allow the user to guess the number
+4. Alert the user if their guess was high or low
+5. Congratulate the user when they guess the number
+
+</class-work>
+
+<bonus-content>
+
+## Complex example: interactive menu
+
+The code below demonstrates a more complex script that displays an interactive menu
+which allows the user to choose options using the arrow keys.
+
+It uses arrays, variables, functions, loops, case conditionals and math.
+
+```bash
+#!/bin/bash
+
+# Menu items
+options=("Install Package" "Update System" "View Logs" "Configure Settings" "Exit")
+
+# Currently selected index
+selected=0
+
+# Function to draw the menu
+draw_menu() {
+  clear
+  echo "=== Main Menu ==="
+  echo "Use ↑/↓ arrows and Enter to select"
+  echo ""
+
+  for i in "${!options[@]}"; do
+    if [ $i -eq $selected ]; then
+      echo "→ ${options[$i]}" # Selected item
+    else
+      echo "  ${options[$i]}"
+    fi
+  done
+}
+
+# Function to read arrow keys
+read_input() {
+  read -rsn1 key
+  if [[ $key == $'\x1b' ]]; then
+    read -rsn2 key
+  fi
+  echo "$key"
+}
+
+# Main loop
+while true; do
+  draw_menu
+
+  key=$(read_input)
+
+  case "$key" in
+  '[A') # Up arrow
+    ((selected--))
+    if [ $selected -lt 0 ]; then
+      selected=$((${#options[@]} - 1))
+    fi
+    ;;
+  '[B') # Down arrow
+    ((selected++))
+    if [ $selected -ge ${#options[@]} ]; then
+      selected=0
+    fi
+    ;;
+  '') # Enter key
+    clear
+    echo "You selected: ${options[$selected]}"
+
+    # Handle the selection
+    case $selected in
+    0) echo "Installing package..." ;;
+    1) echo "Updating system..." ;;
+    2) echo "Viewing logs..." ;;
+    3) echo "Configuring settings..." ;;
+    4)
+      echo "Goodbye!"
+      exit 0
+      ;;
+    esac
+
+    echo ""
+    echo "Press any key to return to menu..."
+    read -n1
+    ;;
+  esac
+done
+```
+
+</bonus-content>

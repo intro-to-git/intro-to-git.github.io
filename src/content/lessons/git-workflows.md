@@ -12,7 +12,7 @@ links: {
 }
 ---
 
-Workflows are a set of rules that prescribe how git should be used.
+Workflows are a set of rules / guidelines that prescribe how git should be used.
 
 Workflows can apply across projects, teams or organizations.
 
@@ -48,7 +48,7 @@ Everyone directly contributes to the main branch
 
 - **PRO**: very simple and easy to just start working.
 
-- **CON**: Can lead to multiple conflicts when developers makes changes to
+- **CON**: Can lead to frequent conflicts when developers makes changes to
 the same parts of the project
 
 ---
@@ -104,8 +104,10 @@ This is related to git's lack of fine grained permissions within a repository.
 
 ## Pull/merge requests vs direct merge
 
-Pull/merge requests are not required then working on a shared repository,
-you can merge into main and push the resulting history manually.
+Pull/merge requests are not required when working on a shared repository.
+You can merge into main directly and push the resulting history manually.
+
+----
 
 However pull requires provide an explicit point of review.
 Most git hosting providers have additional tools and controls to make reviews mandatory.
@@ -123,7 +125,7 @@ contribute.
 
 ## Personal hosted repository
 
-The simplest workflow (aside from just using git locally). Perfect for personal projects.
+The simplest workflow *(aside from just using git locally)*. Perfect for personal projects.
 
 - Branching strategy can be as simple as `push to main`.
 
@@ -135,7 +137,7 @@ The simplest workflow (aside from just using git locally). Perfect for personal 
 
 ## Personal git server
 
-Self hosted git on a physical server or VPS. Perfect for homelab setups and small teams.
+Self hosted git on a physical server or VPS. Perfect for homelab setups.
 
 - Allows greater flexibility and privacy.
 
@@ -160,8 +162,12 @@ A more complex fork-based setup, more popular among large open-source projects.
 
 ![integration manager](https://git-scm.com/book/en/v2/images/integration-manager.png)
 
+---
+
 - Developers maintain their own forks
+
 - An integration manager pulls and merges changes from them
+
 - Only the integration manager pushes to the `blessed repository`
 
 ---
@@ -172,8 +178,16 @@ An even more complex setup, only suitable for truly big projects - such as the L
 
 ![benevolent dictator](https://git-scm.com/book/en/v2/images/benevolent-dictator.png)
 
-Similar to the integration manager setup but with an intermediate layer of `lieutenants`
+---
+
+It is similar to the integration manager setup but with an intermediate layer of `lieutenants`
 that collate changes from multiple contributors.
+
+- The dictator only pulls from the lieutenants
+
+- Only the dictator pushed to the blessed repository
+
+- Everyone pulls from the blessed repository as the source of truth for the project
 
 ---
 
@@ -248,20 +262,16 @@ git branch -d feature-user-authentication
 Same as the Merge request, but the feature branch is hosted in a separate repo:
 
 ```bash
-# 1. Fork repository on GitHub (creates your copy)
-# 2. Clone your fork
-git clone https://github.com/yourusername/project.git
+# 1. Fork repository on GitHub and clone your fork
+git clone github/yourusername/project.git
 
-# 3. Add original repository as upstream
-git remote add upstream https://github.com/originalowner/project.git
-
-# 4. Create feature branch and work
+# 2. Create feature branch and work
 git checkout -b fix-typo
 
-# 5. Push to your fork
+# 3. Push to YOUR fork
 git push origin fix-typo
 
-# 6. Create Pull Request from your fork to original repository
+# 4. Create Pull Request from your fork to the original
 ```
 ---
 
@@ -280,13 +290,13 @@ git push origin fix-typo
 
 ### Create your first Pull request
 
-1. Fork the repository for the [class slides](https://github.com/intro-to-git/intro-to-git.github.io/)
+1. Fork and clone the repository for the [class slides](https://github.com/intro-to-git/intro-to-git.github.io/)
 
-2. Create a branch
+2. Create a branch called `{your-github-handle}`
 
-3. Add your github handle to the students.md file
+3. Add your Github handle to the `students.md` file
 
-4. Commit and push to your fork
+4. Commit and push to **your** fork
 
 5. Open a Pull request from your fork to the main repository
 

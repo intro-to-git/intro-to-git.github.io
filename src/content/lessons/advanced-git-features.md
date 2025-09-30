@@ -23,8 +23,8 @@ There are many ways to get to a commit.
 ```bash
 master^ # E (parent commit)
 master~3 # A (third ancestor)
-C^^ # A
-B~1 # A
+C^^ # A (parent of parent)
+B~1 # A (parent)
 ^B # everything except A and B
 ```
 
@@ -33,12 +33,12 @@ B~1 # A
 *parents* vs *ancestors*
 ![history with merge](https://git-scm.com/book/en/v2/images/basic-merging-2.png)
 ```bash
-master^ # C4 first parent of a merge commit
-master^2 # C5 second parent of a merge commit
+master^ # C4 -- first parent of a merge commit
+master^2 # C5 -- second parent of a merge commit
 
-iss53~2 # C2 second ancestor i.e. the parent of the parent
+iss53~2 # C2 -- second ancestor (the parent of the parent)
 
-master^2~1 # C3
+master^2~1 # C3 -- the parent of the second parent
 ```
 
 ---
@@ -77,7 +77,7 @@ HEAD@{5.days.ago}
 
 ## Blame
 
-`blame` allow us to understand when changes were made.
+`blame` allow us to understand who and when made changes.
 
 ```bash
 # display which commit last changed each line of my-file
@@ -139,7 +139,7 @@ The main difference between a Lightweight tag and a branch is that tags
 **CANNOT** be changed to point to a different commit. 
 
 ```bash
-# tag the current commit as v1
+# tag the current commit as v2
 git tag v2.0.0
 
 # tag a previous commit in the history
@@ -160,7 +160,7 @@ They can be signed (like commits). They **CANNOT** be moved as well.
 git tag -a v2.3.0 -m "Release v2.3: Blue Kiwi"
 
 # create a signed annotated tag
-git tag -a -s v2.5.0 -m "Notes fro version 2.5 
+git tag -a -s v2.5.0 -m "Notes for version 2.5"
 ```
 
 ---
@@ -213,7 +213,8 @@ git bisect bad
 # mark a commit as good i.e. not containing the bug
 git bisect good 25aef7
 
-# delete the bisect state and return to the initial starting commit
+# delete the bisect state and return
+# to the initial starting commit
 git bisect reset
 ```
 
@@ -222,7 +223,7 @@ git bisect reset
 Bisect will try to choose the minimum number of commits you need to review.
 
 You can use an appropriate command to automatically validate if the commit is good or bad.
-(e.g. compile the code, run tests, or performance benchmarks)
+(e.g. compile the code, run tests or performance benchmarks)
 
 ---
 
@@ -230,11 +231,13 @@ You can use an appropriate command to automatically validate if the commit is go
 
 Git allows you to have multiple versions checked-out at the same time:
 ```bash
-# creates a branch called bugfix and checks out into a working directory
-# called bugfix in the parent of the current directory
+# creates a branch called bugfix and checks it out
+# into a working directory called bugfix
+# in the parent of the current directory
 git workspace add ../bugfix
 
-# checkout branch origin/broken into a independent working directory
+# checkout branch origin/broken into a
+# separate working directory in your home directory
 git worktree add ~/my-project-bugfix origin/broken
 ```
 
@@ -245,7 +248,8 @@ git worktree add ~/my-project-bugfix origin/broken
 git worktree list
 
 # delete a worktree, needs to be clean
-# the corresponding branch is still part of the project history
+# the corresponding branch is still
+# part of the project history
 git worktree remove bugfix
 ```
 
@@ -277,7 +281,7 @@ but all files will be untracked.
 ### Use case: deploy branch
 
 After creating a disconnected (orphan) branch, you can
-delete or ignore all "regular" project files, leaving
+delete or ignore all "regular" project files, committing
 only your `output` / `build` directory.
 
 ---
@@ -328,7 +332,8 @@ but keep their histories separate.
 ---
 
 ```bash
-# add an existing repository as a submodule of the current repo
+# add an existing repository as a 
+# submodule of the current repo
 git submodule add path/to/other/repo
 
 # clone a repository including all submodules
