@@ -2,7 +2,7 @@
 title: 'Scripting with bash'
 description: 'Diving deeper into bash features, writing scripts'
 order: 8
-state: 'upcoming'
+state: 'covered'
 tags: ['bash', 'unix']
 links: {
   'shellcheck': 'https://github.com/koalaman/shellcheck',

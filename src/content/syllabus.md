@@ -38,5 +38,5 @@
 | In class attendance & participation | 10% |  ♾️|
 | Homework 1 | 15% | **01.10.25** |
 | Midterm test | 25% | 03.10.25 |
-| Homework 2 | 20% | **12.10.25** |
+| Homework 2 | 20% | **16.10.25** |
 | Final test | 30% | 17.10.25 |

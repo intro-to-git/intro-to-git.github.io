@@ -2,7 +2,7 @@
 title: 'Advanced git features'
 description: 'Finding specific commits, using multiple working trees and submodules'
 order: 9
-state: 'upcoming'
+state: 'covered'
 tags: ['git']
 links: {
   'Referencing commits docs': 'https://git-scm.com/docs/gitrevisions',
@@ -32,6 +32,7 @@ B~1 # A (parent)
 
 *parents* vs *ancestors*
 ![history with merge](https://git-scm.com/book/en/v2/images/basic-merging-2.png)
+
 ```bash
 master^ # C4 -- first parent of a merge commit
 master^2 # C5 -- second parent of a merge commit
@@ -64,6 +65,7 @@ git log -g master
 ---
 
 This adds yet another way to reference commits:
+
 ```bash
 # which commit did master point to 3 moves ago
 master@{3}
@@ -101,6 +103,7 @@ by default git does **NOT** guarantee that commit author is who they say they ar
 
 For projects that require extra security, each commit can be signed.
 This is possible by using git in conjunction with `gpg` and the `-S` flag:
+
 ```bash
 # create a signed commit using the configured pgp key
 git commit -S -m "you can be sure I made this commit"
@@ -127,6 +130,7 @@ Tags can be used to mark important milestones in a project's history (such as re
 ---
 
 Git supports 2 types of tags:
+
 - **Lightweight** - very similar to a branch, but cannot be changed
 
 - **Annotated** - similar to a signed commit, but holding additional tagging details
@@ -136,7 +140,7 @@ Git supports 2 types of tags:
 ### Lightweight tags
 
 The main difference between a Lightweight tag and a branch is that tags
-**CANNOT** be changed to point to a different commit. 
+**CANNOT** be changed to point to a different commit.
 
 ```bash
 # tag the current commit as v2
@@ -181,6 +185,7 @@ git tag -d v1.75-tmp
 ---
 
 Tags are NOT shared by default, you have to push them explicitly:
+
 ```bash
 # push all tags to the origin remote
 git push origin --tags
@@ -230,11 +235,12 @@ You can use an appropriate command to automatically validate if the commit is go
 ## Multiple work-trees
 
 Git allows you to have multiple versions checked-out at the same time:
+
 ```bash
 # creates a branch called bugfix and checks it out
 # into a working directory called bugfix
 # in the parent of the current directory
-git workspace add ../bugfix
+git worktree add ../bugfix
 
 # checkout branch origin/broken into a
 # separate working directory in your home directory
@@ -310,7 +316,6 @@ You can then push each line to its own remote (public and private).
 
 ---
 
-
 ## Submodules
 
 If you put a git repository inside another git repository,
@@ -339,4 +344,3 @@ git submodule add path/to/other/repo
 # clone a repository including all submodules
 git clone --recurse submodules
 ```
-
