@@ -40,6 +40,9 @@ Git workflows vary greatly depending on:
 
 ## Branching strategies
 
+Branching strategies focus on how developers synchronize changes
+in a structured way.
+
 ---
 
 ## Trunk-based
@@ -69,11 +72,12 @@ New features are developed on their own branch.
 A branching strategy meant to provide structure and clarity in complex projects.
 
 Gitflow prescribes the following branches:
+
 - **main** - Production-ready code
 - **develop** - Integration branch
-- **feature/<feature>** - New features
-- **release/<version>** - Preparing releases
-- **hotfix/<ticket>** - Emergency fixes
+- **feature/{name}** - New features
+- **release/{number}** - Preparing releases
+- **hotfix/{ticket}** - Emergency fixes
 
 ---
 
@@ -81,22 +85,24 @@ Gitflow prescribes the following branches:
 
 For beginners and small teams, feature branches are often the sweet spot - more organized than trunk-based but simpler than Gitflow.
 
-For large projects with complex versioning and release cycles, something like Gitflow can be very valuable in providing
-a clear structure.
+---
+
+For large projects with complex versioning and release cycles, *something like* Gitflow can be very valuable in providing a clear structure.
 
 ---
 
 ## Pull vs merge requests
 
-The 2 terms are functionally identical - a requests for a second person to approve the changes before merging.
+The 2 terms are functionally identical - a request for a second person to review and approve the changes before merging.
 
 <bonus-content>
 
 The pedantic difference is in where the code is hosted:
-- **Pull** request - implies another repository (often called a `fork`)
+
+- **Pull** request - implies another remote repository (often called a `fork`)
 - **Merge** request - implies just a branch in the same repository
 
-This is related to git's lack of fine grained permissions within a repository.
+> This is related to git's lack of fine grained permissions within a repository.
 
 </bonus-content>
 
@@ -105,11 +111,15 @@ This is related to git's lack of fine grained permissions within a repository.
 ## Pull/merge requests vs direct merge
 
 Pull/merge requests are not required when working on a shared repository.
-You can merge into main directly and push the resulting history manually.
 
-----
+You can merge into main locally and push the resulting commits manually.
 
-However pull requires provide an explicit point of review.
+> There is no point in using PRs, when working alone on a personal project.
+
+---
+
+However pull requests provide an explicit way for review, discussion and approval.
+
 Most git hosting providers have additional tools and controls to make reviews mandatory.
 
 ---
@@ -127,7 +137,7 @@ contribute.
 
 The simplest workflow *(aside from just using git locally)*. Perfect for personal projects.
 
-- Branching strategy can be as simple as `push to main`.
+- Branching strategy can be as simple as `push to main` (trunk-based).
 
 - Repository can be hosted on any of the popular providers (e.g GitHub).
 
@@ -135,9 +145,10 @@ The simplest workflow *(aside from just using git locally)*. Perfect for persona
 
 ---
 
-## Personal git server
+## Private git server
 
-Self hosted git on a physical server or VPS. Perfect for homelab setups.
+Self-hosted git on a physical server or VPS.
+Perfect for small projects and homelab setups.
 
 - Allows greater flexibility and privacy.
 
@@ -170,6 +181,8 @@ A more complex fork-based setup, more popular among large open-source projects.
 
 - Only the integration manager pushes to the `blessed repository`
 
+- The integration manager schedules when things get merged
+
 ---
 
 ## benevolent dictator
@@ -191,19 +204,30 @@ that collate changes from multiple contributors.
 
 ---
 
-## Centralized vs decentrazied
+## Git is flexible
+
+These workflow examples are **NOT** set in stone.
+
+Teams are encouraged to iterate and establish a workflow
+that best fits their goals, environment and work-style.
+
+---
+
+## Centralized vs decentralized
 
 - **Centralized** setups are more applicable within a single company
 where all developers are trusted. Mono-repos can be seen as an extension of
 this setup.
 
-- **Decentrazied** are more useful within open source, where the main owner
+---
+
+- **Decentralized** setups are more useful within open source, where the main owner
 of the projects wants to maintain control, while allowing anyone in the world
 to contribute.
 
 ---
 
-## Merging Workflow
+## Local Merging Workflow Example
 
 ```bash
 # Start with a up-to-date main branch
@@ -236,55 +260,89 @@ git push origin main
 
 ---
 
-## Merge Requests
+## Merge Request Example
 
-Instead of merging directly, most teams use Pull Requests (GitHub) or Merge Requests (GitLab) for code review:
+Instead of merging directly, most teams use Pull / Merge Requests for code review:
 
 ```bash
-# 1. Create feature branch and push
+# 1. Create feature branch
 git checkout -b feature-user-authentication
-# ... do work ...
+
+# do work ...
+
+# commit and push
+git commit -m "feat: added google login option"
 git push -u origin feature-user-authentication
 
-# 2. Create Pull Request on GitHub web interface
-# 3. Team reviews code
-# 4. Merge through web interface
+# 2. Create Pull Request through
+# GitHub's web interface
+```
+
+---
+
+During the review team members can request changes, suggest improvements
+or spot bugs.
+
+```bash
+# 3. Other team member reviews the code
+
+# 4. Once approved, merge through web interface
+
 # 5. Pull the merged changes locally
 git checkout main
 git pull origin main
+
+# delete the merged branch locally
 git branch -d feature-user-authentication
 ```
 
 ---
 
-## Forking Workflow (Pull requests)
+## Forking Workflow Example
 
-Same as the Merge request, but the feature branch is hosted in a separate repo:
+Same as with the Merge request, but the feature branch is hosted in a **separate** remote repo:
 
 ```bash
 # 1. Fork repository on GitHub and clone your fork
-git clone github/yourusername/project.git
+git clone github/yourusername/forked-project.git
 
 # 2. Create feature branch and work
-git checkout -b fix-typo
+git checkout -b fix-bug
 
 # 3. Push to YOUR fork
-git push origin fix-typo
+git push origin fix-bug
 
-# 4. Create Pull Request from your fork to the original
+# 4. Create Pull Request
+# from your fork to the original
 ```
+
 ---
 
 ## Best Practices
 
-- Include `README` and `.gitignore`
+- Have a well structured `README` file
+
+- Setup a `.gitignore` based on your language and tooling
+
 - Fetch `main` often and merge it into your feature branch
 (to avoid big conflicts)
+
 - Make sure to **NOT** commit and push secrets
 
 ---
 
-## Hands-On Exercise
+## Pull request etiquette
+
+- When contributing to a project, always respect
+the project's guidelines! (usually found in a `CONTRIBUTING.md` file)
+
+- Do NOT make trivial changes that nobody asked for.
+
+- Do NOT demand from project owners to prioritize your contributions.
+
+- Be polite and respectful in discussions.
+
+---
 
 <class-work>
 

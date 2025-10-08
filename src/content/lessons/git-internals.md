@@ -32,7 +32,7 @@ git clone --bare </path/to/repo>
 
 ---
 
-If we now `ls` inside the repository directory we will find the contents
+If we now `ls` inside the repository directory, we will find the contents
 that usually sits in the `.git` directory.
 
 ---
@@ -129,7 +129,7 @@ git cat-file -p HEAD^{commit}
 
 ---
 
-### Optimizing for efficiency
+### Optimized for efficiency
 
 Git splits the SHA of objects to allow large repositories
 to work on file systems with small limits
@@ -159,6 +159,8 @@ to work on file systems with small limits
 
 Internally git stores the state of the staging area in the `.git/index` file.
 
+---
+
 The `update-index` command allows us to modify it:
 
 ```bash
@@ -178,6 +180,8 @@ git status
 The `write-tree` command is used to create tree objects:
 
 ```bash
+# create a tree object capturing the
+# current state of the staging area
 git write-tree
 # prints sha of the newly created tree
 
@@ -203,15 +207,52 @@ git cat-file -p <commit-sha>
 git show <commit-sha>
 ```
 
-> use the `-p <commit-sha>` option to specify a parent commit
+> in the above example, the newly created commit does NOT have a parent commit
 
 ---
 
+Use the `-p <commit-sha>` option to specify a parent commit:
+
+```bash
+echo 'commit message' | git commit-tree \
+  <tree-sha> -p <parent-commit-sha>
+```
+
+---
+
+## What commit is my branch pointing to?
+
+```bash
+git rev-parse branch-name
+# prints the sha of the commit that
+# the given branch is pointing to
+
+git rev-parse --short branch-name
+# prints a short commit sha
+```
+
+---
+
+<bonus-content>
+
+## Other meta refs
+
+Apart from `HEAD`, git exposes other useful meta refs:
+
+| Name  | Description |
+| --------------- | --------------- |
+| FETCH_HEAD | the last branch which you fetched from a remote repository |
+| ORIG_HEAD | the position of the HEAD before complex operations, so that you can easily change the tip of the branch back to the state before you ran them |
+| MERGE_HEAD | the commit(s) which you are merging into your branch when you run git merge |
+| REBASE_HEAD | the commit at which the operation is currently stopped, either because of conflicts or an edit command in an interactive rebase |
+
+---
+</bonus-content>
+
 <class-note>
 
-There are even more plumbing commands which you can explore in the git manual and book.
-
-All porcelain commands are implemented using plumbing commands internally.
+There are even more plumbing commands and advanced git features
+which you can explore in the git manual and book.
 
 As stated in the beginning of this section - these commands are **NOT** meant to
 be used on a day-to-day basis. They are useful to understand how git works under
