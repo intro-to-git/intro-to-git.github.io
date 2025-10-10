@@ -2,7 +2,7 @@
 title: 'Exploring git workflows'
 description: 'There are many strategies for working on real-world projects'
 order: 10
-state: 'upcoming'
+state: 'covered'
 tags: ['git']
 links: {
   'GitHub Collaboration Guide': 'https://docs.github.com/en/pull-requests/collaborating-with-pull-requests',

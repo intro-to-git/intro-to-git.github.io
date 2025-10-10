@@ -2,7 +2,7 @@
 title: 'Git internals'
 description: 'Git internals, Git hooks, plumbing commands and more'
 order: 11
-state: 'upcoming'
+state: 'covered'
 tags: ['git']
 links: {
   'Git Internals': 'https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain',
