@@ -354,6 +354,35 @@ done
 
 ---
 
+## Associative arrays
+
+These act as dictionaries or hashmaps in other languages allowing you to store key - value pairs.
+
+```bash
+# define an associative array
+declare -A PETS
+
+PETS["Norwegian"]="cat"
+PETS["Dane"]="horse"
+PETS["Brit"]="bird"
+PETS["German"]="?"
+```
+
+---
+
+```bash
+# Read the value for a given key
+echo ${PETS['Brit']}
+
+# Adding new values
+PETS["Swede"]="dog"
+
+# Alternative syntax for adding elements
+PETS+=(["Bulgarian"]="goat")
+```
+
+---
+
 ## Handling inputs
 
 There are special variable that allow you to handle script arguments.

@@ -48,6 +48,19 @@ The `.git` directory is where git stores all its internal state:
 
 ---
 
+## What commit is my branch pointing to?
+
+```bash
+git rev-parse branch-name
+# prints the sha of the commit that
+# the given branch is pointing to
+
+git rev-parse --short branch-name
+# prints a short commit sha
+```
+
+---
+
 <class-work>
 
 ### Create a branch by hand
@@ -129,6 +142,10 @@ git cat-file -p HEAD^{commit}
 
 ---
 
+![sharing objects between commits](https://git-scm.com/book/en/v2/images/data-model-3.png)
+
+<bonus-content>
+
 ### Optimized for efficiency
 
 Git splits the SHA of objects to allow large repositories
@@ -136,6 +153,8 @@ to work on file systems with small limits
 (e.g. 65k file per directory in FAT32)
 
 > This also increases efficiency under any file system
+
+</bonus-content>
 
 ---
 
@@ -216,19 +235,6 @@ Use the `-p <commit-sha>` option to specify a parent commit:
 ```bash
 echo 'commit message' | git commit-tree \
   <tree-sha> -p <parent-commit-sha>
-```
-
----
-
-## What commit is my branch pointing to?
-
-```bash
-git rev-parse branch-name
-# prints the sha of the commit that
-# the given branch is pointing to
-
-git rev-parse --short branch-name
-# prints a short commit sha
 ```
 
 ---
