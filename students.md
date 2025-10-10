@@ -3,3 +3,4 @@
 ## Fall 2025
 
 - Tornio2 handle
+- Valeri Kadiev
