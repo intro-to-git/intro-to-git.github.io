@@ -7,3 +7,4 @@
 - Valeri Kadiev
 - **Dzhano**
 - **Plamena Pavlova**
+- Samuil Mladenov
