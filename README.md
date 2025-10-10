@@ -10,4 +10,3 @@ All materials linked from primary sources, mainly: the [git docs](https://git-sc
 
 The theme is a port of the [Hugo Terminal Theme](https://github.com/panr/hugo-theme-terminal) created by [panr](https://github.com/panr). All design decisions, colour schemes, and visual aesthetics are credited to the original author. Astro port created by [Dennis Klappe](https://github.com/dennisklappe).
 
-Samuil was here
