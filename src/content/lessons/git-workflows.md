@@ -2,7 +2,7 @@
 title: 'Exploring git workflows'
 description: 'There are many strategies for working on real-world projects'
 order: 10
-state: 'upcoming'
+state: 'covered'
 tags: ['git']
 links: {
   'GitHub Collaboration Guide': 'https://docs.github.com/en/pull-requests/collaborating-with-pull-requests',
@@ -61,6 +61,7 @@ the same parts of the project
 New features are developed on their own branch.
 
 - **PRO**: keeps development isolated, conflicts only happen after a big merge
+
 - **CON**: stacking feature branches can lead to complex merge trains
 
 > **GOOD PRACTICE**: update feature branches often by merging main into them
@@ -118,9 +119,9 @@ You can merge into main locally and push the resulting commits manually.
 
 ---
 
-However pull requests provide an explicit way for review, discussion and approval.
+However pull requests provide an **explicit** mechanism for review, discussion and approval.
 
-Most git hosting providers have additional tools and controls to make reviews mandatory.
+Most git hosting providers have additional tools and controls to make these processes easier and mandatory.
 
 ---
 

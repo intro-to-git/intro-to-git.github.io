@@ -2,4 +2,6 @@
 
 ## Fall 2025
 
-Roberto Myftaraga (InspectRM)
+- Roberto Myftaraga (InspectRM)
+- Tornio2 handle
+- Valeri Kadiev
