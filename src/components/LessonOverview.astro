@@ -10,8 +10,8 @@ const { category, lesson } = Astro.props;
 
 const subPath = pagePath(category);
 
-const lessonUrl = `${baseUrl}${subPath}${lesson.slug}`;
-const slidesUrl = `${baseUrl}slides/${lesson.slug}`
+const lessonUrl = `${baseUrl}${subPath}${lesson.id}`;
+const slidesUrl = `${baseUrl}slides/${lesson.id}`
 
 const title = pageTitle(lesson, category);
 

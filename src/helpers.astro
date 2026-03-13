@@ -82,7 +82,7 @@ switch (state) {
 
 export async function buildLessonNavigationProps(lessons: AstroLesson[]) {
   return lessons.map((lesson, index) => ({
-    params: { slug: lesson.slug },
+    params: { slug: lesson.id },
     props: {
       lesson,
       next: index < lessons.length - 1 ? lessons[index + 1] : null,

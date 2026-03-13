@@ -1,6 +1,7 @@
 ---
 import LessonLayout from '../../layouts/LessonLayout.astro';
 import LessonLinks from '../../components/LessonLinks.astro';
+import { render } from 'astro:content';
 
 import { getBonusMaterials, baseUrl } from '../../helpers.astro';
 
@@ -8,18 +9,18 @@ export async function getStaticPaths() {
   const bonuses = await getBonusMaterials();
 
   return bonuses.map(bonus => ({
-    params: { slug: bonus.slug },
+    params: { slug: bonus.id },
     props: { bonus },
   }));
 }
 
 const { bonus } = Astro.props;
 
-const { Content: BonusContent } = await bonus.render();
+const { Content: BonusContent } = await render(bonus);
 
 const altViewProps = !bonus.data.hasSlides
   ? {}
-  : { altViewUrl: `${baseUrl}slides/${bonus.slug}`, altViewText: 'show slides'};
+  : { altViewUrl: `${baseUrl}slides/${bonus.id}`, altViewText: 'show slides'};
 ---
 
 <LessonLayout {...altViewProps} {...bonus.data} category='bonus'>

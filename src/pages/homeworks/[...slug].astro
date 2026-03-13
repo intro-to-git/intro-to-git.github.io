@@ -1,5 +1,6 @@
 ---
 import LessonLayout from '../../layouts/LessonLayout.astro';
+import { render } from 'astro:content';
 
 import { getHomeworks, baseUrl } from '../../helpers.astro';
 
@@ -7,18 +8,18 @@ export async function getStaticPaths() {
   const bonuses = await getHomeworks();
 
   return bonuses.map(hw => ({
-    params: { slug: hw.slug },
+    params: { slug: hw.id },
     props: { hw },
   }));
 }
 
 const { hw } = Astro.props;
 
-const { Content: HomeWorkContent } = await hw.render();
+const { Content: HomeWorkContent } = await render(hw);
 
 const altViewProps = !hw.data.hasSlides
   ? {}
-  : { altViewUrl: `${baseUrl}slides/${hw.slug}`, altViewText: 'show slides'};
+  : { altViewUrl: `${baseUrl}slides/${hw.id}`, altViewText: 'show slides'};
 ---
 
 <LessonLayout {...altViewProps} {...hw.data} category='homework'>

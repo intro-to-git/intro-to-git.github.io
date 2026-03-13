@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { lesson, prev, next } = Astro.props;
 const lessonContent = lesson.body.replaceAll(/<bonus-content>.*?<\/bonus-content>/gs, '');
 
-const lessonUrl = `${baseUrl}lessons/${lesson.slug}`
+const lessonUrl = `${baseUrl}lessons/${lesson.id}`
 ---
 
 <SlidesLayout {...lesson.data} altViewType='full lesson' altViewUrl={lessonUrl}>

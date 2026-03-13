@@ -2,7 +2,7 @@
 
 - Working with Bash
 - Working with Git
-- Using Git & Bash as a software developer
+- Using Git in a team of software professionalS
 
 ---
 
@@ -10,7 +10,7 @@
 
 - Learn to use the terminal with Bash
   - Navigate the file system
-  - Use commands and tools
+  - Use command commands and tools
   - Write scripts
 
 ---
@@ -35,8 +35,8 @@
 
 |  Assignment   | Weight | Due Date |
 | --------------- | --------------- | --- |
-| In class attendance & participation | 10% |  ♾️|
-| Homework 1 | 15% | **01.10.25** |
-| Midterm test | 25% | 03.10.25 |
-| Homework 2 | 20% | **16.10.25** |
-| Final test | 30% | 17.10.25 |
+| In class attendance & participation | 10% |  - |
+| Homework 1 | 15% | **25.03.26** |
+| Midterm test | 25% | 27.03.26 |
+| Homework 2 | 20% | **15.04.26** |
+| Final test | 30% | 17.04.26 |

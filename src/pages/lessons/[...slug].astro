@@ -2,6 +2,7 @@
 import LessonLayout from '../../layouts/LessonLayout.astro';
 import LessonLinks from '../../components/LessonLinks.astro';
 import LessonNavigation from '../../components/LessonNavigation.astro';
+import { render } from 'astro:content';
 
 import { getLessons, baseUrl, buildLessonNavigationProps } from '../../helpers.astro';
 
@@ -15,11 +16,11 @@ export async function getStaticPaths() {
 
 const { lesson, prev, next } = Astro.props;
 
-const { Content: LessonContent } = await lesson.render();
+const { Content: LessonContent } = await render(lesson);
 
 const altViewProps = !lesson.data.hasSlides
   ? {}
-  : { altViewUrl: `${baseUrl}slides/${lesson.slug}`, altViewText: 'show slides'};
+  : { altViewUrl: `${baseUrl}slides/${lesson.id}`, altViewText: 'show slides'};
 ---
 
 <LessonLayout {...altViewProps} {...lesson.data}>
