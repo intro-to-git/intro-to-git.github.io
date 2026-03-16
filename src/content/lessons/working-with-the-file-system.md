@@ -423,14 +423,11 @@ We also want to focus on one tool in particular - `git`
 
 1. In your home dir, create directories `cos3100/in-class-1`
 2. Create the following files in the directory:
-
-- empty `my-file.txt`
-- `readme.md` containing the string `Hello World`
-- `my-first-script` containing the string `ls -al`
-- `output` containing the output of the command `ls`
-
+    - empty `my-file.txt`
+    - `readme.md` containing the string `Hello World`
+    - `my-first-script` containing the string `ls -al`
+    - `output` containing the output of the command `ls`
 3. Print the number of files in the directory
-4. Print the number of files without an extension
-5. Print all files containing the string `my`
+4. Print all files containing the string `my`
 
 </class-work>

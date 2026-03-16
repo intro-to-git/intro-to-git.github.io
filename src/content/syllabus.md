@@ -2,7 +2,7 @@
 
 - Working with Bash
 - Working with Git
-- Using Git in a team of software professionalS
+- Using Git in a team of software professionals
 
 ---
 
