@@ -25,13 +25,15 @@ links: {
 This section will mention branches, but will NOT explain them in any detail.
 Don't panic! We will focus on them in the next section.
 
+For now it is enough to know that branches are pointers to commits.
+
 </class-note>
 
 ---
 
 ## Remote Repositories
 
-A **remote repository** is a independent version of the project hosted somewhere else (like GitHub, GitLab, or Bitbucket).
+A **remote repository** is a independent version of the repository hosted somewhere else (like GitHub, GitLab, or Bitbucket).
 
 It enables collaboration and serves as a backup.
 
@@ -68,8 +70,8 @@ The clone will have the original repo set as its **origin remote**.
 
 The main way to start using remote repositories is by cloning.
 
-Every time you clone a project from github, your local copy has
-the original as its **origin remote**.
+Every time you clone a repository, your local copy has
+the original set as a **remote**, usually called `origin`.
 
 ```bash
 git clone https://github.com/user/repo.git
@@ -131,7 +133,7 @@ Git supports a number of protocols:
 ## Fetching and Pulling
 
 ```bash
-# Download changes without merging
+# Download changes without modifying local files
 git fetch
 
 # Download and merge changes
@@ -142,24 +144,37 @@ git pull origin main
 git pull --rebase origin main
 ```
 
+> We will explore **merging** and **rebasing** in detail in the following sections.
+
 ---
 
-## Pushing to Remote
+## Pushing to Remotes
+
+Upload your local version of the repository's history
+to a remote copy of the repository.
 
 ```bash
 # Push current branch to remote
 git push
 
-# Push current branch (may be any)
-# to the main branch on the remote
-git push origin main
+# Push all branches
+git push origin --all
 
 # Push and set upstream tracking
 git push -u origin feature-branch
-
-# Push all branches
-git push origin --all
 ```
+
+<bonus-content>
+
+You can push from any local branch into any remote branch.
+
+```bash
+# Push current branch (may be any)
+# to the main branch on the remote
+git push origin main
+```
+
+</bonus-content>
 
 ---
 

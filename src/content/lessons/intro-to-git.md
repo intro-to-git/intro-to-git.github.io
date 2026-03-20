@@ -42,16 +42,6 @@ Version control systems record changes to files over time, allowing you to:
 
 ---
 
-### Types of version control
-
-There are different types of version control setups:
-
-- Local
-- Centralized
-- Distributed
-
----
-
 ### Without Version Control
 
 ```bash
@@ -63,6 +53,16 @@ my-project-final-v2-ACTUALLY-FINAL-fixed-typo.txt
 ```
 
 > **Problems**: Confusing, error-prone, no collaboration, no history of what changed.
+
+---
+
+### Types of version control
+
+There are different types of version control setups:
+
+- Local
+- Centralized
+- Distributed
 
 ---
 
@@ -142,7 +142,7 @@ Another way to get a git repository is to clone it:
 git clone https://github.com/bahamas10/ysap.git
 ```
 
-The above command will download the given repository to your computer and **checkout the default branch**.
+The above command will create a local copy of the given repository to your computer and **checkout the default branch**.
 
 ---
 
@@ -193,9 +193,9 @@ Contributing changes to a repository passes through 3 stages:
 
 Changes in the **working directory** are completely local.
 
-They are not yet version controlled and can be lost.
+They are not yet version controlled and _can be lost_.
 
-They are no different that editing a file without using git.
+No different that editing a file without using git.
 
 ---
 
@@ -268,8 +268,8 @@ git push
 
 <class-note>
 
-This basic loop is at the core of using git. We will spend a good amount
-of time unpacking and learning about each of these commands and more.
+This basic loop is at the core of using git. As a software professional
+you'll use these commands tens to hundreds of times a day.
 
 </class-note>
 
@@ -277,9 +277,9 @@ of time unpacking and learning about each of these commands and more.
 
 ## Git commands structure
 
-Git follows a toolkit-based philosophy. It acts as collection of tools that work together.
+Git follows a toolkit-based philosophy.
 
-Each git command has the following general structure:
+It acts as collection of tools that work together. Each git command has the following general structure:
 
 ```bash
 git [sub-command] [options] [objects]

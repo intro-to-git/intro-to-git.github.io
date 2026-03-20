@@ -1,6 +1,6 @@
 ---
 title: 'Basic git commands'
-description: 'An overview of basic git commands - everything you need to run a local repository'
+description: 'An overview of basic git commands - everything you need to work with a local repository'
 order: 4
 state: 'covered'
 tags: ['git']
@@ -23,9 +23,7 @@ links: {
 
 Git is highly configurable.
 
-Configurations can be applied on multiple levels.
-
-More specific configurations overwrite more generic ones.
+Configurations can be applied on multiple levels. More specific configurations overwrite more generic ones.
 
 - repository
 - user
@@ -194,7 +192,11 @@ git reset filename
 git reset -p
 ```
 
-> Reset is a very versatile command. **Some options may lead to data loss**
+<class-note>
+
+Reset is a very versatile command. **Some options may lead to data loss**
+
+</class-note>
 ---
 
 ## Diff
@@ -202,6 +204,10 @@ git reset -p
 `diff` allows us to compare changes:
 
 ```bash
+# view all changes between working directory
+# and the latest commit
+git diff
+
 # view all changes in the staging area
 git diff --cached
 
@@ -213,7 +219,7 @@ git diff my-file.txt
 
 ## Clean
 
-`clean` **deletes** untracked files from the working directory:
+`clean` *deletes* untracked files from the working directory:
 
 ```bash
 # remove untracked files in the top level dir
@@ -306,13 +312,16 @@ git show
 
 # displays info and just the list of changed files
 git show --stat
+
+# view changes introduced by a specific commit
+git show a3ef75
 ```
 
 ---
 
 ## Restore
 
-`restore` **overwrites** the contents of the file in the working tree and/or staging area.
+`restore` **overwrites** the contents of the files in the working directory and/or staging area.
 
 ```bash
 # SAFE: removes changes from the staging area
@@ -324,7 +333,7 @@ git restore --staged filename
 git restore filename
 ```
 
-> **Warning**: the changes will be totally lost
+> **Warning**: with some options the changes will be totally lost
 
 ---
 
@@ -340,8 +349,15 @@ git rm filename
 
 # only stages an instruction to git to
 # no longer track the file in the next commit
+# file in working directory is untouched
 git rm --cached filename
 ```
+
+---
+
+Telling git to no longer track a file does **NOT** remove previous versions of the file from the repository.
+
+We will learn how to do this later.
 
 ---
 
