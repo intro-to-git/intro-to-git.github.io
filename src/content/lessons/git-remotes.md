@@ -195,21 +195,6 @@ git fetch --all
 
 ---
 
-## Remote Branch Management
-
-```bash
-# List remote branches
-git branch -r
-
-# Prune deleted remote branches
-git remote prune origin
-
-# Set upstream for existing branch
-git branch --set-upstream-to=origin/main main
-```
-
----
-
 <class-work>
 
 ### Create your personal github.io page

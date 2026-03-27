@@ -166,6 +166,19 @@ git merge --continue
 
 ---
 
+<class-work>
+
+### Simulate a conflict and resolve it following the pattern from the previous slides
+
+- Create 2 branches with different changes to the same file
+- Attempt to merge the 2 branches
+- Resolve the conflict
+- Complete the merge
+
+</class-work>
+
+---
+
 ### Conflict Resolution Tools
 
 There are many tools that allow for easier view of conflicts,

@@ -16,7 +16,7 @@ A **branch** in Git is essentially a moveable pointer to a specific commit.
 
 Branches are lightweight - a branch is just a file containing a commit hash.
 
-> Files you commit on one branch are not visible when you switch to another.
+> Files you commit on one branch are not visible when you switch to another branch.
 
 ---
 
@@ -29,6 +29,39 @@ Branches are lightweight - a branch is just a file containing a commit hash.
 - **Easy rollback** - Discard experimental work if it doesn't work out
 
 - **Version support** - apply fixes to previous versions
+
+---
+
+## Creating a New Branch
+
+```bash
+# Create a new branch (but stay on current branch)
+git branch feature-user-profile
+
+# Create and immediately switch to new branch
+git checkout -b feature-user-profile
+
+# Modern alternative (Git 2.23+)
+git switch -c feature-user-profile
+```
+
+---
+
+### Branch Naming Conventions
+
+```bash
+# Good branch names
+feature-user-authentication
+bugfix-login-timeout
+api-documentation
+refactor-database-queries
+
+# Poor branch names
+fix
+temp
+my-branch
+new-stuff
+```
 
 ---
 
@@ -54,40 +87,6 @@ git branch -a
 Multiple branches can point to the same commit.
 
 ![branches are pointers](https://git-scm.com/book/en/v2/images/branch-and-history.png)
-
----
-
-## Creating a New Branch
-
-```bash
-# Create a new branch (but stay on current branch)
-git branch feature-user-profile
-
-# Create and immediately switch to new branch
-git checkout -b feature-user-profile
-
-# Modern alternative (Git 2.23+)
-git switch -c feature-user-profile
-```
-
----
-
-### Branch Naming Conventions
-
-```bash
-# Good branch names
-feature/user-authentication
-bugfix/login-timeout
-docs/api-documentation
-refactor/database-queries
-
-# Poor branch names
-fix
-temp
-my-branch
-new-stuff
-```
-
 ---
 
 ## Switching Between Branches
@@ -106,7 +105,7 @@ git switch feature-user-profile
 
 ---
 
-## The HEAD meta-branch
+## HEAD
 
 Git tracks the current branch in a *special ref* called `HEAD`.
 
@@ -118,7 +117,7 @@ But it is NOT a true branch - it points to the current branch
 
 ![HEAD pointer](https://git-scm.com/book/en/v2/images/head-to-master.png)
 
-> Branches point to commits; HEAD points at a branch
+> Branches point to commits; HEAD points to a branch
 
 ---
 
@@ -139,10 +138,10 @@ git show f30ab
 ## Checkout
 
 The checkout command does 2 main things:
+
 - Changes the branch that `HEAD` points to
 - Overwrites the contents of the working directory with
 the contents of the commit pointed by the new `HEAD` branch
-
 
 ---
 
@@ -157,6 +156,9 @@ which is one commit ahead of `master`:
 
 ### Replicate the state of the repository from the picture
 
+![example-head](https://git-scm.com/book/en/v2/images/advance-testing.png)
+
+> Note: Your commit SHAs would not be the same
 </class-work>
 
 ---
@@ -267,6 +269,21 @@ git fetch --prune
 
 ---
 
+## Remote Branch Management
+
+```bash
+# List remote branches
+git branch -r
+
+# Prune deleted remote branches
+git remote prune origin
+
+# Set upstream for existing branch
+git branch --set-upstream-to=origin/main main
+```
+
+---
+
 ## Branch Life-cycle
 
 1. **Create** branch from up-to-date main
@@ -342,9 +359,9 @@ ls
 
 1. Create a repository called 'my-site'
 2. Add a README file
-2. Create three branches: `feature-header`, `feature-footer`, `feature-sidebar`
-3. Make different changes in each branch
-4. Practice viewing the history with `git log --graph --oneline`
+3. Create three branches: `feature-header`, `feature-footer`, `feature-sidebar`
+4. Make different changes in each branch
+5. Practice viewing the history with `git log --graph --oneline`
 
 </home-work>
 
