@@ -199,6 +199,8 @@ git diff --name-only --diff-filter=U
 
 ---
 
+<!-- NOTE: EXPAND THIS SECTION -->
+
 ## Rebasing
 
 Rebasing **rewrites history** to create a cleaner, linear commit history:

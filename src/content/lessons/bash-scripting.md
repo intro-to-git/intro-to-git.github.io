@@ -14,7 +14,7 @@ links: {
 Writing a simple script is as easy as putting some commands in a file:
 
 ```bash
-echo 'echo "Hello world!"' > my_first_script
+echo 'echo "Hello world!"' > my_first_script.sh
 ```
 
 ---
@@ -326,6 +326,9 @@ myarray[0]="hi"
 
 # print array element at index i
 echo ${myarray[i]}
+
+# print all elements in array
+echo ${myarray[@]}
 ```
 
 ---
@@ -470,7 +473,7 @@ function myfunc() {
 my_func "friend"
 ```
 
-> In bash functions do NOT return values.
+> NOTE: In bash functions do NOT return values.
 
 ---
 
@@ -523,7 +526,22 @@ myfunc() { echo "$1 $2 $3"; }
 ## Doing math in bash
 
 By default everything in the console is treated as a string.
-Use the `$((<expression>))` syntax to perform math.
+Use the `((<expression>))` syntax to perform math.
+
+```bash
+x=5
+y=5
+((z=x+y))
+
+echo $z
+# prints 10
+```
+
+> Inside a math expression variables should **NOT** start with an `$`
+
+---
+
+Use the `$(( EXPR ))` syntax to get the return value of the math operation
 
 ```bash
 echo "1 + 1 = $((1+1))"
@@ -532,12 +550,10 @@ echo "1 + 1 = $((1+1))"
 # a random number between 1 and 10
 echo "$((RANDOM % 10 + 1))"
 
-# by default $RANDOM will hold a random
-# number between 0 and 32767
-echo $RANDOM
+x="$((5+5))"
+echo $x
+#prints 10
 ```
-
-> Inside a math expression variables should **NOT** start with an `$`
 
 ---
 

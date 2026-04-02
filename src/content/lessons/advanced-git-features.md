@@ -77,6 +77,46 @@ HEAD@{5.days.ago}
 
 ---
 
+## Reset
+
+`git reset` has 3 modes of operation. This determines what you allow it to change
+
+| Mode | Worktree | Staging | HEAD |
+| --- | --- | --- |--- |
+| --soft | ❌ | ❌ |✔️ |
+| --mixed | ❌ | ✔️ |✔️ |
+| --hard | ✔️ | ✔️ |✔️ |
+
+---
+
+## Reset modes
+
+- **soft**: only change which commit the current branch points to
+
+- **mixed** (default): move the branch and update the staging area.
+
+  *(this is why we can use it to unstage changes)*
+
+- **hard**: move the branch and update both staging and the worktree
+
+<class-note>
+
+  A hard reset can lead to losing uncommitted changes
+
+</class-note>
+
+---
+
+## Reset vs checkout
+
+Checkout is very similar to `git reset --hard` with a couple of key differences:
+
+- checkout does NOT destroy uncommitted changes in the working directory
+
+- checkout modifies HEAD itself but not the branch that HEAD points to
+
+---
+
 ## Blame
 
 `blame` allow us to understand who and when made changes.
@@ -208,6 +248,8 @@ is either `good` or `bad`
 
 ---
 
+Bisect will try to choose the minimum number of commits you need to review.
+
 ```bash
 # start the bisect process with the current commit
 git bisect start
@@ -218,17 +260,21 @@ git bisect bad
 # mark a commit as good i.e. not containing the bug
 git bisect good 25aef7
 
-# delete the bisect state and return
-# to the initial starting commit
+# return to the initial commit (before the bisect)
 git bisect reset
 ```
 
 ---
 
-Bisect will try to choose the minimum number of commits you need to review.
-
 You can use an appropriate command to automatically validate if the commit is good or bad.
 (e.g. compile the code, run tests or performance benchmarks)
+
+```bash
+# execute the given script to mark
+# commits as good or bad
+# based on the exit status of the script
+git bisect run my-test-command
+```
 
 ---
 
@@ -258,6 +304,10 @@ git worktree list
 # part of the project history
 git worktree remove bugfix
 ```
+
+---
+
+Each worktree is a linked copy of the repository that maintains its own state while sharing the same object database, ensuring all trees stay synchronized with the main repository.
 
 ---
 
@@ -344,3 +394,16 @@ git submodule add path/to/other/repo
 # clone a repository including all submodules
 git clone --recurse submodules
 ```
+
+---
+
+<class-note>
+
+  Knowing something exists does NOT mean you have to use it.
+
+  In most day-to-day git use-cases, you would not need to use the features
+  discussed in this section.
+
+  But in that one situation when you need it - you will know!
+
+</class-note>

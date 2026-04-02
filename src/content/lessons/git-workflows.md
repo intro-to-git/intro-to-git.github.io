@@ -228,39 +228,6 @@ to contribute.
 
 ---
 
-## Local Merging Workflow Example
-
-```bash
-# Start with a up-to-date main branch
-git checkout main
-git pull origin main
-
-# Create feature branch
-git checkout -b feature-contact-form
-
-# Do work and commit
-echo "<form>Contact Form</form>" > contact.html
-git add contact.html
-git commit -m "feat: add contact form"
-```
-
----
-
-```bash
-# Push feature branch to remote
-git push -u origin feature-contact-form
-
-# When feature is complete, merge back
-git checkout main
-git pull origin main
-git merge feature-contact-form
-
-# push the merged feature to the remote
-git push origin main
-```
-
----
-
 ## Merge Request Example
 
 Instead of merging directly, most teams use Pull / Merge Requests for code review:
@@ -310,11 +277,50 @@ git clone github/yourusername/forked-project.git
 # 2. Create feature branch and work
 git checkout -b fix-bug
 
-# 3. Push to YOUR fork
+# 3. Push to *YOUR* fork
 git push origin fix-bug
 
-# 4. Create Pull Request
-# from your fork to the original
+# 4. Create a Pull Request
+# from *YOUR* fork to the original
+```
+
+---
+
+## Email patch workflow example
+
+This workflow does NOT require any centralized infrastructure.
+
+The contributor sends their commits as a specially formatted email attachment.
+
+```bash
+# After making commits on a branch (e.g., `feature`)
+
+git format-patch main..feature --stdout \
+  > 0001-contact-form.patch
+
+# Send patch via email
+# (e.g., `mutt -s "PATCH" < 0001-contact-form.patch`)
+```
+
+---
+
+The maintainer can either apply the patch locally, review and merge it.
+
+Or directly apply the commits in the patch.
+
+```bash
+# Receive the patch email
+# (e.g., saved as `0001-contact-form.patch`)
+
+# apply the changes to the local working directory
+git apply 0001-contact-form.patch
+
+# OR directly applies the commits
+# preserving author, message, and sign-off
+git am 0001-contact-form.patch
+
+# push the new commits to the blessed repository
+git push
 ```
 
 ---

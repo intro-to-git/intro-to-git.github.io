@@ -24,11 +24,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.4",
+    "astro": "^6.1.2",
     "reveal.js": "^5.2.1"
   },
   "devDependencies": {
-    "@astrojs/rss": "^4.0.17",
-    "@astrojs/sitemap": "^3.7.1"
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2"
   }
 }
