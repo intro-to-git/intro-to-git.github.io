@@ -14,10 +14,28 @@ links: {
 Writing a simple script is as easy as putting some commands in a file:
 
 ```bash
-echo 'echo "Hello world!"' > my_first_script.sh
+echo 'echo "Hello world!"' > my_script.sh
 ```
 
 ---
+
+## Executing scripts
+
+There are 2 main ways to execute a script:
+
+```bash
+# execute explicitly using bash
+bash ./my_script.sh
+
+# execute as a command
+# requires execute permissions on the file
+chmod +x ./my_script.sh
+./my_script.sh
+```
+
+---
+
+### A note on editing scripts
 
 > You can use any editor to author your scripts,
 > but I would recommend an editor that supports useful plugins:
@@ -38,22 +56,6 @@ In this course we will focus on:
 - giving you a glimpse into what it takes to write a polished script
 
 </class-note>
-
----
-
-## Executing scripts
-
-There are 2 main ways to execute a script:
-
-```bash
-# execute explicitly using bash
-bash ./my-script
-
-# execute as a command
-# implicitly uses the default shell
-# requires execute permissions on the file
-./my-script
-```
 
 ---
 
@@ -523,6 +525,29 @@ myfunc() { echo "$1 $2 $3"; }
 
 ---
 
+### Function local variables
+
+By default all variables declared in a script will be visible anywhere
+within the script, even if they are declared inside a function.
+
+---
+
+To make a variable scoped to the specific function use the `local` keyword.
+
+```bash
+my_func() {
+  greeting="ahoy"
+  local hi="hello"
+}
+
+my_func
+echo "global: $greeting"
+echo "local: $hi"
+# prints: ahoy
+```
+
+---
+
 ## Doing math in bash
 
 By default everything in the console is treated as a string.
@@ -568,9 +593,12 @@ shellcheck my-script
 # produces a list of potential problems
 ```
 
----
+<bonus-content>
 
-> **Fun fact:** there is a version of the popular containerization tool Docker [written entirely in bash](https://github.com/p8952/bocker)
+  > **Fun fact:** there is a version of the popular containerization tool Docker [written entirely in bash](https://github.com/p8952/bocker)
+
+</bonus-content>
+
 ---
 
 <class-work>
@@ -587,7 +615,69 @@ shellcheck my-script
 
 <bonus-content>
 
-## Complex example: interactive menu
+## Guessing game implementation example
+
+This is an example of how the above exercise can be implemented.
+
+> NOTE: this is just an example, it is NOT in any way canonical.
+> Feel free to implement the solution in a way that makes sense to you.
+
+```bash
+#!/bin/bash
+
+# allow the user to provide upper bound as param
+if [ -z "$1" ]; then
+  upper=100
+else
+  upper=$1
+fi
+
+# generate the target number
+((target = RANDOM % upper))
+
+echo "Guess the number between 0 and $upper!"
+
+# track the number of guesses
+num_guesses=1
+
+# taunt player if they quit
+trap "echo -e '\ngiving up??'" EXIT
+
+# loop forever (we'll break the loop manually)
+while true; do
+  read -rp "Guess [$num_guesses]: " guess
+
+  # validate that the guess is a number
+  if ! [[ "$guess" =~ ^[0-9]+$ ]]; then
+    echo "please enter a number"
+    continue
+  fi
+
+  # validate that the guess is within the bounds
+  if [ "$guess" -lt 0 ]; then
+    echo "guess should be higher than 0"
+    continue
+  elif [ "$guess" -gt "$upper" ]; then
+    echo "guess should be lower than $upper"
+    continue
+  fi
+
+  # give the user hints
+  if [ "$guess" -lt "$target" ]; then
+    echo "try higher!"
+  elif [ "$guess" -gt "$target" ]; then
+    echo "try lower!"
+  else
+    echo "You got it!"
+    exit 0
+  fi
+
+  # increment number of guesses
+  ((num_guesses = num_guesses + 1))
+done
+```
+
+## Interactive menu example
 
 The code below demonstrates a more complex script that displays an interactive menu
 which allows the user to choose options using the arrow keys.
