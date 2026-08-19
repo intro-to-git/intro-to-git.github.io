@@ -44,14 +44,14 @@ export function pagePath(category?: categories) {
 export function pageTitle(lesson: DisplayableArticle, category?: categories) {
   switch (category) {
     case 'lesson':
-      return `${lessonMarker(lesson.data.state)} ${lesson.data.order}. ${lesson.data.title}`;
+      return `${lesson.data.order}. ${lesson.data.title}`;
     case 'bonus':
       return lesson.data.title;
     case 'homework':
       return lesson.data.title;
   }
 
-  return `${lessonMarker(lesson.data.state)} ${lesson.data.order}. ${lesson.data.title}`;
+  return `${lesson.data.order}. ${lesson.data.title}`;
 }
 
 export function fullLinkText(category?: categories) {
