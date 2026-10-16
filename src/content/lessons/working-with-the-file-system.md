@@ -1,13 +1,24 @@
 ---
-title: 'Working with the file system'
-description: 'Commands used to navigate, explore and manipulate the file system'
+title: "Working with the file system"
+description: "Commands used to navigate, explore and manipulate the file system"
 order: 2
-tags: ['bash', 'unix']
-state: 'covered'
-links: {
-  'Bash guide':'https://guide.bash.academy/',
-  'The Linux File System':'https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained',
-}
+tags: ["bash", "unix"]
+state: "covered"
+links:
+  {
+    "Bash guide": "https://guide.bash.academy/",
+    "The Linux File System": "https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained",
+  }
+---
+
+## Everything is a file
+
+It is a core design principle of UNIX-like operating systems that all system resources and user programs and data are represented as files.
+
+Most Linux distributes follow a standard file system layout.
+
+> See [The Linux File System](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained) for more details
+
 ---
 
 ## Current directory
@@ -51,9 +62,9 @@ There are multiple special signifiers that help us navigate in a relative way
 
 ---
 
-For example, `./my-sub-dir`  specifies a directory that is a child of the current directory.
+For example, `./my-sub-dir` specifies a directory that is a child of the current directory.
 
-> *Notice* the `.` at the start of the path.
+> _Notice_ the `.` at the start of the path.
 
 ---
 
@@ -102,7 +113,7 @@ While it's possible to mix relative paths inside an absolute path it is discoura
 
 ---
 
-*Why would you do that?*
+_Why would you do that?_
 
 You wouldn't do it manually, but it is very easy for a script or program to receive a malicious path as an argument and expose sensitive data
 
@@ -185,6 +196,23 @@ Path expansions can also be applied to directories:
 # in any subdir of the user's home dir
 # that doesn't begin with my-
 ls ~/!(my-*)/readme.@(txt|md)
+```
+
+---
+
+## Searching for files
+
+Use the `find` command to discover files in your file system:
+
+```bash
+# find example.txt in any subdirectory of the current dir
+find . -name "example.txt"
+
+#  find all .conf files in your config directory
+find ~/.config -name "*.conf"
+
+# find all files larger than 10MB starting from the root dir
+find / -size +10M
 ```
 
 ---
@@ -423,10 +451,10 @@ We also want to focus on one tool in particular - `git`
 
 1. In your home dir, create directories `cos3100/in-class-1`
 2. Create the following files in the directory:
-    - empty `my-file.txt`
-    - `readme.md` containing the string `Hello World`
-    - `my-first-script` containing the string `ls -al`
-    - `output` containing the output of the command `ls`
+   - empty `my-file.txt`
+   - `readme.md` containing the string `Hello World`
+   - `my-first-script` containing the string `ls -al`
+   - `output` containing the output of the command `ls`
 3. Print the number of files in the directory
 4. Print all files containing the string `my`
 

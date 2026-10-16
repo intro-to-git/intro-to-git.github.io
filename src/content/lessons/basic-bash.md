@@ -1,14 +1,15 @@
 ---
-title: 'Bash basics'
-description: 'Overview of bash syntax, features and common builtins'
+title: "Bash basics"
+description: "Overview of bash syntax, features and common builtins"
 order: 1
-state: 'covered'
-tags: ['bash', 'intro']
-links: {
-  'The bash manual':'https://www.gnu.org/software/bash/manual/bash.html',
-  'The bash cheatsheet':'https://devhinTs.io/bash',
-  'ysap - a youtube channel about bash':'https://github.com/bahamas10/ysap?tab=readme-ov-file',
-}
+state: "covered"
+tags: ["bash", "intro"]
+links:
+  {
+    "The bash manual": "https://www.gnu.org/software/bash/manual/bash.html",
+    "The bash cheatsheet": "https://devhinTs.io/bash",
+    "ysap - a youtube channel about bash": "https://github.com/bahamas10/ysap?tab=readme-ov-file",
+  }
 ---
 
 ## Features
@@ -39,17 +40,13 @@ Others are specific to bash and the terminal environment:
 
 ---
 
-> This course aims to provide you with working knowledge of bash and the Unix ecosystem, but CANNOT cover all the topics in detail
-
----
-
 ## Operational modes
 
 Bash can be used either:
 
-- __in interactive mode__: commands are executed as soon as the user hits enter.
+- **in interactive mode**: commands are executed as soon as the user hits enter.
 
-- __for scripts__: they are executed to completion and can accept variable arguments
+- **for scripts**: they are executed to completion and can accept variable arguments
 
 ---
 
@@ -90,17 +87,17 @@ echo 'Hello World!'
 
 Once the user submits the command, it executes, and prints the output to the screen.
 
-The `echo` command prints the provided argument to __standard out__
+The `echo` command prints the provided argument to **standard out**
 
 ---
 
-> *Beware*: Bash is case-sensitive, so trying
+> _Beware_: Bash is case-sensitive, so trying
 >
 > ```bash
->EcHo 'hello world'
->```
+> EcHo 'hello world'
+> ```
 >
->might NOT produce the expected result
+> might NOT produce the expected result
 
 ---
 
@@ -134,11 +131,11 @@ Bash processes commands in this order:
 
 There are 2 main output streams:
 
-- standard output (__stdout__) for regular program output
+- standard output (**stdout**) for regular program output
 
-- standard error (__stderr__) for error messages and diagnostics.
+- standard error (**stderr**) for error messages and diagnostics.
 
-> __By default, both streams are displayed on the terminal.__
+> **By default, both streams are displayed in the terminal.**
 
 ---
 
@@ -196,7 +193,7 @@ alias # prints all aliases
 alias ll='ls -alh' # define a new alias
 ```
 
-> __NOTE__: there must be NO spaces around the `=` sign.
+> **NOTE**: there must be NO spaces around the `=` sign.
 > Also, unlike other languages, bash handles single and double quotes differently.
 
 ---
@@ -204,7 +201,7 @@ alias ll='ls -alh' # define a new alias
 ## Executing specific command variant
 
 ```bash
-# a bit of setup
+# setup an alias
 alias echo='echo "ALIASED:"'
 
 echo "test"
@@ -268,7 +265,7 @@ echo $?
 
 <pop-quiz data-answer-id="2">
 
-### Which is *NOT* a valid command type?
+### Which is _NOT_ a valid command type?
 
 - built-in
 - file (external)
@@ -286,7 +283,7 @@ echo $?
 
 - Bash provides a large number of built-in variables.
 
-- External programs and the operating system also expose a lot of variables.
+- External programs and the operating system also expose many variables.
 
 - You can define your own variables and expose them to the system.
 
@@ -309,6 +306,7 @@ echo $BASH_VERSION
 
 There are many pre-defined and built-in variables depending
 on the specific environment. Some useful ones are:
+
 ```bash
 $TERM # the name / type of the terminal
 $SHELL # the name of the shell (e.g bash)
@@ -382,7 +380,7 @@ echo $TZ
 
 ---
 
-The `$` character is used for __variable expansion__.
+The `$` character is used for **variable expansion**.
 
 It allows multiple advanced features:
 
@@ -421,10 +419,11 @@ echo "$MY_VAR test"
 
 ---
 
-## Subshells
+## Sub-shells
 
-By default, the output of a command goes to stdout. But there are ways to redirect or capture
-the result of a command:
+Use the `$()` syntax to spawn new, scoped bash instances from within the current shell session.
+
+This allows for capturing of command output:
 
 ```bash
 today=date
@@ -438,7 +437,7 @@ echo $today
 
 ---
 
-Subshells can also be used to pass the output of one command as an argument to another:
+Sub-shells can also be used to pass the output of one command as an argument to another:
 
 ```bash
 du -h $(which ls)
@@ -452,14 +451,16 @@ du -h $(which ls)
 
 ## Pipes
 
-Another way of redirecting the output of a command is by using a pipe `|`:
+By default, the output of a command goes to **stdout**. Pipes `|` are a way to redirect
+the result of a command:
 
 ```bash
 env | grep MY_
-# prints all global variables that contain the string MY_
+# prints all global variables
+# that contain the string MY_
 ```
 
-Using a pipe we are redirecting the output of the first command to the __stdin__ of the second.
+By using a pipe we are redirecting the output of the first command to the **stdin** of the second.
 
 <bonus-content>
 
@@ -471,7 +472,7 @@ Use bash to customize your prompt.
 Explore options for what information would be most useful to you.
 Play around with fun colors and special symbols.
 
-*__Hint__: to modify your prompt set a value to the `PS1` special variable.*
+_**Hint**: to modify your prompt set a value to the `PS1` special variable._
 
 </home-work>
 
