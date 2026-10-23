@@ -5,6 +5,7 @@ order: 3
 state: 'covered'
 tags: ['intro', 'git']
 links: {
+  'official git download page': 'https://git-scm.com/install/',
   'Git docs': 'https://git-scm.com/docs',
   'Git book': 'https://git-scm.com/book/en/v2',
   'Intro to git by Scott Shacon': 'https://www.youtube.com/watch?v=ZDR433b0HJY',
@@ -60,7 +61,7 @@ my-project-final-v2-ACTUALLY-FINAL-fixed-typo.txt
 
 There are different types of version control setups:
 
-- Local
+- Local only
 - Centralized
 - Distributed
 
@@ -74,14 +75,21 @@ Different tools allow for collaboration and version control in different ways:
 
 ---
 
+With the proliferation of AI, there has been a renewed interest in development in and around
+version control systems.
+
+> See [Bonus: Beyond git](/bonus/beyond-git) to learn more
+
+---
+
 ### Git
 
-**Git** is local-first but allows for great flexibility of setups for collaboration:
+**git** is local-first but allows for great flexibility of setups for collaboration:
 
 - centralized (e.g. through GitHub)
 - decentralized (e.g. through e-mail)
 
-> **Fun fact**: The linux kernel development is based on git over email
+> **Fun fact**: The Linux kernel development is based on git over email
 
 <bonus-content>
 
@@ -107,71 +115,55 @@ in the context of git.
 
 ---
 
-## Initial config
+## Running git
 
-Before we can get started using git, we need to tell git who we are:
+You can download and install git in multiple ways depending on your environment and preferences.
+To get started, follow the official guide.
 
-```
-git config --global user.name='my name'
-git config --global user.email='name@example.com'
-```
+> See: [official git download page](https://git-scm.com/install/)
 
 ---
 
-## Creating a repository
+There are multiple implementations of git designed for different use-cases.
 
-A core concept in git is the **repository**.
-
-```bash
-mkdir my-first-git-project
-cd my-first-git-project
-
-# create a repository in a newly created directory
-git init
-```
-
-A repository is just a directory for which git tracks changes.
+The way GitHub _(and other centralized git hosting platforms)_ implement git operations
+is different from what the standard local git binary does on your local file system.
 
 ---
 
-### Cloning a repository
+## Repositories
 
-Another way to get a git repository is to clone it:
+A core concept in git is the **repository** (shortly called `repo`). A repository can be:
 
-```bash
-git clone https://github.com/bahamas10/ysap.git
-```
+- a directory in your local file system
+- hosted on a remote server
 
-The above command will create a local copy of the given repository to your computer and **checkout the default branch**.
+---
+
+Each repo contains:
+
+- the current version of your files
+- the full history of all changes to **tracked** files
+- internal git metadata used in various operations
 
 ---
 
 ## Working directory
 
-The directory where you created or cloned a repo is called the **working directory**.
+Holds the currently **checked-out** version of your files, any **untracked** files, and **uncommitted** changes.
 
-It contains a _snapshot_ of the files corresponding to the selected **commit**.
-<bonus-content>_(the latest commit on the default **branch** by default)_.</bonus-content>
-
-> **Feel free** to manipulate your local copy of a repository as you wish.
->
-> As git is local-first, uploading changes requires an explicit **push** operation.
+The directory where you created _(or cloned)_ a repo becomes the **working directory** for that repo.
 
 ---
 
 ## Repository internals
 
-Git stores all the data related to a repository in a hidden `.git` directory.
+Git stores the history of changes and the metadata related to a repo in a hidden `.git` directory.
 
 - full history of changes (**commits**)
 - full history of versions (**branches** and **tags**)
 - all versions of all files ever added to the repository (**snapshots**)
-
-<bonus-content>
-
-- other configurations and internals which we will cover later
-
-</bonus-content>
+- configurations and other internals which we will cover later
 
 > **Danger**: Deleting the `.git` directory will delete the entire local history of the repository!
 
@@ -179,7 +171,7 @@ Git stores all the data related to a repository in a hidden `.git` directory.
 
 ## The three stages
 
-Contributing changes to a repository passes through 3 stages:
+Making changes to a repository passes through 3 stages:
 
 - Working directory
 - Staging area
@@ -191,11 +183,9 @@ Contributing changes to a repository passes through 3 stages:
 
 ---
 
-Changes in the **working directory** are completely local.
+Changes in the **working directory** are completely local. They are not yet version controlled and **can be lost**.
 
-They are not yet version controlled and _can be lost_.
-
-No different that editing a file without using git.
+> This is no different from editing files without using git.
 
 ---
 
@@ -211,11 +201,13 @@ repository's history.
 
 ---
 
+### Lifecycle of a file in git
+
 ![file state changes](https://git-scm.com/book/en/v2/images/lifecycle.png)
 
 ---
 
-Once you are ready, you can commit changes from the staging area to your
+Once you are ready, you can **commit** changes from the staging area to your
 **local repository**.
 
 ```
@@ -231,7 +223,7 @@ on your computer.
 
 Unlike other version control systems, git does NOT record an explicit history of changes (**diffs**).
 
-A commit is a **snapshot** of the full content of all files in the repository.
+A commit is a **snapshot** of the full content of all tracked files in the repository.
 
 ---
 
@@ -253,13 +245,10 @@ In git, each commit stores a full snapshot of all the files in the repository.
 ## Basic workflow
 
 ```bash
-# display the status of the files
-git status
-
-# add all files to the staging area
+# add all files & changes to the staging area
 git add .
 
-# commit the changes
+# commit the changes locally
 git commit -m "my first commit"
 
 # upload your changes to a shared repo
@@ -269,7 +258,7 @@ git push
 <class-note>
 
 This basic loop is at the core of using git. As a software professional
-you'll use these commands tens to hundreds of times a day.
+you'll use these commands tens or even hundreds of times a day.
 
 </class-note>
 
@@ -300,6 +289,8 @@ git help
 # of the specific sub-command
 git sub-command --help
 ```
+
+> See also: [the official free git book](https://git-scm.com/book/en/v2)
 
 <bonus-content>
 

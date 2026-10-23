@@ -19,7 +19,18 @@ links: {
 
 ---
 
-## Config
+## Initial config
+
+Before we can get started using git, we need to tell git who we are:
+
+```
+git config --global user.name='my name'
+git config --global user.email='name@example.com'
+```
+
+---
+
+## Git config
 
 Git is highly configurable.
 
@@ -69,9 +80,23 @@ Creating repositories is simple. It creates a `.git` directory.
 The current directory becomes the **working directory**
 
 ```bash
-## inside a directory that you want to track
+# enter a directory you want to track with git
+cd my-project/
+
+# tell git to start tracking the files in this directory
 git init
 ```
+
+> You can init a git repository in a directory that already contains files
+
+---
+<class-note>
+
+**I encourage you** to create repositories, and manipulate your local copies of repos as much as you wish in order to get comfortable with how git works and feels.
+
+As git is local-first, uploading changes requires an explicit **push** operation.
+
+</class-note>
 
 ---
 
@@ -178,18 +203,31 @@ git add my-file.txt readme.md
 Use `reset` to un-stage a change i.e.
 the change will no longer be in the next commit.
 
-The changes are still present in the working directory.
+```bash
+# stage all changes in a file
+git add index.html
+
+# un-stage all changes in the file
+git reset index.html
+```
+
+> The changes are still present in the working directory.
 
 ---
 
 ```bash
-# removes changes to the file from
-# the staging area
-git reset filename
+# removes all staged changes to all file
+# from the staging area
+git reset
 
-# interactively remove hunks from
-# the staging area
+# interactively remove hunks
+# from the staging area
 git reset -p
+
+
+# !!BEWARE: this will cause you to
+# permanently lose uncommitted changes
+git reset --hard HEAD
 ```
 
 <class-note>
@@ -219,7 +257,7 @@ git diff my-file.txt
 
 ## Clean
 
-`clean` *deletes* untracked files from the working directory:
+`clean` *DELETES* untracked files from the working directory:
 
 ```bash
 # remove untracked files in the top level dir
@@ -241,7 +279,7 @@ git clean -x
 
 ## Commit
 
-Creates a commit with all changes in the staging area.
+Creates a commit containing all changes in the staging area.
 
 ```bash
 # opens the default editor for a message
@@ -357,6 +395,8 @@ git rm --cached filename
 
 Telling git to no longer track a file does **NOT** remove previous versions of the file from the repository.
 
+If you've accidentally committed and pushed your secrets, it is NOT enough to `git rm` the file and push a new commit. You need to rewrite the history of the repository.
+
 We will learn how to do this later.
 
 ---
@@ -422,6 +462,7 @@ Each commit holds a pointer to its parent commit.
 Git is a very practical system. The aim of this course is
 to help you learn to use it daily and seamlessly.
 But for that to happen you need to practise on your own.
+
 **Start using git to track your projects today**!
 
 </class-note>

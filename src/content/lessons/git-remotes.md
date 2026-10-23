@@ -33,7 +33,7 @@ For now it is enough to know that branches are pointers to commits.
 
 ## Remote Repositories
 
-A **remote repository** is a independent version of the repository hosted somewhere else (like GitHub, GitLab, or Bitbucket).
+A **remote repository** is a independent instance of the same repository hosted somewhere else (like GitHub, GitLab, or Bitbucket).
 
 It enables collaboration and serves as a backup.
 
