@@ -1,11 +1,10 @@
 ---
-title: 'Merging, rebasing and handling conflicts'
-description: 'Inevetably when people work together conflits arise. Git helps us handle these conflicts (at least when it comes to the code)'
+title: "Merging, rebasing and handling conflicts"
+description: "Inevetably when people work together conflits arise. Git helps us handle these conflicts (at least when it comes to the code)"
 order: 7
-state: 'covered'
-tags: ['git']
-resources: {
-}
+state: "covered"
+tags: ["git"]
+resources: {}
 ---
 
 ## Merging Branches
@@ -13,7 +12,7 @@ resources: {
 Merging combines the work from different branches back together.
 
 This creates a merge commit. Merge commits are special because they
-have more than 1 parent commit.
+have **more than 1 parent** commits.
 
 ---
 
@@ -47,8 +46,7 @@ git branch --no-merged
 
 ## Fast-Forward Merge
 
-When the target branch hasn't changed since the feature branch was created.
-No merge commit is created. The history remains linear.
+When the history of the selected branches has not diverged, no merge commit is created. The history remains linear.
 
 ```bash
 # Switch to main branch
@@ -65,12 +63,14 @@ git merge main feature-branch
 
 ## Real Merge
 
-When both branches have new commits a merge commit is created:
+When branches have diverged a merge commit is created:
 
 ```bash
 git checkout main
+git commit -m "changes on main"
 
-# make unrelated changes
+git checkout feature-branch
+git commit -m "chnages on feature"
 
 git merge feature-branch
 # Creates a new merge commit
@@ -144,7 +144,7 @@ Hello World FROM FEATURE
 >>>>>>> feature-greeting
 ```
 
-Git will also prevent you from committing until the conflict is resolved.
+> Git will prevent you from committing until all conflicts is resolved.
 
 ---
 
@@ -219,6 +219,12 @@ git rebase -i HEAD~3
 
 ---
 
+Given this example, we already know how we can merge the branches.
+
+![before rebase example](https://git-scm.com/book/en/v2/images/basic-rebase-1.png)
+
+---
+
 Since git commits are **immutable**, `rebase` creates new commits
 with the same changes and author on top of the selected base.
 
@@ -259,7 +265,7 @@ git cherry-pick abc123 def456
 
 `revert` creates a new commit with the opposite changes to the given commit.
 
-This is very useful when you want to quickly *undo* some changes without
+This is very useful when you want to quickly _undo_ some changes without
 rewriting the history.
 
 ```bash

@@ -1,18 +1,19 @@
 ---
-title: 'Advanced git features'
-description: 'Finding specific commits, using multiple working trees and submodules'
+title: "Advanced git features"
+description: "Finding specific commits, using multiple working trees and submodules"
 order: 9
-state: 'covered'
-tags: ['git']
-links: {
-  'Referencing commits docs': 'https://git-scm.com/docs/gitrevisions',
-  'GPG encryption suite': 'https://gnupg.org/',
-  'Signing your work in git': 'https://git-scm.com/book/ms/v2/Git-Tools-Signing-Your-Work',
-  'Tagging': 'https://git-scm.com/book/en/v2/Git-Basics-Tagging',
-  'About semantic versioning': 'https://semver.org/',
-  'Git bisect': 'https://git-scm.com/docs/git-bisect',
-  'Git submodules': 'https://git-scm.com/book/en/v2/Git-Tools-Submodules',
-}
+state: "covered"
+tags: ["git"]
+links:
+  {
+    "Referencing commits docs": "https://git-scm.com/docs/gitrevisions",
+    "GPG encryption suite": "https://gnupg.org/",
+    "Signing your work in git": "https://git-scm.com/book/ms/v2/Git-Tools-Signing-Your-Work",
+    "Tagging": "https://git-scm.com/book/en/v2/Git-Basics-Tagging",
+    "About semantic versioning": "https://semver.org/",
+    "Git bisect": "https://git-scm.com/docs/git-bisect",
+    "Git submodules": "https://git-scm.com/book/en/v2/Git-Tools-Submodules",
+  }
 ---
 
 ## Referencing commits
@@ -30,7 +31,7 @@ B~1 # A (parent)
 
 ---
 
-*parents* vs *ancestors*
+_parents_ vs _ancestors_
 ![history with merge](https://git-scm.com/book/en/v2/images/basic-merging-2.png)
 
 ```bash
@@ -74,46 +75,6 @@ master@{3}
 # i.e. what was I working on 5 days ago?
 HEAD@{5.days.ago}
 ```
-
----
-
-## Reset
-
-`git reset` has 3 modes of operation. This determines what you allow it to change
-
-| Mode | Worktree | Staging | HEAD |
-| --- | --- | --- |--- |
-| --soft | ❌ | ❌ |✔️ |
-| --mixed | ❌ | ✔️ |✔️ |
-| --hard | ✔️ | ✔️ |✔️ |
-
----
-
-## Reset modes
-
-- **soft**: only change which commit the current branch points to
-
-- **mixed** (default): move the branch and update the staging area.
-
-  *(this is why we can use it to unstage changes)*
-
-- **hard**: move the branch and update both staging and the worktree
-
-<class-note>
-
-  A hard reset can lead to losing uncommitted changes
-
-</class-note>
-
----
-
-## Reset vs checkout
-
-Checkout is very similar to `git reset --hard` with a couple of key differences:
-
-- checkout does NOT destroy uncommitted changes in the working directory
-
-- checkout modifies HEAD itself but not the branch that HEAD points to
 
 ---
 
@@ -347,7 +308,7 @@ to resolve conflicts in them when modifying the main-line code.
 
 But also, the artefacts stay versioned and within the same repository.
 
-> This *was* the most popular way of setting up github pages, until the introduction of `Github actions`
+> This _was_ the most popular way of setting up github pages, until the introduction of `Github actions`
 
 ---
 
@@ -358,7 +319,7 @@ the full history of commits.
 
 ---
 
-In these cases an orphan branch can be used to established a *"cleaner"* history
+In these cases an orphan branch can be used to established a _"cleaner"_ history
 that you can comfortably share on the internet while keeping the full history
 intact.
 
@@ -387,7 +348,7 @@ but keep their histories separate.
 ---
 
 ```bash
-# add an existing repository as a 
+# add an existing repository as a
 # submodule of the current repo
 git submodule add path/to/other/repo
 
@@ -399,11 +360,11 @@ git clone --recurse submodules
 
 <class-note>
 
-  Knowing something exists does NOT mean you have to use it.
+Knowing something exists does NOT mean you have to use it.
 
-  In most day-to-day git use-cases, you would not need to use the features
-  discussed in this section.
+In most day-to-day git use-cases, you would not need to use the features
+discussed in this section.
 
-  But in that one situation when you need it - you will know!
+But in that one situation when you need it - you will know!
 
 </class-note>

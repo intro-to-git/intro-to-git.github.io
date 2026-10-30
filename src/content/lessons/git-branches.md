@@ -1,28 +1,33 @@
 ---
-title: 'Working with branches'
-description: 'Most projects have a complicated history that is not a straight line and include contributions from multiple people'
+title: "Working with branches"
+description: "Most projects have a complicated history that is not a straight line and include contributions from multiple people"
 order: 6
-state: 'covered'
-tags: ['git']
-links: {
-  'Git Branching Documentation': 'https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell',
-  'Interactive Git Branching': 'https://learngitbranching.js.org/',
-}
+state: "covered"
+tags: ["git"]
+links:
+  {
+    "Git Branching Documentation": "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell",
+    "Interactive Git Branching": "https://learngitbranching.js.org/",
+  }
 ---
 
 ## What Are Branches?
 
-A **branch** in Git is essentially a moveable pointer to a specific commit.
+A **branch** in Git is a moveable _pointer_ to a specific commit.
 
-Branches are lightweight - a branch is just a file containing a commit hash.
+> Branches are lightweight - a branch is just a file containing a commit hash.
+
+<bonus-content>
 
 > Files you commit on one branch are not visible when you switch to another branch.
+
+</bonus-content>
 
 ---
 
 ### Why Use Branches?
 
-- **Safe experimentation** - Try new features without breaking working code
+- **Safe experimentation** - Try new ideas without breaking working code
 
 - **Parallel development** - Multiple people can work on different features simultaneously
 
@@ -30,6 +35,13 @@ Branches are lightweight - a branch is just a file containing a commit hash.
 
 - **Version support** - apply fixes to previous versions
 
+---
+
+### Branch Visualization
+
+Multiple branches can point to the same commit.
+
+![branches are pointers](https://git-scm.com/book/en/v2/images/branch-and-history.png)
 ---
 
 ## Creating a New Branch
@@ -42,6 +54,7 @@ git branch feature-user-profile
 git checkout -b feature-user-profile
 
 # Modern alternative (Git 2.23+)
+# -c means create
 git switch -c feature-user-profile
 ```
 
@@ -57,10 +70,10 @@ api-documentation
 refactor-database-queries
 
 # Poor branch names
+new-stuff
 fix
 temp
 my-branch
-new-stuff
 ```
 
 ---
@@ -82,13 +95,6 @@ git branch -a
 
 ---
 
-### Branch Visualization
-
-Multiple branches can point to the same commit.
-
-![branches are pointers](https://git-scm.com/book/en/v2/images/branch-and-history.png)
----
-
 ## Switching Between Branches
 
 ```bash
@@ -102,64 +108,6 @@ git switch feature-user-profile
 ```
 
 > Since I am old, you'd probably see me using the old commands out of habit.
-
----
-
-## HEAD
-
-Git tracks the current branch in a *special ref* called `HEAD`.
-
-It is similar to a branch in that it can be used as an argument where-ever a branch is needed.
-
-But it is NOT a true branch - it points to the current branch
-
----
-
-![HEAD pointer](https://git-scm.com/book/en/v2/images/head-to-master.png)
-
-> Branches point to commits; HEAD points to a branch
-
----
-
-All of the following commands
-will do the same thing - display the contents of the *commit*
-that is pointed to by the *branch*, that is currently **checked-out**
-
-```bash
-git show HEAD
-
-git show master
-
-git show f30ab
-```
-
----
-
-## Checkout
-
-The checkout command does 2 main things:
-
-- Changes the branch that `HEAD` points to
-- Overwrites the contents of the working directory with
-the contents of the commit pointed by the new `HEAD` branch
-
----
-
-In this example `HEAD` is pointing to the `testing` branch
-which is one commit ahead of `master`:
-
-![example-head](https://git-scm.com/book/en/v2/images/advance-testing.png)
-
----
-
-<class-work>
-
-### Replicate the state of the repository from the picture
-
-![example-head](https://git-scm.com/book/en/v2/images/advance-testing.png)
-
-> Note: Your commit SHAs would not be the same
-</class-work>
 
 ---
 
@@ -188,6 +136,93 @@ git branch -D feature-name
 # more on this later
 git branch -dr origin/feature-name
 ```
+
+---
+
+## HEAD
+
+Git tracks the current branch in a _special ref_ called `HEAD`.
+
+It is similar to a branch in that it can be used as an argument where-ever a branch is needed.
+
+> But it is NOT a true branch - it points to the current branch, not to the commit hash
+
+---
+
+![HEAD pointer](https://git-scm.com/book/en/v2/images/head-to-master.png)
+
+> Branches point to commits; HEAD points to a branch
+
+---
+
+All of the following commands
+will do the same thing - display the contents of the _commit_
+that is pointed to by the _branch_, that is currently **checked-out**
+
+```bash
+git show HEAD
+
+git show master
+
+git show f30ab
+```
+
+---
+
+## Checkout
+
+The checkout command does 2 main things:
+
+- Changes the branch that `HEAD` points to
+- Overwrites the contents of the **working directory** and **staging area**
+  with the contents of the commit pointed by the new `HEAD` branch
+
+---
+
+In this example `HEAD` is pointing to the `testing` branch
+which is one commit ahead of `master`:
+
+![example-head](https://git-scm.com/book/en/v2/images/advance-testing.png)
+
+---
+
+## Reset
+
+`git reset` has 3 modes of operation. This determines what you allow it to change
+
+| Mode    | Worktree | Staging  | HEAD |
+| ------- | -------- | -------- | ---- |
+| --soft  | ❌&nbsp; | ❌&nbsp; | ✔️   |
+| --mixed | ❌&nbsp; | ✔️&nbsp; | ✔️   |
+| --hard  | ✔️&nbsp; | ✔️&nbsp; | ✔️   |
+
+---
+
+## Reset modes
+
+- **soft**: only change which commit the current branch points to
+
+- **mixed** (default): move the branch and update the staging area.
+
+  _(this is why we can use it to unstage changes)_
+
+- **hard**: move the branch and update both staging and the worktree
+
+<class-note>
+
+A hard reset can lead to losing uncommitted changes
+
+</class-note>
+
+---
+
+## Reset vs checkout
+
+Checkout is very similar to `git reset --hard` with a couple of key differences:
+
+- reset will destroy any uncommitted changes in the working directory and staging area
+
+- reset modifies both HEAD and the branch that HEAD points to
 
 ---
 
@@ -235,6 +270,35 @@ git log --oneline --graph master...experimental
 
 ---
 
+<class-work>
+
+### Replicate the state of the repository from the picture
+
+![branches-diverge](https://git-scm.com/book/en/v2/images/advance-master.png)
+
+> Note: Your commit SHAs would not be the same
+
+</class-work>
+
+---
+
+## Detached HEAD
+
+If HEAD points directly at a commit, git will inform you that
+you are in a **detached HEAD** state.
+
+```bash
+git checkout <commit>
+# prints:
+# Note: switching to '<commit>'.
+#
+# You are in 'detached HEAD' state.
+# You can look around, make experimental changes
+# ...
+```
+
+---
+
 ## Tracking Remote Branches
 
 ```bash
@@ -254,7 +318,7 @@ git switch feature-branch
 ## Working with Remote Branches
 
 ```bash
-# Create local branch 
+# Create local branch
 git checkout -b new-feature
 
 # make changes, commit and push to remote
@@ -293,23 +357,6 @@ git branch --set-upstream-to=origin/main main
 5. **Merge** to main after approval
 6. **Delete** feature branch after merge
 7. **Update** local main branch
-
----
-
-## Detached HEAD
-
-If HEAD points directly at a commit, git will inform you that
-you are in a **detached HEAD** state.
-
-```bash
-git checkout <commit>
-# prints:
-# Note: switching to '<commit>'.
-#
-# You are in 'detached HEAD' state.
-# You can look around, make experimental changes
-# ...
-```
 
 <bonus-content>
 
