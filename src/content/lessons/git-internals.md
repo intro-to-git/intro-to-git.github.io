@@ -1,40 +1,15 @@
 ---
-title: 'Git internals'
-description: 'Git internals, Git hooks, plumbing commands and more'
+title: "Git internals"
+description: "Git internals, Git hooks, plumbing commands and more"
 order: 11
-state: 'covered'
-tags: ['git']
-links: {
-  'Git Internals': 'https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain',
-  'Git Attributes': 'https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes',
-  'Git Hooks': 'https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks',
-}
----
-
-## Bare repositories
-
-It is possible to create a git repository **WITHOUT** checking out a working tree.
-
-The `bare` repository can be used a shared remote or as a deployment target.
-
----
-
-This is especially useful in sever setups where no one will work directly
-on the instance of the repository.
-
-```bash
-# create a repository without a working tree
-git init --bare
-
-# clone a repository without a working tree
-git clone --bare </path/to/repo>
-```
-
----
-
-If we now `ls` inside the repository directory, we will find the contents
-that usually sits in the `.git` directory.
-
+state: "covered"
+tags: ["git"]
+links:
+  {
+    "Git Internals": "https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain",
+    "Git Attributes": "https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes",
+    "Git Hooks": "https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks",
+  }
 ---
 
 ## Exploring the .git directory
@@ -109,7 +84,7 @@ echo 'super cool code' | git hash-object -w --stdin
 
 The previous command instructed git to store the given string.
 
-We can now find where git stored it in the *'object database'*:
+We can now find where git stored it in the _'object database'_:
 
 ```bash
 ls -R .git/objects
@@ -245,14 +220,15 @@ echo 'commit message' | git commit-tree \
 
 Apart from `HEAD`, git exposes other useful meta refs:
 
-| Name  | Description |
-| --------------- | --------------- |
-| FETCH_HEAD | the last branch which you fetched from a remote repository |
-| ORIG_HEAD | the position of the HEAD before complex operations, so that you can easily change the tip of the branch back to the state before you ran them |
-| MERGE_HEAD | the commit(s) which you are merging into your branch when you run git merge |
-| REBASE_HEAD | the commit at which the operation is currently stopped, either because of conflicts or an edit command in an interactive rebase |
+| Name        | Description                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| FETCH_HEAD  | the last branch which you fetched from a remote repository                                                                                    |
+| ORIG_HEAD   | the position of the HEAD before complex operations, so that you can easily change the tip of the branch back to the state before you ran them |
+| MERGE_HEAD  | the commit(s) which you are merging into your branch when you run git merge                                                                   |
+| REBASE_HEAD | the commit at which the operation is currently stopped, either because of conflicts or an edit command in an interactive rebase               |
 
 ---
+
 </bonus-content>
 
 <class-note>
@@ -279,7 +255,7 @@ There are 2 types of hooks:
 - Client-side
 - Server-side
 
-> **NOTE**: Hooks are *NOT* copied when cloning a repository - they must be enabled explicitly
+> **NOTE**: Hooks are _NOT_ copied when cloning a repository - they must be enabled explicitly
 > or installed using an external tool (e.g. `husky`)
 
 ---
@@ -341,7 +317,7 @@ In an existing repository:
 
 1. Create a file `.git/hooks/pre-commit`
 2. Execute `chmod +x .git/hooks/pre-commit`
-(this makes the file executable which enables the hook)
+   (this makes the file executable which enables the hook)
 3. Edit the file so that if rejects any commits that do NOT modify the README file
 
 Hints:

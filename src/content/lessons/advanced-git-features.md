@@ -23,9 +23,9 @@ There are many ways to get to a commit.
 
 ```bash
 master^ # E (parent commit)
-master~3 # A (third ancestor)
+B~1 # A (same - parent)
 C^^ # A (parent of parent)
-B~1 # A (parent)
+master~3 # A (third ancestor)
 ^B # everything except A and B
 ```
 
@@ -80,7 +80,9 @@ HEAD@{5.days.ago}
 
 ## Blame
 
-`blame` allow us to understand who and when made changes.
+`blame` allow us to understand who and when made changes to a given file.
+
+It shows the author and last commit that changed each line.
 
 ```bash
 # display which commit last changed each line of my-file
@@ -88,9 +90,54 @@ git blame my-file
 
 # limit the output to specific line range
 git blame -L 5,10 my-file
+```
 
+---
+
+Using `git log -p` allows us to show diff patches commit by commit.
+
+```bash
 # display changes to a my-file commit by commit
 git log -p -- my-file
+```
+
+---
+
+## Bisect
+
+Bisect allow us to find which commit introduces a bug (or any specific behaviour we might want to pinpoint).
+
+It uses a binary search to jump around the project history, allowing you mark whether the selected revision
+is either `good` or `bad`
+
+---
+
+Bisect will try to choose the minimum number of commits you need to review.
+
+```bash
+# start the bisect process with the current commit
+git bisect start
+
+# mark the current commit as bad i.e. containing the bug
+git bisect bad
+
+# mark a commit as good i.e. not containing the bug
+git bisect good 25aef7
+
+# return to the initial commit (before the bisect)
+git bisect reset
+```
+
+---
+
+You can use an appropriate command to automatically validate if the commit is good or bad.
+(e.g. compile the code, run tests or performance benchmarks)
+
+```bash
+# execute the given script to mark
+# commits as good or bad
+# based on the exit status of the script
+git bisect run my-test-command
 ```
 
 ---
@@ -98,7 +145,7 @@ git log -p -- my-file
 ## Signing commits
 
 While git requires the user to provide basic identity information (name, email),
-by default git does **NOT** guarantee that commit author is who they say they are.
+by default, git does **NOT** guarantee that commit author is who they say they are.
 
 ---
 
@@ -144,7 +191,7 @@ The main difference between a Lightweight tag and a branch is that tags
 **CANNOT** be changed to point to a different commit.
 
 ```bash
-# tag the current commit as v2
+# tag the current commit as v2.0.0
 git tag v2.0.0
 
 # tag a previous commit in the history
@@ -200,46 +247,35 @@ git push origin --delete v2.0
 
 ---
 
-## Bisect
+## Bare repositories
 
-Bisect allow us to find which commit introduces a bug (or any specific behaviour we might want to pinpoint).
+It is possible to create a git repository **WITHOUT** checking out a working tree.
 
-It uses a binary search to jump around the project history, allowing you mark whether the selected revision
-is either `good` or `bad`
+The `bare` repository can be used a shared remote or as a deployment target.
 
 ---
 
-Bisect will try to choose the minimum number of commits you need to review.
+This is especially useful in sever setups where no one will work directly
+on the instance of the repository.
 
 ```bash
-# start the bisect process with the current commit
-git bisect start
+# create a repository without a working tree
+git init --bare
 
-# mark the current commit as bad i.e. containing the bug
-git bisect bad
-
-# mark a commit as good i.e. not containing the bug
-git bisect good 25aef7
-
-# return to the initial commit (before the bisect)
-git bisect reset
+# clone a repository without a working tree
+git clone --bare </path/to/repo>
 ```
 
 ---
 
-You can use an appropriate command to automatically validate if the commit is good or bad.
-(e.g. compile the code, run tests or performance benchmarks)
+If we now `ls` inside the repository directory, we will find the contents
+that usually sits in the `.git` directory.
 
-```bash
-# execute the given script to mark
-# commits as good or bad
-# based on the exit status of the script
-git bisect run my-test-command
-```
+> We will explore the internals of how git works next class
 
 ---
 
-## Multiple work-trees
+## Multiple worktrees
 
 Git allows you to have multiple versions checked-out at the same time:
 
@@ -256,6 +292,8 @@ git worktree add ~/my-project-bugfix origin/broken
 
 ---
 
+### Manipulating worktrees
+
 ```bash
 # list all worktrees
 git worktree list
@@ -268,7 +306,15 @@ git worktree remove bugfix
 
 ---
 
-Each worktree is a linked copy of the repository that maintains its own state while sharing the same object database, ensuring all trees stay synchronized with the main repository.
+Each worktree is a separate but linked checkout of a branch that maintains its own branch state.
+
+All worktrees share the same repository object database, ensuring all trees stay synchronized with the main repository.
+
+---
+
+Worktrees do **NOT** prevent conflicts - it only makes working on the same repository on the same machine easier.
+
+With AI agents worktrees have become a key git feature, allowing your agents to work on several topics in isolation.
 
 ---
 
@@ -335,7 +381,7 @@ the top-level is called a `superproject`. The nested repository is called a `sub
 ---
 
 Each repository will have its own independent history. The superproject stores only
-the sha of currently checkout commit of each submodule.
+the hash of currently checkout commit of each submodule.
 
 ---
 
@@ -346,6 +392,8 @@ It is also useful when you want to work on several projects together,
 but keep their histories separate.
 
 ---
+
+By default git does **NOT** clone submodules - you need to do that explicitly
 
 ```bash
 # add an existing repository as a

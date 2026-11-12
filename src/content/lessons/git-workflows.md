@@ -1,15 +1,16 @@
 ---
-title: 'Exploring git workflows'
-description: 'There are many strategies for working on real-world projects'
+title: "Exploring git workflows"
+description: "There are many strategies for working on real-world projects"
 order: 10
-state: 'covered'
-tags: ['git']
-links: {
-  'GitHub Collaboration Guide': 'https://docs.github.com/en/pull-requests/collaborating-with-pull-requests',
-  'Git Flow Workflow': 'https://nvie.com/posts/a-successful-git-branching-model/',
-  'Atlassian Git Tutorials': 'https://www.atlassian.com/git/tutorials/using-branches',
-  'GitHub Flow Guide': 'https://guides.github.com/introduction/flow/',
-}
+state: "covered"
+tags: ["git"]
+links:
+  {
+    "GitHub Collaboration Guide": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests",
+    "Git Flow Workflow": "https://nvie.com/posts/a-successful-git-branching-model/",
+    "Atlassian Git Tutorials": "https://www.atlassian.com/git/tutorials/using-branches",
+    "GitHub Flow Guide": "https://guides.github.com/introduction/flow/",
+  }
 ---
 
 Workflows are a set of rules / guidelines that prescribe how git should be used.
@@ -52,7 +53,7 @@ Everyone directly contributes to the main branch
 - **PRO**: very simple and easy to just start working.
 
 - **CON**: Can lead to frequent conflicts when developers makes changes to
-the same parts of the project
+  the same parts of the project
 
 ---
 
@@ -88,7 +89,7 @@ For beginners and small teams, feature branches are often the sweet spot - more 
 
 ---
 
-For large projects with complex versioning and release cycles, *something like* Gitflow can be very valuable in providing a clear structure.
+For large projects with complex versioning and release cycles, _something like_ Gitflow can be very valuable in providing a clear structure.
 
 ---
 
@@ -136,7 +137,7 @@ contribute.
 
 ## Personal hosted repository
 
-The simplest workflow *(aside from just using git locally)*. Perfect for personal projects.
+The simplest workflow _(aside from just using git locally)_. Perfect for personal projects.
 
 - Branching strategy can be as simple as `push to main` (trunk-based).
 
@@ -217,14 +218,14 @@ that best fits their goals, environment and work-style.
 ## Centralized vs decentralized
 
 - **Centralized** setups are more applicable within a single company
-where all developers are trusted. Mono-repos can be seen as an extension of
-this setup.
+  where all developers are trusted. Mono-repos can be seen as an extension of
+  this setup.
 
 ---
 
 - **Decentralized** setups are more useful within open source, where the main owner
-of the projects wants to maintain control, while allowing anyone in the world
-to contribute.
+  of the projects wants to maintain control, while allowing anyone in the world
+  to contribute.
 
 ---
 
@@ -332,7 +333,7 @@ git push
 - Setup a `.gitignore` based on your language and tooling
 
 - Fetch `main` often and merge it into your feature branch
-(to avoid big conflicts)
+  (to avoid big conflicts)
 
 - Make sure to **NOT** commit and push secrets
 
@@ -341,7 +342,7 @@ git push
 ## Pull request etiquette
 
 - When contributing to a project, always respect
-the project's guidelines! (usually found in a `CONTRIBUTING.md` file)
+  the project's guidelines! (usually found in a `CONTRIBUTING.md` file)
 
 - Do NOT make trivial changes that nobody asked for.
 
