@@ -40,5 +40,5 @@
 | In class attendance & participation | 10%    | -        |
 | Homework 1                          | 15%    | 28.10.26 |
 | Midterm test                        | 25%    | 30.10.26 |
-| Homework 2                          | 20%    | 11.11.26 |
-| Final test                          | 30%    | 13.11.26 |
+| Homework 2                          | 20%    | 19.11.26 |
+| Final test                          | 30%    | 20.11.26 |
