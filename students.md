@@ -11,3 +11,7 @@
 - Yane Yanev [I am sleepy :( ]
 - asiahaslam
 - yum-fish - Sam
+
+## Fall 2026
+
+- Elina Malchinikolova (@El-ina)
