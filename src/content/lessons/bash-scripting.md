@@ -1,12 +1,10 @@
 ---
-title: 'Scripting with bash'
-description: 'Diving deeper into bash features, writing scripts'
-order: 8
-state: 'covered'
-tags: ['bash', 'unix']
-links: {
-  'shellcheck': 'https://github.com/koalaman/shellcheck',
-}
+title: "Scripting with bash"
+description: "Diving deeper into bash features, writing scripts"
+order: 10
+state: "covered"
+tags: ["bash", "unix"]
+links: { "shellcheck": "https://github.com/koalaman/shellcheck" }
 ---
 
 ## Writing scripts
@@ -75,10 +73,10 @@ This is often referred to as a **shebang**:
 ---
 
 - The shebang makes sure that your script is properly setup
-and reduces the knowledge and setup required from its user.
+  and reduces the knowledge and setup required from its user.
 
 - Shebangs are NOT limited to bash, you can use them with any language
-such as JavaScript or Python
+  such as JavaScript or Python
 
 <bonus-content>
 
@@ -595,7 +593,7 @@ shellcheck my-script
 
 <bonus-content>
 
-  > **Fun fact:** there is a version of the popular containerization tool Docker [written entirely in bash](https://github.com/p8952/bocker)
+> **Fun fact:** there is a version of the popular containerization tool Docker [written entirely in bash](https://github.com/p8952/bocker)
 
 </bonus-content>
 

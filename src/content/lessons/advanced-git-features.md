@@ -1,7 +1,7 @@
 ---
 title: "Advanced git features"
 description: "Finding specific commits, using multiple working trees and submodules"
-order: 9
+order: 8
 state: "covered"
 tags: ["git"]
 links:
