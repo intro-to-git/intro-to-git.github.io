@@ -2,12 +2,14 @@
 
 ## Fall 2025
 
-- Roberto Myftaraga (InspectRM)
-- Tornio2 handle
-- Valeri Kadiev
-- **Dzhano**
-- **Plamena Pavlova**
-- Samuil Mladenov
-- Yane Yanev [I am sleepy :( ]
-- asiahaslam
-- yum-fish - Sam
+* Roberto Myftaraga (InspectRM)
+* Tornio2 handle
+* Valeri Kadiev
+* **Dzhano**
+* **Plamena Pavlova**
+* Samuil Mladenov
+* Yane Yanev \[I am sleepy :( ]
+* asiahaslam
+* yum-fish - Sam
+* ivoketa
+
